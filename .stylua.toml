@@ -1,0 +1,26 @@
+# The approximate line length for printing. Used as a guide to determine when to wrap lines.
+# Note, this is not a hard requirement. Some lines may fall under or over.
+column_width = 160
+
+line_endings = "Unix"
+
+# https://luapower.com/coding-style#formatting
+# http://lua-users.org/wiki/LuaStyleGuide
+indent_type = "Tabs"
+
+# The number of characters a single indent takes. If indent_type is set to Tabs,
+# this option is used as a heuristic to determine column width only.
+indent_width = 2
+
+# Types of quotes to use for string literals.
+# Possible options: AutoPreferDouble, AutoPreferSingle, ForceDouble, ForceSingle.
+# In AutoPrefer styles, we prefer the quote type specified, but fall back to the opposite if it leads to fewer escapes in the string.
+# Force styles always use the style specified regardless of escapes.
+quote_style = "AutoPreferDouble"
+
+# A style option added for adoption purposes.
+# When enabled, parentheses are removed around function arguments where a single string literal/table is passed.
+# Note: parentheses are still kept in some situations if removing them will make the syntax become obscure
+# (e.g. foo "bar".setup -> foo("bar").setup, as we are indexing the call result, not the string)
+no_call_parentheses = true
+

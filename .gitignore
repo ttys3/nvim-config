@@ -1,0 +1,7 @@
+.idea
+/neovim
+/.netrwhist
+CMakeFiles
+*.log
+tags
+/plugin/packer_compiled.lua
