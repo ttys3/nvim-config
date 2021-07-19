@@ -19,9 +19,11 @@ sudo install -vDm 755 stylua /usr/bin; \
 stylua --version
 ```
 
-## Plugins Config
+## Plugins Configuration
 
-set `intelephense` license key in your `.zshrc` or `.bashrc`:
+you can set `intelephense` license key in your `.zshrc` or `.bashrc`, if you have one.
+
+> note: this is not necessary.
 
 ```shell
 export INTELEPHENSE_LICENCE_KEY="xxxxxx"
@@ -29,7 +31,7 @@ export INTELEPHENSE_LICENCE_KEY="xxxxxx"
 
 ## fonts
 
-nerd font is required for unicode emoji
+nerd font is required for Unicode emoji
 
 please get a font at https://github.com/ryanoasis/nerd-fonts
 
