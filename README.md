@@ -3,7 +3,11 @@
 ## Installation
 
 ```shell
+# download the config
 git clone https://github.com/ttys3/nvim-config.git $HOME/.config/nvim
+
+# init plugin installation
+env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "lua _G.packer_non_interactive=true;require('packer').install()" -c "PackerCompile"
 ```
 
 ## Plugins Config
