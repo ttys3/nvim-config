@@ -3,7 +3,7 @@
 ## Installation
 
 ```shell
-git clone https://github.com/ttys3/neovim-config.git $HOME/.config/nvim
+git clone https://github.com/ttys3/nvim-config.git $HOME/.config/nvim
 ```
 
 ## Plugins Config
