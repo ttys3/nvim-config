@@ -242,27 +242,13 @@ return require("packer").startup {
 			config = [[require('config.ultisnips')]],
 		}
 
-		-- https://github.com/nvim-lua/completion-nvim/wiki/chain-complete-support
+		-- complete plugin
 		use {
-			"nvim-lua/completion-nvim",
-			config = [[require('config.completion-nvim')]],
+			"hrsh7th/nvim-compe",
+			config = [[require('config.nvim-compe')]],
 		}
 
-		-- https://github.com/aca/completion-tabnine
-		use {
-			"aca/completion-tabnine",
-			run = "./install.sh",
-			requires = { "nvim-lua/completion-nvim" },
-		}
-
-		-- https://github.com/steelsojka/completion-buffers
-		use {
-			"steelsojka/completion-buffers",
-			requires = { "nvim-lua/completion-nvim" },
-		}
-
-		-- https://github.com/nvim-treesitter/completion-treesitter
-		-- use "nvim-treesitter/completion-treesitter"
+		use { "tzachar/compe-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-compe" }
 
 		-- " https://github.com/samirettali/shebang.nvim
 		-- " inserts a shebang line when editing a new file

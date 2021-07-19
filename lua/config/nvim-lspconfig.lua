@@ -50,11 +50,20 @@ require("lsp").setup_diagnostic_sign()
 
 local lsp_status = require "lsp-status"
 
+lsp_status.capabilities.textDocument.completion.completionItem.snippetSupport = true
+lsp_status.capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = {
+		"documentation",
+		"detail",
+		"additionalTextEdits",
+	},
+}
+
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client)
-	require("lsp").set_lsp_omnifunc()
+	-- require("lsp").set_lsp_omnifunc()
 	lsp_status.on_attach(client)
-	require("completion").on_attach(client)
+	-- require("completion").on_attach(client)
 	require("illuminate").on_attach(client)
 
 	local cfg = {
