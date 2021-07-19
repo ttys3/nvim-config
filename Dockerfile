@@ -70,12 +70,12 @@ COPY --from=builder /build/ /
 
 COPY . /root/.config/nvim
 
-# nvim-treesitter needs gcc and libstdc++
+# nvim-treesitter needs gcc, g++ and libstdc++
 RUN set -eux; \
   apt-get update; \
   apt-get install -y --no-install-recommends xclip curl python3 python3-pip git; \
   apt-get install -y --no-install-recommends libluajit-5.1-dev liblua5.1-0-dev; \
-  apt-get install -y --no-install-recommends gdb gcc libstdc++-10-dev; \
+  apt-get install -y --no-install-recommends gdb gcc g++ libstdc++-10-dev; \
   pip3 install --user pynvim
 
 RUN set -eux; \
