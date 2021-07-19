@@ -81,5 +81,9 @@ RUN set -eux; \
 RUN set -eux; \
   git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 
+WORKDIR /root/.config/nvim
+
 # RUN set -eux; \
   # env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "lua _G.packer_non_interactive=true;require('packer').install()" -c "PackerCompile"
+
+
