@@ -23,7 +23,7 @@ ENV TZ=Asia/Shanghai \
     echo "alias la='ls -A'"; \
     echo "alias ll='ls -alhp'"; \
     echo "alias ls='ls --color=auto'"; \
-    echo 'export EDITOR=vim'; \
+    echo 'export EDITOR=nvim'; \
 } >> /root/.bashrc; \
   \
 { \
