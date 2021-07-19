@@ -7,7 +7,10 @@
 git clone https://github.com/ttys3/nvim-config.git $HOME/.config/nvim
 
 # init plugin installation
-env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "lua _G.packer_non_interactive=true;require('packer').install()" -c "PackerCompile"
+nvim -i NONE -c "PackerInstall" -c "PackerCompile"
+
+# init plugin installation (if you prefer non-interactive)
+#env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "PackerInstall" -c "PackerCompile"
 
 # stylua is used as lua formatter
 # stylua installation

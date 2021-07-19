@@ -84,6 +84,6 @@ RUN set -eux; \
 WORKDIR /root/.config/nvim
 
 # RUN set -eux; \
-  # env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "lua _G.packer_non_interactive=true;require('packer').install()" -c "PackerCompile"
+  # env PACKER_NON_INTERACTIVE=1 nvim -i NONE -c "lua require('packer').install()" -c "PackerCompile"
 
 
