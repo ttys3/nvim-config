@@ -16,7 +16,7 @@ cd /tmp; \
 unzip stylua.zip; \
 rm -f stylua.zip; \
 sudo install -vDm 755 stylua /usr/bin; \
-stylua --version; \
+stylua --version
 ```
 
 ## Plugins Config
