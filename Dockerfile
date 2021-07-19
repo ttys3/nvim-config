@@ -1,20 +1,20 @@
 FROM ubuntu:hirsute-20210711 as base
 
 ENV TZ=Asia/Shanghai \
-       LANG=en_US.UTF-8
+    LANG=en_US.UTF-8
 
-       WORKDIR /
+WORKDIR /
 
-       RUN set -eux; \
-         \
-         echo "current architecture is: $(dpkg --print-architecture)"; \
-         apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates tzdata; \
-         update-ca-certificates -f; \
-         ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime; \
-         sed -i.bak 's|http://archive.ubuntu.com|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list; \
-         sed -i 's|http://security.ubuntu.com|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list; \
-         apt-get update; \
-         \
+RUN set -eux; \
+  \
+  echo "current architecture is: $(dpkg --print-architecture)"; \
+  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates tzdata; \
+  update-ca-certificates -f; \
+  ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime; \
+  sed -i.bak 's|http://archive.ubuntu.com|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list; \
+  sed -i 's|http://security.ubuntu.com|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list; \
+  apt-get update; \
+  \
 # ls for human
 # Bash login shells run only /etc/profile
 # Bash non-login shells run only /etc/bashrc
