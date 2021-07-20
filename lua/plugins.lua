@@ -498,7 +498,12 @@ return require("packer").startup {
 
 		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
 		-- " Integrates with Neovim's LSP client for intelligent highlighting.
-		use "rrethy/vim-illuminate"
+		use {
+			"rrethy/vim-illuminate",
+			config = function()
+				vim.g.Illuminate_ftblacklist = { "NvimTree" }
+			end,
+		}
 
 		--  https://github.com/iamcco/markdown-preview.nvim
 		use {
@@ -556,7 +561,8 @@ return require("packer").startup {
 		use {
 			"shaunsingh/nord.nvim",
 			config = function()
-				require("nord").set()
+				-- require("nord").set()
+				-- vim.cmd [[ silent! colorscheme nord ]]
 			end,
 		}
 		-- " one dark like colorscheme
@@ -578,7 +584,7 @@ return require("packer").startup {
 				}
 				vim.go.background = "dark"
 				-- vim.cmd "colorscheme gruvbox"
-				-- vim.cmd [[ silent! colorscheme gruvbox ]]
+				vim.cmd [[ silent! colorscheme gruvbox ]]
 				-- print "colorscheme set to gruvbox"
 			end,
 		}
