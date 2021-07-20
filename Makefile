@@ -335,3 +335,6 @@ bar:
 	scrot -o -c -d8 -a0,1938,1910,34 r.png
 	ffmpeg -y -i n.png -i i.png -i v.png -i r.png -filter_complex "[0][1][2][3]vstack=inputs=4" statusline.png
 	xdg-open statusline.png
+
+startuptime:
+	nvim --startuptime startup.log -c ":q" && cat startup.log | sort -k2 && rm -f startup.log
