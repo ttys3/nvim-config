@@ -563,7 +563,6 @@ return require("packer").startup {
 					gruvbox_contrast_dark = "medium",
 				}
 				vim.go.background = "dark"
-				vim.g["lightline.colorscheme"] = "gruvbox"
 				-- vim.cmd "colorscheme gruvbox"
 				-- vim.cmd [[ silent! colorscheme gruvbox ]]
 				-- print "colorscheme set to gruvbox"
