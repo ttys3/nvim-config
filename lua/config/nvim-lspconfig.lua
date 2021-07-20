@@ -64,7 +64,10 @@ local mix_attach = function(client)
 	-- require("lsp").set_lsp_omnifunc()
 	lsp_status.on_attach(client)
 	-- require("completion").on_attach(client)
-	require("illuminate").on_attach(client)
+	local has_illuminate, illuminate = pcall(require, "illuminate")
+	if has_illuminate then
+		illuminate.on_attach(client)
+	end
 
 	local cfg = {
 		bind = true, -- This is mandatory, otherwise border config won't get registered.
