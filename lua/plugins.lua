@@ -339,10 +339,24 @@ return require("packer").startup {
 
 		-- " Keep and restore fcitx state for each buffer separately when leaving/re-entering insert mode.
 		-- " Like always typing English in normal mode, but Chinese in insert mode.
+		-- lilydjwg/fcitx.vim implemented with py3 + dbus, startuptime took 50ms, too slow
+		-- use {
+		-- 	"lilydjwg/fcitx.vim",
+		-- 	branch = "fcitx5",
+		-- }
 
+		-- Automatic input method switching for vim
+		-- https://github.com/rlue/vim-barbaric
 		use {
-			"lilydjwg/fcitx.vim",
-			branch = "fcitx5",
+			"rlue/vim-barbaric",
+			config = function()
+				Variable.g {
+					barbaric_ime = "fcitx",
+					barbaric_default = 0,
+					barbaric_scope = "buffer",
+					barbaric_fcitx_cmd = "fcitx5-remote",
+				}
+			end,
 		}
 
 		-- " auto switch to en on normal
