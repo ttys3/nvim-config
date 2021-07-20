@@ -22,6 +22,10 @@ sudo install -vDm 755 stylua /usr/bin; \
 stylua --version
 ```
 
+## Screenshot
+
+![auto complete](https://user-images.githubusercontent.com/41882455/126368871-40bc204f-f804-47ba-811a-8200ff107fdf.png)
+
 ## Plugins Configuration
 
 you can set `intelephense` license key in your `.zshrc` or `.bashrc`, if you have one.
