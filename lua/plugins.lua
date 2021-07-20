@@ -539,7 +539,12 @@ return require("packer").startup {
 		-- use 'joshdick/onedark.vim'
 		use "doums/darcula"
 		use "ttys3/base16-vim"
-		use "arcticicestudio/nord-vim"
+		use {
+			"shaunsingh/nord.nvim",
+			config = function()
+				require("nord").set()
+			end,
+		}
 		-- " one dark like colorscheme
 		use "sainnhe/edge"
 		use "sainnhe/gruvbox-material"
@@ -560,7 +565,7 @@ return require("packer").startup {
 				vim.go.background = "dark"
 				vim.g["lightline.colorscheme"] = "gruvbox"
 				-- vim.cmd "colorscheme gruvbox"
-				vim.cmd [[ silent! colorscheme gruvbox ]]
+				-- vim.cmd [[ silent! colorscheme gruvbox ]]
 				-- print "colorscheme set to gruvbox"
 			end,
 		}
