@@ -113,3 +113,80 @@ https://github.com/wbthomason/dotfiles/blob/linux/neovim/.config/nvim/lua/plugin
 
 https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/plugins.lua
 
+
+## Plugin Description
+
+why do you installed all of these plugins?
+
+here is the simple reason.
+
+- wbthomason/packer.nvim the package manager, essential 
+- nvim-treesitter/nvim-treesitter for better synatx highlighting,  essential 
+- nvim-treesitter/playground for debug treesitter highlighting issue, dev & debug
+- JoosepAlviste/nvim-ts-context-commentstring for context comment, essential
+- chr4/sslsecure.vim Highlight insecure SSL configuration, devops 
+- chr4/nginx.vim  Improved nginx vim plugin (incl. syntax highlighting), devops 
+- kyazdani42/nvim-tree.lua the lua version nerd-tree, I use it every day
+- kyazdani42/nvim-web-devicons Unicode emoji support, essential
+- liuchengxu/vista.vim A tagbar alternative that supports LSP symbols and async processing
+- simeji/winresizer resize windows continuously by using typical keymaps of Vim. (h, j, k, l)
+- sakshamgupta05/vim-todo-highlight highligh improve, essential
+- vim-test/vim-test I use it run golang test quickly, did not find a lua replacement.
+- junegunn/vim-easy-align the must have align plugin, essential
+- psliwka/vim-smoothie scroll improve
+- jremmen/vim-ripgrep I use `rg`, yes, essential
+- simnalamburt/vim-mundo best undo history plugin I've found, did not found a lua replacement
+- StanAngeloff/php.vim php improvement
+- ron-rs/ron.vim RON: Rusty Object Notation, yes, I also like Rust
+- arrufat/vala.vim Automatic detection of .vala, .vapi and .valadoc files, as a GNOME user, sometimes I need work on a vala project
+- euclidianAce/BetterLua.vim better lua highlight
+- neovim/nvim-lspconfig no need to say what is this, I use lsp everyday, essential 
+- simrat39/rust-tools.nvim for Rust lsp inlay hints support, works like a charm
+- ray-x/lsp_signature.nvim Show function signature when you type, use it everyday
+- glepnir/lspsaga.nvim better lsp `code action` support, use it everyday
+- onsails/lspkind-nvim vscode-like pictograms for neovim lsp completion items
+- kosayoda/nvim-lightbulb shows a lightbulb in the sign column whenever a textDocument/codeAction is available at the current cursor position.
+- chrisbra/NrrwRgn A Narrow Region Plugin for vim (like Emacs Narrow Region)
+- jiangmiao/auto-pairs auto pairs, use it everyday, I need sometime to replace it with lua version plugin
+- SirVer/ultisnips + honza/vim-snippets the snippet plugin with lots of snippets, if you find another one better than this, please tell me, I do not mean the implementation, I mean, just install it, most of you fav language snippets just there and you can just use it.
+- hrsh7th/nvim-compe Auto completion Lua plugin for nvim, use it everyday
+- tzachar/compe-tabnine tabnine nvim-compe source, use it everyday
+- samirettali/shebang.nvim inserts a shebang line when editing a new file
+- RishabhRD/nvim-cheat.sh this plugin can make you copy and paste more effectively
+- mfussenegger/nvim-dap the dap plugin, for interactive debug
+- dstein64/nvim-scrollview  A Neovim plugin that displays interactive scrollbars.
+- kevinhwang91/nvim-bqf this plugin just works like a charm, a better quickfix 
+- Rasukarusan/vim-block-paste maybe I will remove this plugin
+- nvim-telescope/telescope.nvim you know what this is
+- numtostr/FTerm.nvim float term plugin, essential
+- lilydjwg/fcitx.vim switch input method, as a CJK lang user, this is essential
+- luochen1990/rainbow better for nested quotes, this is essential to me, maybe I will replace it with a lua one
+- lambdalisue/gina.vim the git plugin
+- ttys3/nvim-blamer.lua show git blame overlay while you moves cursor, a little bit like VSCODE
+- famiu/feline.nvim the status line plugin, essential
+- mhinz/vim-startify best dashbaord plugin, even today I did not found a lua version replacement
+- nvim-lua/lsp-status.nvim this is essential for me, if you are a Rust programmer, rust-analyzer lsp loading time is a bit more slow, without this plugin, you did not know what happend.
+- mhartington/formatter.nvim this plugin can do all kinds of auto formater for you, essential
+- glepnir/indent-guides.nvim use it everyday, essential
+- tpope/vim-surround he most famous surround plugin, did not found a replacement
+- tpope/vim-repeat use it everyday, did not found a replacement
+- tpope/vim-unimpaired maybe I will remove this
+- tpope/vim-commentary use it everyday, essential, maybe I will replace it with a lua one later
+- bfredl/nvim-miniyank did not use too much, maybe I will remove it
+- terryma/vim-expand-region Press + to expand the visual selection and _ to shrink it.
+- phaazon/hop.nvim the lua version vim-easymotion or vim-sneak, but better
+- mg979/vim-visual-multi multi cursor plugin, essential
+- mfussenegger/nvim-lint async lint plugin, essential
+- lewis6991/gitsigns.nvim git sign plugin, essential
+- ttys3/vim-gomodifytags as a golang user, essential
+- rhysd/vim-go-impl as a golang user, essential
+- norcalli/nvim-colorizer.lua when I edit CSS or HTML files, essential
+- rrethy/vim-illuminate automatically highlighting other uses of the word under the cursor
+- iamcco/markdown-preview.nvim the must have plugin for me
+- plasticboy/vim-markdown better markdown support
+- dhruvasagar/vim-table-mode An awesome automatic table creator & formatter allowing one to create neat tables as you type. dit not found a lua version replacement
+- voldikss/vim-translator maybe I will remove this plugin
+- pwntester/octo.nvim Edit and review GitHub issues and pull requests from the comfort of your favorite editor
+- ekickx/clipboard-image.nvim NeoVim plugin to paste image from clipboard written in lua.
+- and last, Some of my favorite colorschemes: doums/darcula  shaunsingh/nord.nvim sainnhe/edge sainnhe/gruvbox-material hzchirs/vim-material npxbr/gruvbox.nvim olimorris/onedark.nvim dracula/vim
+
