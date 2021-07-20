@@ -114,6 +114,11 @@ https://github.com/wbthomason/dotfiles/blob/linux/neovim/.config/nvim/lua/plugin
 https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/plugins.lua
 
 
+## NeoVim lua func
+
+vim.fn.xxx https://neovim.io/doc/user/eval.html#vim-function
+
+
 ## Plugin Description
 
 why do you installed all of these plugins?
@@ -159,7 +164,7 @@ here is the simple reason.
 - Rasukarusan/vim-block-paste maybe I will remove this plugin
 - nvim-telescope/telescope.nvim you know what this is
 - numtostr/FTerm.nvim float term plugin, essential
-- lilydjwg/fcitx.vim switch input method, as a CJK lang user, this is essential
+- rlue/vim-barbaric switch input method, as a CJK lang user, this is essential
 - luochen1990/rainbow better for nested quotes, this is essential to me, maybe I will replace it with a lua one
 - lambdalisue/gina.vim the git plugin
 - ttys3/nvim-blamer.lua show git blame overlay while you moves cursor, a little bit like VSCODE
