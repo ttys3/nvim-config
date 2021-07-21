@@ -277,8 +277,6 @@ return require("packer").startup {
 		-- " https://github.com/kevinhwang91/nvim-bqf
 		use "kevinhwang91/nvim-bqf"
 
-		use "Rasukarusan/vim-block-paste"
-
 		use {
 			"nvim-telescope/telescope.nvim",
 			requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzy-native.nvim" },
@@ -407,11 +405,6 @@ return require("packer").startup {
 		-- " as part of a :global invocation like with :g/TODO/Commentary. That's it.
 		use "tpope/vim-commentary"
 
-		use {
-			"bfredl/nvim-miniyank",
-			config = [[require('config.nvim-miniyank')]],
-		}
-
 		-- Press + to expand the visual selection and _ to shrink it.
 		use "terryma/vim-expand-region"
 
@@ -495,24 +488,6 @@ return require("packer").startup {
 			-- For Markdown-compatible tables use
 			config = function()
 				vim.g.table_mode_corner = "|"
-			end,
-		}
-
-		use {
-			"voldikss/vim-translator",
-			config = [[require('config.vim-translator')]],
-		}
-
-		-- https://github.com/pwntester/octo.nvim
-		-- Edit and review GitHub issues and pull requests from the comfort of your favorite editor
-		use {
-			"pwntester/octo.nvim",
-			requires = { "nvim-telescope/telescope.nvim", "kyazdani42/nvim-web-devicons" },
-			config = function()
-				vim.defer_fn(function()
-					-- the setup is slow
-					require("octo").setup()
-				end, 6000)
 			end,
 		}
 
