@@ -170,7 +170,6 @@ here is the simple reason.
 - mfussenegger/nvim-dap the dap plugin, for interactive debug
 - dstein64/nvim-scrollview  A Neovim plugin that displays interactive scrollbars.
 - kevinhwang91/nvim-bqf this plugin just works like a charm, a better quickfix 
-- Rasukarusan/vim-block-paste maybe I will remove this plugin
 - nvim-telescope/telescope.nvim you know what this is
 - numtostr/FTerm.nvim float term plugin, essential
 - rlue/vim-barbaric switch input method, as a CJK lang user, this is essential
@@ -185,7 +184,6 @@ here is the simple reason.
 - tpope/vim-repeat use it everyday, did not found a replacement
 - tpope/vim-unimpaired maybe I will remove this
 - tpope/vim-commentary use it everyday, essential, maybe I will replace it with a lua one later
-- bfredl/nvim-miniyank did not use too much, maybe I will remove it
 - terryma/vim-expand-region Press + to expand the visual selection and _ to shrink it.
 - phaazon/hop.nvim the lua version vim-easymotion or vim-sneak, but better
 - mg979/vim-visual-multi multi cursor plugin, essential
@@ -198,8 +196,6 @@ here is the simple reason.
 - iamcco/markdown-preview.nvim the must have plugin for me
 - plasticboy/vim-markdown better markdown support
 - dhruvasagar/vim-table-mode An awesome automatic table creator & formatter allowing one to create neat tables as you type. dit not found a lua version replacement
-- voldikss/vim-translator maybe I will remove this plugin
-- pwntester/octo.nvim Edit and review GitHub issues and pull requests from the comfort of your favorite editor
 - ekickx/clipboard-image.nvim NeoVim plugin to paste image from clipboard written in lua.
 - and last, Some of my favorite colorschemes: doums/darcula  shaunsingh/nord.nvim sainnhe/edge sainnhe/gruvbox-material hzchirs/vim-material npxbr/gruvbox.nvim olimorris/onedark.nvim dracula/vim
 
