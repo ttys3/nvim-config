@@ -531,8 +531,11 @@ Augroup {
 }
 
 -- file template
--- TODO use augroup
 vim.api.nvim_command "augroup FileTemplate"
 vim.api.nvim_command "autocmd!"
-vim.api.nvim_command("autocmd BufNewFile *.sh  0r " .. vim.fn.stdpath "config" .. "/template/new.sh")
+local template_files = vim.fn.glob(vim.fn.stdpath "config" .. "/template/new.*", 0, 1)
+for _, tmpl in ipairs(template_files) do
+	local ext = vim.fn.fnamemodify(tmpl, ":e")
+	vim.api.nvim_command(string.format("autocmd BufNewFile *.%s  0r %s", ext, tmpl))
+end
 vim.api.nvim_command "augroup END"
