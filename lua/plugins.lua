@@ -491,6 +491,11 @@ return require("packer").startup {
 			end,
 		}
 
+		use {
+			"bfredl/nvim-miniyank",
+			config = [[require('config.nvim-miniyank')]],
+		}
+
 		-- " NeoVim plugin to paste image from clipboard written in lua.
 		-- " https://github.com/ekickx/clipboard-image.nvim
 		use "ekickx/clipboard-image.nvim"
