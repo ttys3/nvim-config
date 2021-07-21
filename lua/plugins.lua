@@ -229,10 +229,6 @@ return require("packer").startup {
 
 		use { "tzachar/compe-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-compe" }
 
-		-- " https://github.com/samirettali/shebang.nvim
-		-- " inserts a shebang line when editing a new file
-		use "samirettali/shebang.nvim"
-
 		-- " https://github.com/RishabhRD/nvim-cheat.sh
 		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
 		use "RishabhRD/nvim-cheat.sh"

@@ -529,3 +529,10 @@ Augroup {
 		},
 	},
 }
+
+-- file template
+-- TODO use augroup
+vim.api.nvim_command "augroup FileTemplate"
+vim.api.nvim_command "autocmd!"
+vim.api.nvim_command("autocmd BufNewFile *.sh  0r " .. vim.fn.stdpath "config" .. "/template/new.sh")
+vim.api.nvim_command "augroup END"
