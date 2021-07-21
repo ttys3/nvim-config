@@ -117,6 +117,15 @@ https://github.com/wbthomason/dotfiles/blob/linux/neovim/.config/nvim/lua/plugin
 
 https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/plugins.lua
 
+https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#completion-kinds
+
+https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#auto-import
+
+https://github.com/neovim/nvim-lspconfig/wiki/Project-local-settings
+
+https://github.com/neovim/nvim-lspconfig/wiki/Snippets
+
+https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips
 
 ## NeoVim lua func
 
