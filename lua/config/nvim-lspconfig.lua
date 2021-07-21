@@ -47,6 +47,7 @@ nnoremap { "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silent =
 local lsp = require "lspconfig"
 
 require("lsp").setup_diagnostic_sign()
+require("lsp").setup_item_kind_icons()
 
 local lsp_status = require "lsp-status"
 

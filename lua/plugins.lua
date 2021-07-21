@@ -154,9 +154,6 @@ return require("packer").startup {
 			config = [[require('config.vala')]],
 		}
 
-		-- https://github.com/euclidianAce/BetterLua.vim
-		use "euclidianAce/BetterLua.vim"
-
 		use {
 			-- "neovim/nvim-lspconfig",
 			"ttys3/nvim-lspconfig",
@@ -176,24 +173,6 @@ return require("packer").startup {
 		use {
 			"glepnir/lspsaga.nvim",
 			config = [[require('config.lspsaga')]],
-		}
-
-		-- vscode-like completion icons
-		-- similar: https://www.reddit.com/r/neovim/comments/lcqele/vscodelike_completion_icons/gm2e077/
-		use {
-			"onsails/lspkind-nvim",
-			config = function()
-				require("lspkind").init()
-			end,
-		}
-
-		-- https://github.com/kosayoda/nvim-lightbulb
-		-- shows a lightbulb in the sign column whenever a textDocument/codeAction is available at the current cursor position.
-		use {
-			"kosayoda/nvim-lightbulb",
-			config = function()
-				vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-			end,
 		}
 
 		-- A pretty diagnostics list to help you solve all the trouble your code is causing.
@@ -380,11 +359,6 @@ return require("packer").startup {
 		-- VCS
 		-- https://github.com/lambdalisue/gina.vim
 		use "lambdalisue/gina.vim"
-
-		use {
-			"ttys3/nvim-blamer.lua",
-			config = [[require('config.nvim-blamer')]],
-		}
 
 		-- " if no color: export TERM=xterm-256color
 		-- " show the final result: :echo &statusline

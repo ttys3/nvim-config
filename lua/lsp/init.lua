@@ -61,4 +61,37 @@ M.fix_imports = function()
 	end
 end
 
+-- replace https://github.com/onsails/lspkind-nvim/blob/master/lua/lspkind/init.lua
+-- code from wiki https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#completion-kinds
+M.icons = {
+	Class = " ",
+	Color = " ",
+	Constant = " ",
+	Constructor = " ",
+	Enum = "了 ",
+	EnumMember = " ",
+	Field = " ",
+	File = " ",
+	Folder = " ",
+	Function = " ",
+	Interface = "ﰮ ",
+	Keyword = " ",
+	Method = "ƒ ",
+	Module = " ",
+	Property = " ",
+	Snippet = "﬌ ",
+	Struct = " ",
+	Text = " ",
+	Unit = " ",
+	Value = " ",
+	Variable = " ",
+}
+
+function M.setup_item_kind_icons()
+	local kinds = vim.lsp.protocol.CompletionItemKind
+	for i, kind in ipairs(kinds) do
+		kinds[i] = M.icons[kind] or kind
+	end
+end
+
 return M
