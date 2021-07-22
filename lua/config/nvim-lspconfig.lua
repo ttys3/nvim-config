@@ -49,10 +49,10 @@ local lsp = require "lspconfig"
 require("lsp").setup_diagnostic_sign()
 require("lsp").setup_item_kind_icons()
 
-local lsp_status = require "lsp-status"
-
-lsp_status.capabilities.textDocument.completion.completionItem.snippetSupport = true
-lsp_status.capabilities.textDocument.completion.completionItem.resolveSupport = {
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- by default, NeoVim lsp disabled snippet, see https://github.com/neovim/neovim/pull/13183
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
 	properties = {
 		"documentation",
 		"detail",
@@ -63,8 +63,6 @@ lsp_status.capabilities.textDocument.completion.completionItem.resolveSupport = 
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client)
 	-- require("lsp").set_lsp_omnifunc()
-	lsp_status.on_attach(client)
-	-- require("completion").on_attach(client)
 	local has_illuminate, illuminate = pcall(require, "illuminate")
 	if has_illuminate then
 		illuminate.on_attach(client)
@@ -89,13 +87,13 @@ end
 
 lsp.bashls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- php
 lsp.intelephense.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 	--[[
                     cmd_env = {
                         https_proxy = 'http://127.0.0.1:8888',
@@ -132,7 +130,7 @@ lsp.intelephense.setup {
 
 lsp.dockerls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- lsp.gopls.setup{}
@@ -156,7 +154,7 @@ lsp.gopls.setup {
 			experimentalPostfixCompletions = true,
 		},
 	},
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
@@ -198,12 +196,11 @@ end
 
 -- https://clangd.llvm.org/features.html
 lsp.clangd.setup {
-	handlers = lsp_status.extensions.clangd.setup(),
 	init_options = {
 		clangdFileStatus = true,
 	},
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#ccls
@@ -222,17 +219,15 @@ lsp.clangd.setup {
 
 -- lsp.pyright.setup{}
 lsp.pyright.setup {
-	handlers = lsp_status.extensions.pyls_ms.setup(),
 	settings = { python = { workspaceSymbols = { enabled = true } } },
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- lsp.rust_analyzer.setup{}
 lsp.rust_analyzer.setup {
-	-- on_attach = lsp_status.on_attach,
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 
 	settings = {
 		-- https://rust-analyzer.github.io/manual.html#configuration
@@ -285,7 +280,7 @@ local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-lang
 
 lsp.sumneko_lua.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 	log_level = vim.lsp.protocol.MessageType.Log,
 	message_level = vim.lsp.protocol.MessageType.Log,
 	-- https://github.com/sumneko/lua-language-server/wiki/Setting-without-VSCode#neovim-with-built-in-lsp-client
@@ -324,12 +319,12 @@ lsp.sumneko_lua.setup {
 
 lsp.tsserver.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.denols.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#vala_ls
@@ -338,43 +333,43 @@ lsp.denols.setup {
 
 lsp.vala_ls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 	cmd = { "vala-language-server" },
 }
 
 lsp.vimls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.vuels.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.html.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.cssls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.jsonls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.yamlls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 lsp.nomadls.setup {
 	on_attach = mix_attach,
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 }
 
 -- Use LSP omni-completion

@@ -377,11 +377,6 @@ return require("packer").startup {
 		}
 
 		use {
-			"nvim-lua/lsp-status.nvim",
-			config = [[require('config.lsp-status')]],
-		}
-
-		use {
 			"mhartington/formatter.nvim",
 			config = [[require('config.formatter')]],
 		}
