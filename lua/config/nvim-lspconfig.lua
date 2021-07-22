@@ -68,21 +68,24 @@ local mix_attach = function(client)
 		illuminate.on_attach(client)
 	end
 
-	local cfg = {
-		bind = true, -- This is mandatory, otherwise border config won't get registered.
-		-- If you want to hook lspsaga or other signature handler, pls set to false
-		doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
+	local has_lsp_signature, lsp_signature = pcall(require, "lsp_signature")
+	if has_lsp_signature then
+		local cfg = {
+			bind = true, -- This is mandatory, otherwise border config won't get registered.
+			-- If you want to hook lspsaga or other signature handler, pls set to false
+			doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
 
-		hint_enable = true, -- virtual hint enable
-		hint_prefix = "🐼 ", -- Panda for parameter
-		hint_scheme = "String",
+			hint_enable = true, -- virtual hint enable
+			hint_prefix = "🐼 ", -- Panda for parameter
+			hint_scheme = "String",
 
-		handler_opts = {
-			border = "shadow", -- double, single, shadow, none
-		},
-		decorator = { "`", "`" }, -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
-	}
-	require("lsp_signature").on_attach(cfg)
+			handler_opts = {
+				border = "shadow", -- double, single, shadow, none
+			},
+			decorator = { "`", "`" }, -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
+		}
+		lsp_signature.on_attach(cfg)
+	end
 end
 
 lsp.bashls.setup {
