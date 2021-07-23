@@ -1,4 +1,4 @@
-OS := $(shell hostnamectl status | grep -i 'Operating System' | cut -d: -f2 | tr -d '[0-9.]' | tr '[:upper:]' '[:lower:]')
+OS := $(shell hostnamectl status | grep -i 'Operating System' | cut -d: -f2 | tr -d '[0-9. ]' | tr '[:upper:]' '[:lower:]')
 
 .PHONY: all tools check nvim linter lang/go lang/php lang/lua lang/rust
 # https://github.com/neovim/nvim-lspconfig
