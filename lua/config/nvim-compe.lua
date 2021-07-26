@@ -38,8 +38,8 @@ require("compe").setup {
 			-- setting sort to false means compe will leave tabnine to sort the completion items
 			sort = false,
 			show_prediction_strength = true,
-			-- ignore_pattern = '[(]',
-			ignore_pattern = "",
+			-- do not fire completions after an opening bracket
+			ignore_pattern = "[({]",
 		},
 	},
 }
