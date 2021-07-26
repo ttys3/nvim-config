@@ -14,8 +14,10 @@ return require("packer").startup {
 
 		-- treesitter = AST (syntax/parsing)
 		-- LSP = whole-project semantic analysis
+		-- https://github.com/nvim-treesitter/nvim-treesitter
 		use {
 			"nvim-treesitter/nvim-treesitter",
+			branch = "0.5-compat",
 			run = ":TSUpdate",
 			config = [[require('config.nvim-treesitter')]],
 		}
