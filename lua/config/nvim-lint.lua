@@ -2,6 +2,7 @@ require("lint").linters_by_ft = {
 	markdown = { "vale" },
 	sh = { "shellcheck" },
 	go = { "golangcilint" },
+	dockerfile = { "hadolint" },
 }
 Augroup {
 	NvimLint = {

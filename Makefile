@@ -124,6 +124,8 @@ linter:
 	# https://github.com/vmchale/tomlcheck
 	# curl -o~/.local/bin/tomlcheck -LZ \
 		# https://github.com/vmchale/tomlcheck/releases/download/0.1.0.38/tomlcheck-x86_64-unkown-linux-gnu
+	# dockerfile lint
+	curl -LZ -o ~/.local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.6.0/hadolint-Linux-x86_64 && chmod a+rx ~/.local/bin/hadolint
 
 
 check:
