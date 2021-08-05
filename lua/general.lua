@@ -505,8 +505,8 @@ Augroup {
 			{
 				"*.nomad",
 				function()
-					vim.api.nvim_command "setlocal filetype=hcl"
 					vim.api.nvim_command "setlocal filetype=nomad"
+					vim.api.nvim_command "setlocal filetype=hcl"
 				end,
 			},
 			{
