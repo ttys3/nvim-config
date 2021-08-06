@@ -155,6 +155,9 @@ lsp.gopls.setup {
 			gofumpt = true,
 			-- Postfix completion snippets https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimentalpostfixcompletions-bool
 			experimentalPostfixCompletions = true,
+			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#expandworkspacetomodule-bool
+			expandWorkspaceToModule = true,
+			experimentalTemplateSupport = true,
 		},
 	},
 	capabilities = capabilities,
