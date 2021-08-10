@@ -20,5 +20,13 @@ Augroup {
 				require("lint").try_lint()
 			end,
 		},
+		-- InsertLeave or TextChanged
+		{
+			"InsertLeave",
+			"*",
+			function()
+				require("lint").try_lint()
+			end,
+		},
 	},
 }
