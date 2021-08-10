@@ -114,7 +114,8 @@ return require("packer").startup {
 			end,
 		}
 
-		use "jremmen/vim-ripgrep"
+		-- disabled due to E1208: -complete used without -nargs
+		-- use "jremmen/vim-ripgrep"
 
 		-- https://github.com/simnalamburt/vim-mundo
 		-- the diff https://github.com/simnalamburt/vim-mundo/issues/50
@@ -505,13 +506,23 @@ return require("packer").startup {
 		-- use 'joshdick/onedark.vim'
 		use "doums/darcula"
 		use "ttys3/base16-vim"
+
 		use {
-			"shaunsingh/nord.nvim",
+			"arcticicestudio/nord-vim",
 			config = function()
 				-- require("nord").set()
-				-- vim.cmd [[ silent! colorscheme nord ]]
+				vim.cmd [[ silent! colorscheme nord ]]
 			end,
 		}
+		-- disabled due to bug https://github.com/shaunsingh/nord.nvim/issues/24
+		-- use {
+		-- 	"shaunsingh/nord.nvim",
+		-- 	config = function()
+		-- 		-- require("nord").set()
+		-- 		-- vim.cmd [[ silent! colorscheme nord ]]
+		-- 	end,
+		-- }
+
 		-- " one dark like colorscheme
 		use "sainnhe/edge"
 		use "sainnhe/gruvbox-material"
@@ -531,7 +542,7 @@ return require("packer").startup {
 				}
 				vim.go.background = "dark"
 				-- vim.cmd "colorscheme gruvbox"
-				vim.cmd [[ silent! colorscheme gruvbox ]]
+				-- vim.cmd [[ silent! colorscheme gruvbox ]]
 				-- print "colorscheme set to gruvbox"
 			end,
 		}
