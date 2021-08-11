@@ -554,6 +554,7 @@ return require("packer").startup {
 		use { "dracula/vim", as = "dracula" }
 	end,
 	config = {
+		log = { level = os.getenv "PACKER_LOG_LEVEL" or "warn" },
 		display = {
 			non_interactive = os.getenv "PACKER_NON_INTERACTIVE" or false,
 			open_fn = function()
