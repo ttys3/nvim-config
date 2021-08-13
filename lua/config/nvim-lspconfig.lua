@@ -395,7 +395,7 @@ Augroup {
 			{ "*.rs", require("lsp").formatting_sync },
 			{ "*.py", require("lsp").formatting_sync },
 			{ "*.php", require("lsp").formatting_sync },
-			{ "*.js", require("lsp").formatting_sync },
+			-- { "*.js", require("lsp").formatting_sync },
 		},
 	},
 }
