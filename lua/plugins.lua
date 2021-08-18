@@ -199,7 +199,7 @@ return require("packer").startup {
 		-- " AutoPairsReturn() also need imap <cr>
 		-- " use fallback mode for completion-nvim, can make this work again
 		-- " https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
-		use "jiangmiao/auto-pairs"
+		-- use "jiangmiao/auto-pairs"
 
 		--     " https://github.com/rstacruz/vim-closer
 		-- " need imap <cr>, only auto close when you press <cr> (Enter)
