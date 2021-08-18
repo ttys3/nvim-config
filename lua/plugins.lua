@@ -502,6 +502,20 @@ return require("packer").startup {
 		-- use "jeffkreeftmeijer/vim-numbertoggle"
 
 		-- " colorscheme
+
+		use {
+			"EdenEast/nightfox.nvim",
+			config = function()
+				-- vim.g.nightfox_style = "palefox"
+				-- vim.g.nightfox_style = "nightfox"
+				vim.g.nightfox_style = "nordfox"
+				vim.g.nightfox_color_delimiter = "red"
+				vim.g.nightfox_italic_comments = 1
+
+				-- Load the colorscheme
+				require("nightfox").set()
+			end,
+		}
 		-- " https://github.com/morhetz/gruvbox/wiki/Installation
 		-- use 'joshdick/onedark.vim'
 		use "doums/darcula"
@@ -511,7 +525,7 @@ return require("packer").startup {
 			"arcticicestudio/nord-vim",
 			config = function()
 				-- require("nord").set()
-				vim.cmd [[ silent! colorscheme nord ]]
+				-- vim.cmd [[ silent! colorscheme nord ]]
 			end,
 		}
 		-- disabled due to bug https://github.com/shaunsingh/nord.nvim/issues/24
