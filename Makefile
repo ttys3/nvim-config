@@ -110,7 +110,7 @@ lang/lua:
 	cd ~/.local/share/lua-language-server; \
 	git submodule update --init --recursive; \
 	cd ~/.local/share/lua-language-server/3rd/luamake; \
-	ninja -f ninja/linux.ninja; \
+	./compile/install.sh;\
 	cd ~/.local/share/lua-language-server; \
 	./3rd/luamake/luamake rebuild
 
