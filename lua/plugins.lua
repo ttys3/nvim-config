@@ -100,6 +100,9 @@ return require("packer").startup {
 				nmap { "ga", "<Plug>(EasyAlign)" }
 				-- Start interactive EasyAlign in visual mode (e.g. vipga)
 				xmap { "ga", "<Plug>(EasyAlign)" }
+				-- Align GitHub-flavored Markdown tables
+				-- https://thoughtbot.com/blog/align-github-flavored-markdown-tables-in-vim
+				vmap { "<Leader><Bslash>", ":EasyAlign*<Bar><Enter>" }
 			end,
 		}
 		-- https://github.com/psliwka/vim-smoothie
