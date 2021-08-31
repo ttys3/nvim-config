@@ -56,8 +56,15 @@ tools:
 	pip3 install --user --upgrade neovim-remote
 
 tools/archlinux:
-	sudo pacman -Syu mkcert
-	sudo pacman -S copyq
+	sudo pacman -S --needed mkcert
+	# sudo pacman -S copyq
+	# https://github.com/koalaman/shellcheck#installing
+	paru -S --needed shellcheck-static
+	# markdown linter https://github.com/errata-ai/vale
+	#paru -S --needed vale-bin
+	curl -SsfL https://github.com/errata-ai/vale/releases/download/v2.10.5/vale_2.10.5_Linux_64-bit.tar.gz | bsdtar -xzf - -C$$HOME/.local/bin/
+	# https://github.com/hadolint/hadolint
+	paru -S --needed hadolint-bin
 
 lang/go:
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin
