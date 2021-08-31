@@ -485,14 +485,6 @@ return require("packer").startup {
 		}
 
 		use {
-			"dhruvasagar/vim-table-mode",
-			-- For Markdown-compatible tables use
-			config = function()
-				vim.g.table_mode_corner = "|"
-			end,
-		}
-
-		use {
 			"bfredl/nvim-miniyank",
 			config = [[require('config.nvim-miniyank')]],
 		}
