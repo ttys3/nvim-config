@@ -295,9 +295,11 @@ packer:
 install:
 	ansible-playbook -K ./nvim-fedora.yaml
 
+# for ArchLinux you need to unset lua5.4 env vars
+# because it belongs to lua 5.4 which will mess the build (make neovim link to the wrong lpeg.so)
+nvim: export LUA_PATH=""
+nvim: export LUA_CPATH=""
 nvim:
-	# for ArchLinux you need: sudo pacman -R lua-lpeg 
-	# because it belongs to lua 5.4 which will mess the build (make neovim link to the wrong lpeg.so)
 	test -d neovim || git clone https://github.com/neovim/neovim.git
 	# https://github.com/ninja-build/ninja/issues/1302
 	sudo chown -R $$USER:$$GROUP ./neovim
