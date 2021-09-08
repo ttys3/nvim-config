@@ -50,7 +50,8 @@ tools:
 	curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s - -b ~/.local/bin v2.10.2
 	# vue
 	npm install -g vls
-	npm install -g yaml-language-server
+	# does not install via npm https://github.com/redhat-developer/yaml-language-server
+	yarn global add yaml-language-server
 	pip3 install --user --upgrade pynvim
 	# https://github.com/mhinz/neovim-remote
 	pip3 install --user --upgrade neovim-remote
