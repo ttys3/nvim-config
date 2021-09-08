@@ -4,6 +4,7 @@ augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost *.lua FormatWrite
   autocmd BufWritePost *.{hcl,nomad,terraform,tf} FormatWrite
+  autocmd BufWritePost *.{yaml,yml} FormatWrite
 augroup END
 ]],
 	true
@@ -65,6 +66,14 @@ require("formatter").setup {
 				return {
 					exe = "hclfmt",
 					args = { "--" },
+					stdin = true,
+				}
+			end,
+		},
+		yaml = {
+			function()
+				return {
+					exe = "yamlfmt",
 					stdin = true,
 				}
 			end,

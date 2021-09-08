@@ -52,6 +52,7 @@ tools:
 	npm install -g vls
 	# does not install via npm https://github.com/redhat-developer/yaml-language-server
 	yarn global add yaml-language-server
+	go install github.com/UltiRequiem/yamlfmt@latest
 	pip3 install --user --upgrade pynvim
 	# https://github.com/mhinz/neovim-remote
 	pip3 install --user --upgrade neovim-remote
