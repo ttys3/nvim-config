@@ -148,7 +148,6 @@ lsp.gopls.setup {
 			completeUnimported = true,
 			allowModfileModifications = true,
 			allowImplicitNetworkAccess = true,
-			usePlaceholders = true,
 			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#gofumpt-bool
 			-- https://github.com/mvdan/gofumpt/commit/38fc491470bae6f44e2d38b06277dd95cf1bdf97
 			-- https://go-review.googlesource.com/c/tools/+/241985/7/gopls/internal/hooks/hooks.go#22
@@ -164,7 +163,7 @@ lsp.gopls.setup {
 }
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-function goimports(timeoutms)
+function _G.goimports(timeout_ms)
 	-- source.organizeImports
 	local context = { source = { organizeImports = true } }
 	vim.validate { context = { context, "t", true } }
