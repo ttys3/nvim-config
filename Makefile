@@ -71,19 +71,19 @@ tools/archlinux:
 lang/go:
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin
 	golangci-lint --version
-	go get golang.org/x/tools/gopls@latest
-	go get github.com/go-delve/delve/cmd/dlv@latest
-	go get github.com/mgechev/revive
-	go get golang.org/x/tools/cmd/goimports
-	go get mvdan.cc/gofumpt/gofumports
-	go get github.com/fatih/gomodifytags
-	go get github.com/josharian/impl
+	go install golang.org/x/tools/gopls@latest
+	go install github.com/go-delve/delve/cmd/dlv@latest
+	go install github.com/mgechev/revive
+	go install golang.org/x/tools/cmd/goimports
+	go install mvdan.cc/gofumpt/gofumports
+	go install github.com/fatih/gomodifytags
+	go install github.com/josharian/impl
 	# binary optimze
-	go get github.com/jondot/goweight
-	go get github.com/bradfitz/shotizam
+	go install github.com/jondot/goweight
+	go install github.com/bradfitz/shotizam
 	# go test with colors
-	go get github.com/rakyll/gotest
-	go get github.com/kyoh86/richgo
+	go install github.com/rakyll/gotest
+	go install github.com/kyoh86/richgo
 
 # 🦀 https://www.rust-lang.org/tools/install
 lang/rust:
@@ -129,7 +129,7 @@ linter:
 	# https://github.com/Vimjas/vint
 	pip3 install --user --upgrade vim-vint
 	# toml lint
-	go get -u github.com/pelletier/go-toml/cmd/tomll
+	go install -u github.com/pelletier/go-toml/cmd/tomll
 	# https://github.com/vmchale/tomlcheck
 	# curl -o~/.local/bin/tomlcheck -LZ \
 		# https://github.com/vmchale/tomlcheck/releases/download/0.1.0.38/tomlcheck-x86_64-unkown-linux-gnu
@@ -202,7 +202,7 @@ tools/ubuntu:
 	sudo apt update
 	sudo apt install copyq
 	# https://github.com/FiloSottile/mkcert
-	go get filippo.io/mkcert
+	go install filippo.io/mkcert
 
 tools/fedora:
 	sudo install -y copyq
@@ -262,18 +262,18 @@ tools/rust:
 tools/go:
 	# https://github.com/gsamokovarov/jump
 	# ~/.zshrc put: eval "$(jump shell --bind=z)"
-	go get github.com/gsamokovarov/jump
+	go install github.com/gsamokovarov/jump
 	# https://github.com/ayoisaiah/f2#installation
-	go get -u github.com/ayoisaiah/f2/cmd/...
+	go install -u github.com/ayoisaiah/f2/cmd/...
 	# The power of curl, the ease of use of httpie. https://github.com/rs/curlie
-	go get -u github.com/rs/curlie
+	go install -u github.com/rs/curlie
 	# It's like curl -v, with colours. https://github.com/davecheney/httpstat
-	go get github.com/davecheney/httpstat
+	go install github.com/davecheney/httpstat
 	# convert csv/tsv to markdown table https://github.com/monochromegane/mdt
-	go get github.com/monochromegane/mdt/...
+	go install github.com/monochromegane/mdt/...
 
 tools/cloud:
-	go get github.com/juliosueiras/nomad-lsp
+	go install github.com/juliosueiras/nomad-lsp
 	go github.com/juliosueiras/terraform-lsp
 	go install github.com/hashicorp/hcl/v2/cmd/hclfmt
 
