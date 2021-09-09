@@ -300,8 +300,11 @@ install:
 # for ArchLinux you need to unset lua5.4 env vars
 # because it belongs to lua 5.4 which will mess the build (make neovim link to the wrong lpeg.so)
 # eval "$(luarocks --lua-version 5.1 path --bin)"
-nvim: export LUA_PATH=""
-nvim: export LUA_CPATH=/home/ttys3/.config/nvim/neovim/.deps/usr/lib/lua/5.1/?.so
+# nvim: export LUA_CPATH=/home/ttys3/.config/nvim/neovim/.deps/usr/lib/lua/5.1/?.so;/home/ttys3/.luarocks/lib64/lua/5.1/?.so
+# unset LUAROCKS_CONFIG LUA_PATH LUA_CPATH
+unexport LUAROCKS_CONFIG
+unexport LUA_PATH
+unexport LUA_CPATH
 nvim:
 	test -d neovim || git clone https://github.com/neovim/neovim.git
 	# https://github.com/ninja-build/ninja/issues/1302
