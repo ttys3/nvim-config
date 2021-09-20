@@ -17,7 +17,7 @@ return require("packer").startup {
 		-- https://github.com/nvim-treesitter/nvim-treesitter
 		use {
 			"nvim-treesitter/nvim-treesitter",
-			branch = "0.5-compat",
+			-- branch = "0.5-compat",
 			run = ":TSUpdate",
 			config = [[require('config.nvim-treesitter')]],
 		}
