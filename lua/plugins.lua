@@ -130,24 +130,6 @@ return require("packer").startup {
 
 		-- Lang extra
 
-		use {
-			"StanAngeloff/php.vim",
-			config = function()
-				Augroup {
-					PhpSyntaxOverride = {
-						{
-							"FileType",
-							"php",
-							function()
-								vim.api.nvim_command "hi! link phpDocTags phpDefine"
-								vim.api.nvim_command "hi! link phpDocParam phpType"
-							end,
-						},
-					},
-				}
-			end,
-		}
-
 		-- RON: Rusty Object Notation
 		use "ron-rs/ron.vim"
 
