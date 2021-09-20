@@ -152,17 +152,13 @@ here is the simple reason.
 - vim-test/vim-test I use it run golang test quickly, did not find a lua replacement.
 - junegunn/vim-easy-align the must have align plugin, essential
 - psliwka/vim-smoothie scroll improve
-- jremmen/vim-ripgrep I use `rg`, yes, essential
 - simnalamburt/vim-mundo best undo history plugin I've found, did not found a lua replacement
-- StanAngeloff/php.vim php improvement
 - ron-rs/ron.vim RON: Rusty Object Notation, yes, I also like Rust
 - arrufat/vala.vim Automatic detection of .vala, .vapi and .valadoc files, as a GNOME user, sometimes I need work on a vala project
 - neovim/nvim-lspconfig no need to say what is this, I use lsp everyday, essential 
 - simrat39/rust-tools.nvim for Rust lsp inlay hints support, works like a charm
 - ray-x/lsp_signature.nvim Show function signature when you type, use it everyday
-- glepnir/lspsaga.nvim better lsp `code action` support, use it everyday
 - chrisbra/NrrwRgn A Narrow Region Plugin for vim (like Emacs Narrow Region)
-- jiangmiao/auto-pairs auto pairs, use it everyday, I need sometime to replace it with lua version plugin
 - SirVer/ultisnips + honza/vim-snippets the snippet plugin with lots of snippets, if you find another one better than this, please tell me, I do not mean the implementation, I mean, just install it, most of you fav language snippets just there and you can just use it.
 - hrsh7th/nvim-compe Auto completion Lua plugin for nvim, use it everyday
 - tzachar/compe-tabnine tabnine nvim-compe source, use it everyday
@@ -195,7 +191,6 @@ here is the simple reason.
 - rrethy/vim-illuminate automatically highlighting other uses of the word under the cursor
 - iamcco/markdown-preview.nvim the must have plugin for me
 - plasticboy/vim-markdown better markdown support
-- dhruvasagar/vim-table-mode An awesome automatic table creator & formatter allowing one to create neat tables as you type. dit not found a lua version replacement
 - ekickx/clipboard-image.nvim NeoVim plugin to paste image from clipboard written in lua.
 - and last, Some of my favorite colorschemes: doums/darcula  shaunsingh/nord.nvim sainnhe/edge sainnhe/gruvbox-material hzchirs/vim-material npxbr/gruvbox.nvim olimorris/onedark.nvim dracula/vim
 
