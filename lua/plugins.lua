@@ -219,7 +219,7 @@ return require("packer").startup {
 
 		-- " https://github.com/RishabhRD/nvim-cheat.sh
 		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
-		use "RishabhRD/nvim-cheat.sh"
+		use { "RishabhRD/nvim-cheat.sh", requires = "RishabhRD/popfix" }
 
 		-- debugger
 		-- https://github.com/jodosha/vim-godebug
