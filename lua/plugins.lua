@@ -388,7 +388,7 @@ return require("packer").startup {
 		-- https://jeffkreeftmeijer.com/vim-number/
 		-- use "jeffkreeftmeijer/vim-numbertoggle"
 
-		-- " colorscheme
+		-- colorscheme
 
 		use {
 			"EdenEast/nightfox.nvim",
@@ -420,17 +420,16 @@ return require("packer").startup {
 			end,
 		}
 		-- " https://github.com/morhetz/gruvbox/wiki/Installation
-		-- use 'joshdick/onedark.vim'
-		use "doums/darcula"
-		use "ttys3/base16-vim"
+		-- use "doums/darcula"
+		-- use "ttys3/base16-vim"
 
-		use {
-			"arcticicestudio/nord-vim",
-			config = function()
-				-- require("nord").set()
-				-- vim.cmd [[ silent! colorscheme nord ]]
-			end,
-		}
+		-- use {
+		-- 	"arcticicestudio/nord-vim",
+		-- 	config = function()
+		-- 		require("nord").set()
+		-- 	end,
+		-- }
+
 		-- disabled due to bug https://github.com/shaunsingh/nord.nvim/issues/24
 		-- use {
 		-- 	"shaunsingh/nord.nvim",
@@ -467,8 +466,19 @@ return require("packer").startup {
 		-- " https://github.com/olimorris/onedark.nvim
 		use "olimorris/onedark.nvim"
 
-		-- You can alias plugin names
-		use { "dracula/vim", as = "dracula" }
+		-- https://github.com/projekt0n/github-nvim-theme
+		-- Github theme for Neovim
+		-- use {
+		-- 	"projekt0n/github-nvim-theme",
+
+		-- 	config = function()
+		-- 		require("github-theme").setup {
+		-- 			-- set theme variant (options: dark/dark_default/dimmed/light/light_default)
+		-- 			theme_style = "dark",
+		-- 			-- theme_style = "dimmed",
+		-- 		}
+		-- 	end,
+		-- }
 	end,
 	config = {
 		log = { level = os.getenv "PACKER_LOG_LEVEL" or "warn" },
