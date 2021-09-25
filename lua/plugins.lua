@@ -143,8 +143,8 @@ return require("packer").startup {
 		}
 
 		use {
-			-- "neovim/nvim-lspconfig",
-			"ttys3/nvim-lspconfig",
+			"neovim/nvim-lspconfig",
+			-- "ttys3/nvim-lspconfig",
 			config = [[require('config.nvim-lspconfig')]],
 		}
 

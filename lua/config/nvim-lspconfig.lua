@@ -44,6 +44,8 @@ nnoremap { "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", silent = true }
 -- lsp provider to find the cursor word definition and reference
 nnoremap { "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silent = true }
 
+require "lsp.nomadls"
+
 local lsp = require "lspconfig"
 
 require("lsp").setup_diagnostic_sign()
