@@ -43,11 +43,11 @@ return require("packer").startup {
 
 		-- https://github.com/chr4/sslsecure.vim
 		-- Highlight insecure SSL configuration in Vim (works for all OpenSSL/ LibreSSL cipher strings, independent of the filetype)
-		use "chr4/sslsecure.vim"
+		-- use "chr4/sslsecure.vim"
 
 		-- Improved nginx vim plugin (incl. syntax highlighting)
 		-- https://github.com/chr4/nginx.vim
-		use "chr4/nginx.vim"
+		-- use "chr4/nginx.vim"
 
 		-- Use specific branch, dependency and run lua file after load
 		use {
@@ -178,7 +178,8 @@ return require("packer").startup {
 		-- " see https://github.com/tpope/vim-endwise/issues/22
 		-- " Plug 'tpope/vim-endwise'
 
-		use "chrisbra/NrrwRgn"
+		-- A Narrow Region Plugin for vim (like Emacs Narrow Region)
+		-- use "chrisbra/NrrwRgn"
 
 		--     " https://github.com/jiangmiao/auto-pairs
 		-- " AutoPairsReturn() also need imap <cr>
@@ -340,7 +341,7 @@ return require("packer").startup {
 
 		-- VCS
 		-- https://github.com/lambdalisue/gina.vim
-		use "lambdalisue/gina.vim"
+		-- use "lambdalisue/gina.vim"
 
 		-- " if no color: export TERM=xterm-256color
 		-- " show the final result: :echo &statusline
