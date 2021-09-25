@@ -104,6 +104,7 @@ Option.g {
 	shiftround = true,
 	linebreak = true,
 	showbreak = "↪ ",
+	wrap = false,
 
 	scrolloff = 1, --always show content after scroll
 	scrolljump = 5, --minimum number of lines to scroll
