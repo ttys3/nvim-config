@@ -39,30 +39,10 @@ return require("packer").startup {
 			requires = { "nvim-treesitter/nvim-treesitter" },
 		}
 
-		-- Lang extra
-
-		-- https://github.com/chr4/sslsecure.vim
-		-- Highlight insecure SSL configuration in Vim (works for all OpenSSL/ LibreSSL cipher strings, independent of the filetype)
-		-- use "chr4/sslsecure.vim"
-
-		-- Improved nginx vim plugin (incl. syntax highlighting)
-		-- https://github.com/chr4/nginx.vim
-		-- use "chr4/nginx.vim"
-
-		-- Use specific branch, dependency and run lua file after load
 		use {
 			"kyazdani42/nvim-tree.lua",
 			config = [[require('config.nvim-tree')]],
 			requires = { "kyazdani42/nvim-web-devicons" },
-		}
-
-		-- vista.vim: A tagbar alternative that supports LSP symbols and async processing
-		use {
-			"liuchengxu/vista.vim",
-			config = function()
-				vim.g.vista_default_executive = "nvim_lsp"
-				nnoremap { "<F3>", ":Vista!!<CR>" }
-			end,
 		}
 
 		-- support split window resizing and moving
@@ -82,10 +62,6 @@ return require("packer").startup {
 
 		use "ttys3/vim-todo-highlight"
 
-		-- "escaping insert mode without lagging
-		-- "https://github.com/jdhao/better-escape.vim
-		-- use "jdhao/better-escape.vim"
-
 		use {
 			"vim-test/vim-test",
 			config = [[require('config.vim-test')]],
@@ -95,7 +71,7 @@ return require("packer").startup {
 		-- related works: godlygeek/tabular
 		use {
 			"junegunn/vim-easy-align",
-			config = function() -- Start interactive EasyAlign in visual mode (e.g. vipga)        xmap{ "ga", "<Plug>(EasyAlign)" }
+			config = function()
 				-- Start interactive EasyAlign for a motion/text object (e.g. gaip)
 				nmap { "ga", "<Plug>(EasyAlign)" }
 				-- Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -105,10 +81,6 @@ return require("packer").startup {
 				vmap { "<Leader><Bslash>", ":EasyAlign*<Bar><Enter>" }
 			end,
 		}
-		-- https://github.com/psliwka/vim-smoothie
-		-- default mapping: ^D ^U ^F ^B
-		-- let g:smoothie_no_default_mappings = false
-		-- experimental mappings (currently gg and G)
 
 		use {
 			"psliwka/vim-smoothie",
@@ -116,9 +88,6 @@ return require("packer").startup {
 				vim.g.smoothie_experimental_mappings = true
 			end,
 		}
-
-		-- disabled due to E1208: -complete used without -nargs
-		-- use "jremmen/vim-ripgrep"
 
 		-- https://github.com/simnalamburt/vim-mundo
 		-- the diff https://github.com/simnalamburt/vim-mundo/issues/50
@@ -135,8 +104,26 @@ return require("packer").startup {
 			config = [[require('config.nvim-lspconfig')]],
 		}
 
+		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
+		-- " Integrates with Neovim's LSP client for intelligent highlighting.
+		use {
+			"rrethy/vim-illuminate",
+			config = function()
+				vim.g.Illuminate_ftblacklist = { "NvimTree" }
+			end,
+		}
+
 		-- https://github.com/ray-x/lsp_signature.nvim
 		use "ray-x/lsp_signature.nvim"
+
+		-- vista.vim: A tagbar alternative that supports LSP symbols and async processing
+		use {
+			"liuchengxu/vista.vim",
+			config = function()
+				vim.g.vista_default_executive = "nvim_lsp"
+				nnoremap { "<F3>", ":Vista!!<CR>" }
+			end,
+		}
 
 		-- https://github.com/glepnir/lspsaga.nvim
 		-- use {
@@ -171,27 +158,7 @@ return require("packer").startup {
 			config = [[require('config.rust-tools')]],
 		}
 
-		-- """ edting
-		-- " https://github.com/tpope/vim-endwise
-		-- " need imap <cr>, not compatible with complete-nvim even with fallback <cr> mapping
-		-- " since UltiSnips can do most of the work
-		-- " this plugin can be disabled
-		-- " see https://github.com/tpope/vim-endwise/issues/22
-		-- " Plug 'tpope/vim-endwise'
-
-		-- A Narrow Region Plugin for vim (like Emacs Narrow Region)
-		-- use "chrisbra/NrrwRgn"
-
-		--     " https://github.com/jiangmiao/auto-pairs
-		-- " AutoPairsReturn() also need imap <cr>
-		-- " use fallback mode for completion-nvim, can make this work again
-		-- " https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
-		-- use "jiangmiao/auto-pairs"
-
-		--     " https://github.com/rstacruz/vim-closer
-		-- " need imap <cr>, only auto close when you press <cr> (Enter)
-		-- " see https://github.com/rstacruz/vim-closer/issues/30
-		-- " Plug 'rstacruz/vim-closer'
+		-- edting
 
 		-- Snippet support
 		-- " https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
@@ -204,7 +171,6 @@ return require("packer").startup {
 		-- " that are shipped with third party plugins. You'll need to copy them into this
 		-- " directory manually.
 		-- " mkdir -p $HOME/.config/nvim/UltiSnip
-
 		use {
 			"SirVer/ultisnips",
 			requires = { "honza/vim-snippets" },
@@ -235,10 +201,8 @@ return require("packer").startup {
 			requires = { "theHamsta/nvim-dap-virtual-text" },
 			config = [[require('config.nvim-dap')]],
 		}
+		-- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
-		-- Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-		-- minimap_auto_start = 0,
-		-- minimap_width = 10,
 		use {
 			"dstein64/nvim-scrollview",
 			branch = "main",
@@ -273,43 +237,15 @@ return require("packer").startup {
 			config = [[require('config.telescope')]],
 		}
 
-		-- use {
-		-- 	"liuchengxu/vim-clap",
-		-- 	run = ":Clap install-binary!",
-		-- 	config = [[require('config.vim-clap')]],
-		-- }
-
-		-- " https://github.com/voldikss/vim-floaterm
-		-- " pip3 install --user neovim
-		-- " pip3 install --user neovim-remote
-		-- " if use git in floaterm, remember to set git default editor to nvim
-		-- " otherwise will result in vim error: Unknown function: stdpath
-		-- " export GIT_EDITOR=nvim
-		-- " export EDITOR=nvim
-		-- " export VISUAL=nvim
-		-- use {
-		-- 	"voldikss/vim-floaterm",
-		-- 	config = [[require('config.vim-floaterm')]],
-		-- }
-
 		use {
 			"numtostr/FTerm.nvim",
 			config = [[require('config.fterm')]],
 		}
 
-		-- Toggle off the capslock when back to normal mode, ---that is what this plugin do
-		-- use { "suxpert/vimcaps", run = "cd autoload && make" }
-
-		-- " Keep and restore fcitx state for each buffer separately when leaving/re-entering insert mode.
-		-- " Like always typing English in normal mode, but Chinese in insert mode.
-		-- lilydjwg/fcitx.vim implemented with py3 + dbus, startuptime took 50ms, too slow
-		-- use {
-		-- 	"lilydjwg/fcitx.vim",
-		-- 	branch = "fcitx5",
-		-- }
-
 		-- Automatic input method switching for vim
 		-- https://github.com/rlue/vim-barbaric
+		-- auto switch to en on normal
+		-- 'kevinhwang91/vim-ibus-sw'
 		use {
 			"rlue/vim-barbaric",
 			config = function()
@@ -322,27 +258,14 @@ return require("packer").startup {
 			end,
 		}
 
-		-- " auto switch to en on normal
-		-- " Plug 'rlue/vim-barbaric'
-		-- "Plug 'kevinhwang91/vim-ibus-sw'
-
 		use {
 			"luochen1990/rainbow",
 			config = function()
 				Variable.g {
 					rainbow_active = 1,
-					-- " oblitum mod version has bug, will mess up php syntax highlighting
-					-- " Plug 'oblitum/rainbow'
-					-- " Plug 'kien/rainbow_parentheses.vim'
-					-- " https://github.com/p00f/nvim-ts-rainbow
-					-- " Plug 'p00f/nvim-ts-rainbow'
 				}
 			end,
 		}
-
-		-- VCS
-		-- https://github.com/lambdalisue/gina.vim
-		-- use "lambdalisue/gina.vim"
 
 		-- " if no color: export TERM=xterm-256color
 		-- " show the final result: :echo &statusline
@@ -413,11 +336,7 @@ return require("packer").startup {
 			config = [[require('config.nvim-lint')]],
 		}
 
-		--     " signify show git diff sigs
-		-- " Plug 'mhinz/vim-signify'
-		-- " https://github.com/lewis6991/gitsigns.nvim
-		-- Plug 'nvim-lua/plenary.nvim'
-		-- Use dependency and run lua function after load
+		-- https://github.com/lewis6991/gitsigns.nvim
 		use {
 			"lewis6991/gitsigns.nvim",
 			requires = { "nvim-lua/plenary.nvim" },
@@ -434,22 +353,11 @@ return require("packer").startup {
 		-- " https://github.com/rhysd/vim-go-impl
 		use "rhysd/vim-go-impl"
 
+		-- https://github.com/norcalli/nvim-colorizer.lua
 		use {
 			"norcalli/nvim-colorizer.lua",
 			config = function()
 				require("colorizer").setup()
-			end,
-		}
-
-		-- " https://github.com/norcalli/nvim-colorizer.lua
-		-- " Plug 'norcalli/nvim-colorizer.lua'
-
-		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
-		-- " Integrates with Neovim's LSP client for intelligent highlighting.
-		use {
-			"rrethy/vim-illuminate",
-			config = function()
-				vim.g.Illuminate_ftblacklist = { "NvimTree" }
 			end,
 		}
 
