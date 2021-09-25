@@ -128,30 +128,11 @@ return require("packer").startup {
 			config = [[require('config.vim-mundo')]],
 		}
 
-		-- Lang extra
-
-		-- RON: Rusty Object Notation
-		use "ron-rs/ron.vim"
-
-		-- vala
-		-- https://github.com/arrufat/vala.vim
-		-- Automatic detection of .vala, .vapi and .valadoc files
-		-- https://wiki.gnome.org/action/show/Projects/Vala/Tools/Vim?action=show
-		use {
-			"arrufat/vala.vim",
-			config = [[require('config.vala')]],
-		}
-
+		-- lsp
 		use {
 			"neovim/nvim-lspconfig",
 			-- "ttys3/nvim-lspconfig",
 			config = [[require('config.nvim-lspconfig')]],
-		}
-
-		-- https://github.com/simrat39/rust-tools.nvim
-		use {
-			"simrat39/rust-tools.nvim",
-			config = [[require('config.rust-tools')]],
 		}
 
 		-- https://github.com/ray-x/lsp_signature.nvim
@@ -169,6 +150,26 @@ return require("packer").startup {
 		--     folke/lsp-trouble.nvim",
 		--     config = [[require('config.lsp-trouble')]],
 		-- }
+
+		-- Lang extra
+
+		-- RON: Rusty Object Notation
+		use "ron-rs/ron.vim"
+
+		-- vala
+		-- https://github.com/arrufat/vala.vim
+		-- Automatic detection of .vala, .vapi and .valadoc files
+		-- https://wiki.gnome.org/action/show/Projects/Vala/Tools/Vim?action=show
+		use {
+			"arrufat/vala.vim",
+			config = [[require('config.vala')]],
+		}
+
+		-- https://github.com/simrat39/rust-tools.nvim
+		use {
+			"simrat39/rust-tools.nvim",
+			config = [[require('config.rust-tools')]],
+		}
 
 		-- """ edting
 		-- " https://github.com/tpope/vim-endwise
