@@ -354,7 +354,7 @@ bar:
 	xdg-open statusline.png
 
 startuptime:
-	nvim --startuptime startup.log -c ":q" && cat startup.log | sort -k1 && rm -f startup.log
+	nvim --startuptime startup.log -c ":q" && cat startup.log && rm -f startup.log
 
 plugtime:
 	nvim --startuptime startup.log -c ":q" && cat startup.log | sort -k2 && rm -f startup.log
