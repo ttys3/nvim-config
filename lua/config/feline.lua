@@ -7,13 +7,15 @@ end)
 require("feline.providers").add_provider("lsp_progress", function()
 	return #vim.lsp.buf_get_clients() > 0 and require("lsp").lsp_progress() or ""
 end)
-local components = require("feline.presets")["default"].components
-if components.left then
-	table.insert(components.left.active, {
+
+local components = require('feline.presets')["default"]
+
+if components.active[1] then
+	table.insert(components.active[1], {
 		provider = "lsp_client_names",
 		left_sep = " ",
 	})
-	table.insert(components.left.active, {
+	table.insert(components.active[1], {
 		provider = "lsp_progress",
 		left_sep = " ",
 		-- right_sep = ' ',
