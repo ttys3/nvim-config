@@ -16,9 +16,23 @@ nnoremap { "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", silent = true }
 -- lspsaga currently can not popup with current name of the symbol in the popup
 -- https://github.com/glepnir/lspsaga.nvim/issues/186
 -- nnoremap <silent> <F2> <cmd>lua require('lspsaga.rename').rename()<CR>
-nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", silent = true }
--- open diagnostic
-nnoremap { "<space>e", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", silent = true }
+-- nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", silent = true }
+-- open all diagnostics
+nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", silent = true }
+-- open loclist if there are diagnostics severity >= WARN, else show a notify info
+-- nnoremap { "<space>e", "<cmd>lua vim.lsp.diagnostic.set_loclist({severity = vim.diagnostic.severity.WARN})<CR>", silent = true }
+nnoremap {
+	"<space>e",
+	function()
+		local diag = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+		if diag and type(diag) == "table" and #diag > 0 then
+			vim.diagnostic.set_loclist { severity = vim.diagnostic.severity.WARN }
+		else
+			require "notify" "no diagnostics meet the severity level >= warn."
+		end
+	end,
+	silent = true,
+}
 
 nnoremap { "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", silent = true }
 nnoremap { "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", silent = true }

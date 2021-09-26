@@ -100,7 +100,7 @@ return require("packer").startup {
 		-- lsp
 		use {
 			"neovim/nvim-lspconfig",
-			-- "ttys3/nvim-lspconfig",
+			requires = "rcarriga/nvim-notify",
 			config = [[require('config.nvim-lspconfig')]],
 		}
 
