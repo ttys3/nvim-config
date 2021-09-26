@@ -18,12 +18,21 @@ nnoremap { "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", silent = true }
 -- nnoremap <silent> <F2> <cmd>lua require('lspsaga.rename').rename()<CR>
 -- nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", silent = true }
 -- open all diagnostics
-nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", silent = true }
--- open loclist if there are diagnostics severity >= WARN, else show a notify info
--- nnoremap { "<space>e", "<cmd>lua vim.lsp.diagnostic.set_loclist({severity = vim.diagnostic.severity.WARN})<CR>", silent = true }
+nnoremap { "<space>ee", "<cmd>lua vim.diagnostic.setloclist()<CR>", silent = true }
+-- toggle diagnostics loclist, open loclist if there are diagnostics severity >= WARN, else show a notify info. if loclist open, close it
+-- nnoremap { "<space>e", "<cmd>lua vim.diagnostic.setloclist({severity = vim.diagnostic.severity.WARN})<CR>", silent = true }
 nnoremap {
 	"<space>e",
 	function()
+		local loc = vim.fn.getloclist(0)
+		if loc and type(loc) == "table" and #loc > 0 then
+			-- close the loclist
+			vim.api.nvim_command "lclose"
+			-- clear the loclist
+			vim.fn.setloclist(0, {})
+			-- require "notify" "close diagnostics loclist."
+			return
+		end
 		-- severity_limit: "Warning" means { "Error", "Warning" } will be valid.
 		-- see https://github.com/neovim/neovim/blob/b3b02eb52943fdc8ba74af3b485e9d11655bc9c9/runtime/lua/vim/lsp/diagnostic.lua#L646
 		local diag = vim.diagnostic.get(0, { severity_limit = vim.diagnostic.severity.WARN })
