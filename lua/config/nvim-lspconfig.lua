@@ -24,9 +24,11 @@ nnoremap { "<space>ee", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", silent 
 nnoremap {
 	"<space>e",
 	function()
-		local diag = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+		-- severity_limit: "Warning" means { "Error", "Warning" } will be valid.
+		-- see https://github.com/neovim/neovim/blob/b3b02eb52943fdc8ba74af3b485e9d11655bc9c9/runtime/lua/vim/lsp/diagnostic.lua#L646
+		local diag = vim.diagnostic.get(0, { severity_limit = vim.diagnostic.severity.WARN })
 		if diag and type(diag) == "table" and #diag > 0 then
-			vim.diagnostic.set_loclist { severity = vim.diagnostic.severity.WARN }
+			vim.diagnostic.setloclist { severity_limit = vim.diagnostic.severity.WARN }
 		else
 			require "notify" "no diagnostics meet the severity level >= warn."
 		end
