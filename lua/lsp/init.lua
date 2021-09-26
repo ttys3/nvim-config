@@ -17,19 +17,19 @@ end
 M.setup_diagnostic_sign = function()
 	local group = {
 		err_group = {
-			highlight = "LspDiagnosticsSignError",
+			highlight = "DiagnosticSignError",
 			sign = "❌",
 		},
 		warn_group = {
-			highlight = "LspDiagnosticsSignWarning",
+			highlight = "DiagnosticSignWarning",
 			sign = "⚠️ ",
 		},
 		hint_group = {
-			highlight = "LspDiagnosticsSignHint",
+			highlight = "DiagnosticSignHint",
 			sign = "💡",
 		},
 		infor_group = {
-			highlight = "LspDiagnosticsSignInformation",
+			highlight = "DiagnosticSignInformation",
 			sign = "ℹ️ ",
 		},
 	}
