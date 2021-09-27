@@ -12,6 +12,13 @@ return require("packer").startup {
 		-- Packer can manage itself as an optional plugin
 		use { "wbthomason/packer.nvim", opt = true }
 
+		-- replacement
+		-- add the following to init.lua to tell nvim not source the default filetype.vim
+		-- vim.g.did_load_filetypes = 1
+		use {
+			"nathom/filetype.nvim",
+		}
+
 		-- treesitter = AST (syntax/parsing)
 		-- LSP = whole-project semantic analysis
 		-- https://github.com/nvim-treesitter/nvim-treesitter
