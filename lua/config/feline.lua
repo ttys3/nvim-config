@@ -1,14 +1,17 @@
 require("feline").setup {
 	preset = "default",
-}
-require("feline.providers").add_provider("lsp_status", function()
-	return #vim.lsp.buf_get_clients() > 0 and require("lsp-status").status() or ""
-end)
-require("feline.providers").add_provider("lsp_progress", function()
-	return #vim.lsp.buf_get_clients() > 0 and require("lsp").lsp_progress() or ""
-end)
+	custom_providers = {
+		lsp_status = function()
+			return #vim.lsp.buf_get_clients() > 0 and require("lsp-status").status() or ""
+		end,
 
-local components = require('feline.presets')["default"]
+		lsp_progress = function()
+			return #vim.lsp.buf_get_clients() > 0 and require("lsp").lsp_progress() or ""
+		end,
+	},
+}
+
+local components = require("feline.presets")["default"]
 
 if components.active[1] then
 	table.insert(components.active[1], {
