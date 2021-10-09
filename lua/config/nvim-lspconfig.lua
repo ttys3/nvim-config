@@ -394,22 +394,9 @@ lsp.jsonls.setup {
 	capabilities = capabilities,
 }
 
-local yaml_cap = capabilities
-yaml_cap.documentFormattingProvider = true
-
 lsp.yamlls.setup {
 	on_attach = mix_attach,
-	capabilities = yaml_cap,
-	settings = {
-		yaml = {
-			format = {
-				enable = true,
-			},
-			trace = {
-				server = "verbose",
-			},
-		},
-	},
+	capabilities = capabilities,
 }
 
 lsp.nomadls.setup {
@@ -435,7 +422,6 @@ Augroup {
 			{ "*.py", require("lsp").formatting_sync },
 			{ "*.php", require("lsp").formatting_sync },
 			-- { "*.js", require("lsp").formatting_sync },
-			{ "*.yaml", require("lsp").formatting_sync },
 		},
 	},
 }
