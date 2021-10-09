@@ -207,16 +207,18 @@ function M.cmp_format(opts)
 	end
 end
 
-function M.setup_lsp_doc_border()
+function M.setup_lsp_doc_border(border)
+	-- Border can be none, single, double or shadow. https://neovim.io/doc/user/api.html#nvim_open_win()
+	border = border or "single"
 	-- https://www.reddit.com/r/neovim/comments/q3evdt/adding_tailwind_css_intellisense_into_neovim/hfs1htx/
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		-- Use a sharp border with `FloatBorder` highlights
-		border = "single",
+		border = border,
 	})
 
 	-- enable border for signature
 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "single",
+		border = border,
 	})
 end
 
