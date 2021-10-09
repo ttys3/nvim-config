@@ -57,8 +57,23 @@ cmp.setup {
 
 		{ name = "nvim_lua" },
 
-		{ name = "omni" },
+		-- { name = "omni" },
 
 		{ name = "buffer" },
+	},
+	formatting = {
+		format = require("lsp").cmp_format {
+			with_text = true,
+			menu = {
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[Lua]",
+				ultisnips = "[Ultisnips]",
+				crates = "[Crates]",
+				cmp_tabnine = "[TabNine]",
+				luasnip = "[LuaSnip]",
+				latex_symbols = "[Latex]",
+			},
+		},
 	},
 }

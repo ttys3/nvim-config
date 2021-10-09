@@ -78,33 +78,132 @@ end
 -- replace https://github.com/onsails/lspkind-nvim/blob/master/lua/lspkind/init.lua
 -- code from wiki https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#completion-kinds
 M.icons = {
-	Class = " ",
-	Color = " ",
-	Constant = " ",
-	Constructor = " ",
-	Enum = "了 ",
-	EnumMember = " ",
-	Field = " ",
-	File = " ",
-	Folder = " ",
-	Function = " ",
-	Interface = "ﰮ ",
-	Keyword = " ",
-	Method = "ƒ ",
-	Module = " ",
-	Property = " ",
-	Snippet = "﬌ ",
-	Struct = " ",
-	Text = " ",
-	Unit = " ",
-	Value = " ",
-	Variable = " ",
+	-- if you change or add symbol here
+	-- replace corresponding line in readme
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "ﰠ",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "ﰠ",
+	Unit = "塞",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "פּ",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+
+	-- Class = " ",
+	-- Color = " ",
+	-- Constant = " ",
+	-- Constructor = " ",
+	-- Enum = "了 ",
+	-- EnumMember = " ",
+	-- Field = " ",
+	-- File = " ",
+	-- Folder = " ",
+	-- Function = " ",
+	-- Interface = "ﰮ ",
+	-- Keyword = " ",
+	-- Method = "ƒ ",
+	-- Module = " ",
+	-- Property = " ",
+	-- Snippet = "﬌ ",
+	-- Struct = " ",
+	-- Text = " ",
+	-- Unit = " ",
+	-- Value = " ",
+	-- Variable = " ",
 }
 
-function M.setup_item_kind_icons()
-	local kinds = vim.lsp.protocol.CompletionItemKind
-	for i, kind in ipairs(kinds) do
-		kinds[i] = M.icons[kind] or kind
+local kind_order = {
+	"Text",
+	"Method",
+	"Function",
+	"Constructor",
+	"Field",
+	"Variable",
+	"Class",
+	"Interface",
+	"Module",
+	"Property",
+	"Unit",
+	"Value",
+	"Enum",
+	"Keyword",
+	"Snippet",
+	"Color",
+	"File",
+	"Reference",
+	"Folder",
+	"EnumMember",
+	"Constant",
+	"Struct",
+	"Event",
+	"Operator",
+	"TypeParameter",
+}
+local kind_len = 25
+
+function M.setup_item_kind_icons(with_text)
+	local symbols = {}
+	local len = kind_len
+	if with_text then
+		for i = 1, len do
+			local name = kind_order[i]
+			local symbol = M.icons[name]
+			symbol = symbol and (symbol .. " ") or ""
+			symbols[i] = string.format("%s%s", symbol, name)
+		end
+	else
+		for i = 1, len do
+			local name = kind_order[i]
+			symbols[i] = M.icons[name]
+		end
+	end
+
+	for k, v in pairs(symbols) do
+		vim.lsp.protocol.CompletionItemKind[k] = v
+	end
+end
+
+-- https://github.com/onsails/lspkind-nvim/blob/521e4f9217d9bcc388daf184be8b168233e8aeed/lua/lspkind/init.lua#L130
+function M.cmp_format(opts)
+	if opts == nil then
+		opts = {}
+	end
+
+	return function(entry, vim_item)
+		local symbol = M.icons[vim_item.kind]
+		if opts.with_text then
+			symbol = symbol and (symbol .. " ") or ""
+			vim_item.kind = string.format("%s%s", symbol, vim_item.kind)
+		else
+			return symbol
+		end
+
+		if opts.menu ~= nil then
+			vim_item.menu = opts.menu[entry.source.name]
+		end
+
+		if opts.maxwidth ~= nil then
+			vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
+		end
+
+		return vim_item
 	end
 end
 

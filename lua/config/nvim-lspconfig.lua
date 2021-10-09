@@ -76,16 +76,8 @@ local lsp = require "lspconfig"
 require("lsp").setup_diagnostic_sign()
 require("lsp").setup_item_kind_icons()
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
--- by default, NeoVim lsp disabled snippet, see https://github.com/neovim/neovim/pull/13183
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		"documentation",
-		"detail",
-		"additionalTextEdits",
-	},
-}
+-- nvim-cmp related config
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client)
