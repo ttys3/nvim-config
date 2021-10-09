@@ -70,13 +70,13 @@ require("formatter").setup {
 				}
 			end,
 		},
-		-- yaml = {
-		-- 	function()
-		-- 		return {
-		-- 			exe = "yamlfmt",
-		-- 			stdin = true,
-		-- 		}
-		-- 	end,
-		-- },
+		yaml = {
+			function()
+				return {
+					exe = "yamlfmt",
+					stdin = true,
+				}
+			end,
+		},
 	},
 }
