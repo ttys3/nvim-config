@@ -391,12 +391,14 @@ lsp.yamlls.setup {
 	capabilities = capabilities,
 }
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tailwindcss
+lsp.tailwindcss.setup {}
+
+-- custom lsp config
 lsp.nomadls.setup {
 	on_attach = mix_attach,
 	capabilities = capabilities,
 }
-
--- Use LSP omni-completion
 
 Augroup {
 	LspBufWritePre = {

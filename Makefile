@@ -40,6 +40,7 @@ tools:
 	# get vscode-html-language-server, vscode-css-language-server and vscode-json-language-server
 	# https://github.com/hrsh7th/vscode-langservers-extracted
 	npm i -g vscode-langservers-extracted
+	npm i -g @tailwindcss/language-server
 	# python https://github.com/microsoft/pyright
 	npm install -g pyright
 	npm install -g typescript-language-server
@@ -155,7 +156,7 @@ pack/s:
 	nvim -i NONE -c "PackerSync" -c "PackerCompile"
 
 pack/i:
-	nvim -i NONE -c "PackerInstall" -c "PackerCompile" 
+	nvim -i NONE -c "PackerInstall" -c "PackerCompile"
 
 pack/c:
 	nvim -i NONE -c "PackerCompile" -c "qa"
@@ -332,7 +333,7 @@ symlink/ubuntu:
 	# interactive config
 	# sudo update-alternatives --config editor
 	# sudo update-alternatives --config vi
-	
+
 	# pure all before debug problems
 purge:
 	rm -rf ~/.local/share/nvim && mkdir ~/.local/share/nvim && rm -rf ~/.cache/nvim && mkdir ~/.cache/nvim && rm -rf rm -rf /tmp/site
