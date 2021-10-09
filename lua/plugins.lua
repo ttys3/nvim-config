@@ -305,6 +305,8 @@ return require("packer").startup {
 		}
 
 		use {
+			-- https://github.com/mhartington/formatter.nvim
+			-- related work: https://github.com/lukas-reineke/format.nvim
 			"mhartington/formatter.nvim",
 			config = [[require('config.formatter')]],
 		}
