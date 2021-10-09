@@ -11,7 +11,7 @@ augroup END
 )
 
 require("formatter").setup {
-	logging = true,
+	logging = false,
 	filetype = {
 		javascript = {
 			-- prettier
