@@ -385,7 +385,28 @@ Augroup {
 			end,
 		},
 	},
-
+	RemoveTrailingWhitespace = {
+		{
+			-- must use BufWritePre, if use BufWritePost has problem with other formatters (whitespace not got removed)
+			"BufWritePre",
+			"*",
+			function()
+				-- https://github.com/cappyzawa/trim.nvim/blob/9959b6638432d4f6674194fab1a3c50c44cdbf08/lua/trim/config.lua#L6
+				local patterns = {
+					[[%s/\s\+$//e]],
+					-- [[%s/\($\n\s*\)\+\%$//]],
+					-- [[%s/\%^\n\+//]],
+					-- [[%s/\(\n\n\)\n\+/\1/]],
+				}
+				-- https://github.com/cappyzawa/trim.nvim/blob/9959b6638432d4f6674194fab1a3c50c44cdbf08/lua/trim/trimmer.lua#L6
+				local save = vim.fn.winsaveview()
+				for _, v in pairs(patterns) do
+					vim.api.nvim_exec(string.format("silent! %s", v), false)
+				end
+				vim.fn.winrestview(save)
+			end,
+		},
+	},
 	SetupTabsListFold = {
 		["FileType"] = {
 			{
