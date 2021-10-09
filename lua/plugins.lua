@@ -191,14 +191,46 @@ return require("packer").startup {
 			requires = { "honza/vim-snippets" },
 			config = [[require('config.ultisnips')]],
 		}
+		use "quangnguyen30192/cmp-nvim-ultisnips"
 
-		-- complete plugin
+		-- https://github.com/Saecki/crates.nvim
+		-- also provide Completion source for nvim-cmp
 		use {
-			"hrsh7th/nvim-compe",
-			config = [[require('config.nvim-compe')]],
+			"Saecki/crates.nvim",
+			-- lazy loading
+			event = { "BufRead Cargo.toml" },
+			requires = { { "nvim-lua/plenary.nvim" } },
+			config = function()
+				require("crates").setup()
+			end,
 		}
 
-		use { "tzachar/compe-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-compe" }
+		-- complete plugin
+		use "hrsh7th/cmp-nvim-lsp"
+		use "hrsh7th/cmp-nvim-lua"
+		use "hrsh7th/cmp-omni"
+		use "hrsh7th/cmp-buffer"
+		use "hrsh7th/cmp-path"
+		use {
+			"tzachar/cmp-tabnine",
+			run = "./install.sh",
+			requires = "hrsh7th/nvim-cmp",
+			-- https://github.com/tzachar/cmp-tabnine#setup
+			config = function()
+				local tabnine = require "cmp_tabnine.config"
+				tabnine:setup {
+					max_lines = 1000,
+					max_num_results = 20,
+					sort = true,
+					run_on_every_keystroke = true,
+					snippet_placeholder = "..",
+				}
+			end,
+		}
+		use {
+			"hrsh7th/nvim-cmp",
+			config = [[require('config.nvim-cmp')]],
+		}
 
 		-- " https://github.com/RishabhRD/nvim-cheat.sh
 		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
