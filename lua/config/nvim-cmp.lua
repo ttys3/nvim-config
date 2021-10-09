@@ -2,6 +2,9 @@
 local cmp = require "cmp"
 
 cmp.setup {
+	documentation = {
+		border = "single",
+	},
 	snippet = {
 		expand = function(args)
 			-- For `vsnip` user.
