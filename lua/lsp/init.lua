@@ -207,4 +207,17 @@ function M.cmp_format(opts)
 	end
 end
 
+function M.setup_lsp_doc_border()
+	-- https://www.reddit.com/r/neovim/comments/q3evdt/adding_tailwind_css_intellisense_into_neovim/hfs1htx/
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		-- Use a sharp border with `FloatBorder` highlights
+		border = "single",
+	})
+
+	-- enable border for signature
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		border = "single",
+	})
+end
+
 return M
