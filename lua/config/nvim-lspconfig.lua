@@ -184,8 +184,10 @@ lsp.gopls.setup {
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
 function _G.goimports(timeout_ms)
-	-- source.organizeImports
-	local context = { source = { organizeImports = true } }
+	-- we only need source.organizeImports
+	-- see runtime/lua/vim/lsp/buf.lua code_action()
+	-- see https://github.com/golang/tools/commit/6e9046bfcd34178dc116189817430a2ad1ee7b43
+	local context = { only = { "source.organizeImports" } }
 	vim.validate { context = { context, "t", true } }
 
 	local params = vim.lsp.util.make_range_params()
@@ -197,8 +199,12 @@ function _G.goimports(timeout_ms)
 	if not result or next(result) == nil then
 		return
 	end
+
+	-- for debug
+	-- log_to_file("goimports", result)
+
 	local actions = result[1].result
-	if not actions then
+	if not actions or type(actions) ~= "table" then
 		return
 	end
 	local action = actions[1]
@@ -217,7 +223,7 @@ function _G.goimports(timeout_ms)
 		vim.lsp.buf.execute_command(action)
 	end
 end
--- vim.api.nvim_command('autocmd BufWritePre *.go lua goimports(1000)')
+vim.api.nvim_command "autocmd BufWritePre *.go lua goimports(1000)"
 
 -- https://clangd.llvm.org/features.html
 lsp.clangd.setup {
