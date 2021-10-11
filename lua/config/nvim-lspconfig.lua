@@ -3,6 +3,10 @@
 nnoremap { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", silent = true }
 
 nnoremap { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", silent = true }
+nnoremap { "<C-LeftMouse>", "<Cmd>lua vim.lsp.buf.definition()<CR>", silent = true }
+nnoremap { "<2-LeftMouse>", "<Cmd>lua vim.lsp.buf.definition()<CR>", silent = true }
+nnoremap { "<C-RightMouse>", "<C-O>", silent = true }
+nnoremap { "<LeftMouse><RightMouse>", "<C-O>", silent = true }
 nnoremap { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", silent = true }
 nnoremap { "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silent = true }
 nnoremap { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silent = true }
