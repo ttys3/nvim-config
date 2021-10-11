@@ -20,3 +20,13 @@ function _G.dump(...)
 	local objects = vim.tbl_map(vim.inspect, { ... })
 	print(unpack(objects))
 end
+
+function _G.log_to_file(tag, ...)
+	local objects = vim.tbl_map(vim.inspect, { ... })
+	local file = assert(io.open("/tmp/nvim.log", "w"))
+	local prefix = tag .. " | " .. os.date "%Y-%m-%dT%H:%M:%S"
+	file:write(prefix .. "----------------------------------------------------->" .. "\n")
+	file:write(unpack(objects) .. "\n")
+	file:write(prefix .. "<-----------------------------------------------------" .. "\n")
+	file:close()
+end
