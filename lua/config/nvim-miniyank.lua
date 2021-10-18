@@ -5,9 +5,10 @@ map { "<leader>N", "<Plug>(miniyank-cycleback)" }
 -- " the standard "+gP and "+y commands very difficult to use
 vmap { "<RightMouse>", '"+y' }
 vmap { "<leader>yy", '"+y' }
-nnoremap { "<C-y>", '"+y' }
-vnoremap { "<C-y>", '"+y' }
-nnoremap { "<C-p>", '"+gP' }
-vnoremap { "<C-p>", '"+gP' }
+nnoremap { "<leader>y", '"+y' }
+vnoremap { "<leader>y", '"+y' }
+nnoremap { "<leader>p", '"+gP' }
+vnoremap { "<leader>p", '"+gP' }
 -- " make Y consistent with C and D. See :help Y.
 nnoremap { "Y", "y$" }
+
