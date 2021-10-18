@@ -259,25 +259,25 @@ return require("packer").startup {
 		}
 		-- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
-		use {
-			"dstein64/nvim-scrollview",
-			branch = "main",
-			config = function()
-				Variable.g {
-					scrollview_on_startup = true,
-					scrollview_excluded_filetypes = {
-						"NvimTree",
-						"packer",
-						"startify",
-						"fugitive",
-						"fugitiveblame",
-						"vista_kind",
-						"qf",
-						"help",
-					},
-				}
-			end,
-		}
+		-- use {
+		-- 	"dstein64/nvim-scrollview",
+		-- 	branch = "main",
+		-- 	config = function()
+		-- 		Variable.g {
+		-- 			scrollview_on_startup = true,
+		-- 			scrollview_excluded_filetypes = {
+		-- 				"NvimTree",
+		-- 				"packer",
+		-- 				"startify",
+		-- 				"fugitive",
+		-- 				"fugitiveblame",
+		-- 				"vista_kind",
+		-- 				"qf",
+		-- 				"help",
+		-- 			},
+		-- 		}
+		-- 	end,
+		-- }
 
 		-- quickfix
 		-- " https://github.com/romainl/vim-qf
