@@ -305,14 +305,14 @@ return require("packer").startup {
 			end,
 		}
 
-		use {
-			"luochen1990/rainbow",
-			config = function()
-				Variable.g {
-					rainbow_active = 1,
-				}
-			end,
-		}
+		-- use {
+		-- 	"luochen1990/rainbow",
+		-- 	config = function()
+		-- 		Variable.g {
+		-- 			rainbow_active = 1,
+		-- 		}
+		-- 	end,
+		-- }
 
 		-- " if no color: export TERM=xterm-256color
 		-- " show the final result: :echo &statusline

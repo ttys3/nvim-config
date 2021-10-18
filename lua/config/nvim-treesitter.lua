@@ -27,15 +27,15 @@ require("nvim-treesitter.configs").setup {
 -- see https://github.com/nvim-treesitter/nvim-treesitter/issues/123#issuecomment-651162962
 -- https://github.com/nvim-treesitter/nvim-treesitter/issues/654#issuecomment-727562988
 -- https://github.com/luochen1990/rainbow/issues/151#issuecomment-677644891
-require "nvim-treesitter.highlight"
 -- vim.TSHighlighter is removed, please use vim.treesitter.highlighter
 -- see https://github.com/neovim/neovim/pull/14145/commits/b5401418768af496ef23b790f700a44b61ad784d
-local hlmap = vim.treesitter.highlighter.hl_map
 -- deactivate highlight of TSPunctBracket
 -- highlight link TSPunctBracket Normal
-hlmap.error = nil
-hlmap["punctuation.delimiter"] = "Delimiter"
-hlmap["punctuation.bracket"] = nil
+-- require "nvim-treesitter.highlight"
+-- local hlmap = vim.treesitter.highlighter.hl_map
+-- hlmap.error = nil
+-- hlmap["punctuation.delimiter"] = "Delimiter"
+-- hlmap["punctuation.bracket"] = nil
 
 -- nomad
 require("nvim-treesitter.parsers").get_parser_configs().hcl.used_by = { "nomad", "terraform", "tf" }
