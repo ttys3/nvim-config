@@ -30,16 +30,16 @@ return require("packer").startup {
 		}
 
 		-- https://github.com/nvim-treesitter/playground
-		use {
-			"nvim-treesitter/playground",
-			requires = { "nvim-treesitter/nvim-treesitter" },
-			config = function()
-				nnoremap {
-					"<Leader>hl",
-					[[:call luaeval("require'nvim-treesitter-playground.hl-info'.show_hl_captures()")<CR>]],
-				}
-			end,
-		}
+		-- use {
+		-- 	"nvim-treesitter/playground",
+		-- 	requires = { "nvim-treesitter/nvim-treesitter" },
+		-- 	config = function()
+		-- 		nnoremap {
+		-- 			"<Leader>hl",
+		-- 			[[:call luaeval("require'nvim-treesitter-playground.hl-info'.show_hl_captures()")<CR>]],
+		-- 		}
+		-- 	end,
+		-- }
 
 		use {
 			"JoosepAlviste/nvim-ts-context-commentstring",
