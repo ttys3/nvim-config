@@ -478,6 +478,9 @@ return require("packer").startup {
 				nightfox.load()
 			end,
 		}
+		-- " one dark like colorscheme
+		use "sainnhe/edge"
+
 		-- " https://github.com/morhetz/gruvbox/wiki/Installation
 		-- use "doums/darcula"
 		-- use "ttys3/base16-vim"
@@ -498,32 +501,30 @@ return require("packer").startup {
 		-- 	end,
 		-- }
 
-		-- " one dark like colorscheme
-		use "sainnhe/edge"
-		use "sainnhe/gruvbox-material"
-		use "hzchirs/vim-material"
+		-- use "sainnhe/gruvbox-material"
+		-- use "hzchirs/vim-material"
 
-		use {
-			"npxbr/gruvbox.nvim",
-			requires = { "rktjmp/lush.nvim" },
-			config = function()
-				Variable.g {
-					gruvbox_bold = 0,
-					gruvbox_italic = 1,
-					-- " gruvbox_transparent_bg = 0
-					-- " soft, medium and hard
-					-- gruvbox_contrast_dark = "soft",
-					gruvbox_contrast_dark = "medium",
-				}
-				vim.go.background = "dark"
-				-- vim.cmd "colorscheme gruvbox"
-				-- vim.cmd [[ silent! colorscheme gruvbox ]]
-				-- print "colorscheme set to gruvbox"
-			end,
-		}
-		-- use 'ttys3/gruvbox.nvim'
+		-- use {
+		-- 	"npxbr/gruvbox.nvim",
+		-- 	requires = { "rktjmp/lush.nvim" },
+		-- 	config = function()
+		-- 		Variable.g {
+		-- 			gruvbox_bold = 0,
+		-- 			gruvbox_italic = 1,
+		-- 			-- " gruvbox_transparent_bg = 0
+		-- 			-- " soft, medium and hard
+		-- 			-- gruvbox_contrast_dark = "soft",
+		-- 			gruvbox_contrast_dark = "medium",
+		-- 		}
+		-- 		vim.go.background = "dark"
+		-- 		-- vim.cmd "colorscheme gruvbox"
+		-- 		-- vim.cmd [[ silent! colorscheme gruvbox ]]
+		-- 		-- print "colorscheme set to gruvbox"
+		-- 	end,
+		-- }
+
 		-- " https://github.com/olimorris/onedark.nvim
-		use "olimorris/onedark.nvim"
+		-- use "olimorris/onedark.nvim"
 
 		-- https://github.com/projekt0n/github-nvim-theme
 		-- Github theme for Neovim
