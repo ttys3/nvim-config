@@ -109,10 +109,12 @@ return require("packer").startup {
 			end,
 		}
 
+		-- https://github.com/karb94/neoscroll.nvim
+		-- "psliwka/vim-smoothie",
 		use {
-			"psliwka/vim-smoothie",
+			"karb94/neoscroll.nvim",
 			config = function()
-				vim.g.smoothie_experimental_mappings = true
+				require("neoscroll").setup()
 			end,
 		}
 
