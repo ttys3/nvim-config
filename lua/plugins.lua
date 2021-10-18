@@ -62,19 +62,19 @@ return require("packer").startup {
 
 		-- support split window resizing and moving
 		-- resize windows continuously by using typical keymaps of Vim. (h, j, k, l)
-		use {
-			"simeji/winresizer",
-			config = function()
-				Variable.g {
-					winresizer_start_key = "<C-e>",
-				}
-				noremap { "<leader>nh", ":set nosplitright<CR>:vnew<CR>" }
-				noremap { "<leader>nl", ":set splitright<CR>:vnew<CR>" }
-				noremap { "<leader>nj", ":set splitbelow<CR>:new<CR>" }
-				noremap { "<leader>nk", ":set nosplitbelow<CR>:new<CR>" }
-			end,
-		}
-
+		-- use {
+		-- 	"simeji/winresizer",
+		-- 	config = function()
+		-- 		Variable.g {
+		-- 			winresizer_start_key = "<C-e>",
+		-- 		}
+		-- 		noremap { "<leader>nh", ":set nosplitright<CR>:vnew<CR>" }
+		-- 		noremap { "<leader>nl", ":set splitright<CR>:vnew<CR>" }
+		-- 		noremap { "<leader>nj", ":set splitbelow<CR>:new<CR>" }
+		-- 		noremap { "<leader>nk", ":set nosplitbelow<CR>:new<CR>" }
+		-- 	end,
+		-- }
+		--
 		use "ttys3/vim-todo-highlight"
 
 		use {
