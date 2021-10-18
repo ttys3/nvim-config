@@ -52,13 +52,13 @@ return require("packer").startup {
 			requires = { "kyazdani42/nvim-web-devicons" },
 		}
 
-		use {
-			"akinsho/bufferline.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-			config = function()
-				require("bufferline").setup {}
-			end,
-		}
+		-- use {
+		-- 	"akinsho/bufferline.nvim",
+		-- 	requires = "kyazdani42/nvim-web-devicons",
+		-- 	config = function()
+		-- 		require("bufferline").setup {}
+		-- 	end,
+		-- }
 
 		-- support split window resizing and moving
 		-- resize windows continuously by using typical keymaps of Vim. (h, j, k, l)
