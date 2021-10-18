@@ -89,10 +89,10 @@ return require("packer").startup {
 			end,
 		}
 
-		use {
-			"vim-test/vim-test",
-			config = [[require('config.vim-test')]],
-		}
+		-- use {
+		-- 	"vim-test/vim-test",
+		-- 	config = [[require('config.vim-test')]],
+		-- }
 
 		-- Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 		-- related works: godlygeek/tabular
