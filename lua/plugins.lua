@@ -154,12 +154,6 @@ return require("packer").startup {
 			end,
 		}
 
-		-- https://github.com/glepnir/lspsaga.nvim
-		-- use {
-		-- 	"glepnir/lspsaga.nvim",
-		-- 	config = [[require('config.lspsaga')]],
-		-- }
-
 		-- A pretty diagnostics list to help you solve all the trouble your code is causing.
 		-- https://github.com/folke/lsp-trouble.nvim
 		-- use {
@@ -248,6 +242,7 @@ return require("packer").startup {
 
 		-- " https://github.com/RishabhRD/nvim-cheat.sh
 		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
+		-- usage: :Cheat cpp reverse number
 		use { "RishabhRD/nvim-cheat.sh", requires = "RishabhRD/popfix" }
 
 		-- debugger
