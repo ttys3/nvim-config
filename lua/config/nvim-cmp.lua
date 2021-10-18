@@ -11,10 +11,10 @@ cmp.setup {
 			-- vim.fn["vsnip#anonymous"](args.body)
 
 			-- For `luasnip` user.
-			-- require('luasnip').lsp_expand(args.body)
+			require("luasnip").lsp_expand(args.body)
 
 			-- For `ultisnips` user.
-			vim.fn["UltiSnips#Anon"](args.body)
+			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	mapping = {
@@ -49,10 +49,10 @@ cmp.setup {
 		-- { name = "vsnip" },
 
 		-- For luasnip user.
-		-- { name = 'luasnip' },
+		{ name = "luasnip" },
 
 		-- For ultisnips user.
-		{ name = "ultisnips" },
+		-- { name = "ultisnips" },
 
 		{ name = "crates" },
 
@@ -71,10 +71,10 @@ cmp.setup {
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[Lua]",
+				luasnip = "[LuaSnip]",
 				ultisnips = "[Ultisnips]",
 				crates = "[Crates]",
 				cmp_tabnine = "[TabNine]",
-				luasnip = "[LuaSnip]",
 				latex_symbols = "[Latex]",
 			},
 		},

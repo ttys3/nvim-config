@@ -194,12 +194,19 @@ return require("packer").startup {
 		-- " that are shipped with third party plugins. You'll need to copy them into this
 		-- " directory manually.
 		-- " mkdir -p $HOME/.config/nvim/UltiSnip
+		-- use {
+		-- 	"SirVer/ultisnips",
+		-- 	requires = { "honza/vim-snippets" },
+		-- 	config = [[require('config.ultisnips')]],
+		-- }
+		-- use "quangnguyen30192/cmp-nvim-ultisnips"
+
+		-- For luasnip user.
 		use {
-			"SirVer/ultisnips",
-			requires = { "honza/vim-snippets" },
-			config = [[require('config.ultisnips')]],
+			"L3MON4D3/LuaSnip",
+			requires = { "rafamadriz/friendly-snippets" },
 		}
-		use "quangnguyen30192/cmp-nvim-ultisnips"
+		use "saadparwaiz1/cmp_luasnip"
 
 		-- https://github.com/Saecki/crates.nvim
 		-- also provide Completion source for nvim-cmp
