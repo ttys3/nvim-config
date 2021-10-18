@@ -371,6 +371,8 @@ return require("packer").startup {
 		-- " ]p pastes on the line below, [p pastes on the line above
 		use "tpope/vim-unimpaired"
 
+		-- https://github.com/b3nj5m1n/kommentary
+		-- https://github.com/numToStr/Comment.nvim
 		use {
 			"numToStr/Comment.nvim",
 			config = function()
