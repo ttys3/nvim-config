@@ -1,5 +1,10 @@
 # My NeoVim Config
 
+this repo: https://github.com/ttys3/nvim-config
+
+* Following HEAD (nightly build), you should check https://github.com/neovim/neovim/issues/14090 daily
+* Linux only
+
 ## Installation
 
 ```shell
