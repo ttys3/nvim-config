@@ -479,7 +479,10 @@ Augroup {
 					vim.bo.shiftwidth = 4
 					-- iunmap <Tab>
 					-- https://github.com/nanotee/nvim-lua-guide#defining-mappings
-					vim.api.nvim_del_keymap("i", "<Tab>")
+					-- nvim_del_keymap disabled due to err:
+					-- Error detected while processing BufReadPost Autocommands for "*":
+					-- E5108: Error executing lua ...te/pack/packer/start/filetype.nvim/lua/filetype/init.lua:8: Vim(lua):E5108: Error executing lua /home/ttys3/.config/nvim/lua/general.lua:482: E31: No such mapping
+					-- vim.api.nvim_del_keymap("i", "<Tab>")
 				end,
 			},
 		},
