@@ -54,7 +54,8 @@ Option.g {
 	--  -- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline
 	showmode = false,
 	-- Set completeopt to have a better completion experience
-	completeopt = "menuone,noinsert,noselect",
+	-- https://github.com/hrsh7th/nvim-cmp#completioncompleteopt-type-string
+	completeopt = "menu,menuone,noselect",
 	-- Avoid showing message extra message when using completion
 	shortmess = vim.o.shortmess .. "c",
 	-- lua print(vim.bo.list)

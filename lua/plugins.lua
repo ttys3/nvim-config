@@ -247,6 +247,29 @@ return require("packer").startup {
 			config = [[require('config.nvim-cmp')]],
 		}
 
+		-- https://github.com/windwp/nvim-autopairs
+		-- https://github.com/steelsojka/pears.navim
+		use {
+			"windwp/nvim-autopairs",
+			config = function()
+				-- https://github.com/windwp/nvim-autopairs/wiki/Endwise
+				local npairs = require "nvim-autopairs"
+				npairs.setup {
+					check_ts = true,
+				}
+				npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
+
+				-- https://github.com/windwp/nvim-autopairs#mapping-cr
+				-- you need setup cmp first put this after cmp.setup()
+				require("nvim-autopairs.completion.cmp").setup {
+					map_cr = true, --  map <CR> on insert mode
+					map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+					auto_select = true, -- automatically select the first item
+					insert = false, -- we need use replace confirm behavior
+				}
+			end,
+		}
+
 		-- " https://github.com/RishabhRD/nvim-cheat.sh
 		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
 		-- usage: :Cheat cpp reverse number

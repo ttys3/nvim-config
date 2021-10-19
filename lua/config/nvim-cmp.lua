@@ -29,6 +29,8 @@ cmp.setup {
 		-- confirm
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
+
+		-- https://github.com/hrsh7th/nvim-cmp#what-is-the-pairs-wise-plugin-automatically-supported
 		["<CR>"] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
