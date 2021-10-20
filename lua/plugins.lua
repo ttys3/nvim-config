@@ -217,6 +217,16 @@ return require("packer").startup {
 			requires = { { "nvim-lua/plenary.nvim" } },
 			config = function()
 				require("crates").setup()
+
+				-- mappings https://github.com/Saecki/crates.nvim#key-mappings
+				nnoremap { "<leader>vt", ":lua require('crates').toggle()<cr>" }
+				nnoremap { "<leader>vr", ":lua require('crates').reload()<cr>" }
+				nnoremap { "<leader>vu", ":lua require('crates').update_crate()<cr>" }
+				vnoremap { "<leader>vu", ":lua require('crates').update_crates()<cr>" }
+				nnoremap { "<leader>va", ":lua require('crates').update_all_crates()<cr>" }
+				nnoremap { "<leader>vU", ":lua require('crates').upgrade_crate()<cr>" }
+				vnoremap { "<leader>vU", ":lua require('crates').upgrade_crates()<cr>" }
+				nnoremap { "<leader>vA", ":lua require('crates').upgrade_all_crates()<cr>" }
 			end,
 		}
 
