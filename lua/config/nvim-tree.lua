@@ -9,8 +9,6 @@ nnoremap { "<leader>ff", ":NvimTreeFindFile<CR>" }
 -- jump to the main window (startify)
 -- :h startify-faq-06
 Variable.g {
-	nvim_tree_side = "left", -- left by default
-	nvim_tree_width = 30, -- 30 by default
 	nvim_tree_ignore = { ".git", "node_modules", ".cache", ".idea" }, -- empty by default
 	nvim_tree_quit_on_open = 1, -- 0 by default, closes the tree when you open a file
 	nvim_tree_indent_markers = 0, -- 0 by default, this option shows indent markers when folders are open
@@ -47,6 +45,11 @@ Variable.g {
 
 -- https://github.com/kyazdani42/nvim-tree.lua#setup
 require("nvim-tree").setup {
-	-- closes neovim automatically when the tree is the last **WINDOW** in the view
-	auto_close = true,
+	view = {
+		-- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
+		side = "left",
+		-- closes neovim automatically when the tree is the last **WINDOW** in the view
+		auto_close = true,
+		width = 45, -- 30 by default
+	},
 }
