@@ -64,10 +64,11 @@ vnoremap { "ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = t
 -- preview definition
 -- nnoremap { "<leader>K", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", silent = true }
 
--- diag https://github.com/nvim-lua/diagnostic-nvim/issues/73
--- nnoremap <leader>dn <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
-nnoremap { "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", silent = true }
-nnoremap { "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", silent = true }
+-- https://github.com/neovim/neovim/pull/16057
+-- https://www.reddit.com/r/neovim/comments/qd3v4h/psa_vimdiagnostics_api_has_changed_a_little_bit/hhl1pbh/
+-- nnoremap <leader>dn <cmd>lua vim.diagnostic.goto_next { wrap = false }<CR>
+nnoremap { "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", silent = true }
+nnoremap { "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", silent = true }
 
 -- lspsaga
 -- lsp provider to find the cursor word definition and reference
