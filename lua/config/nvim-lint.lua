@@ -7,14 +7,7 @@ require("lint").linters_by_ft = {
 Augroup {
 	NvimLint = {
 		{
-			"BufWritePost",
-			"<buffer>",
-			function()
-				require("lint").try_lint()
-			end,
-		},
-		{
-			"BufEnter",
+			"BufWritePost,BufEnter",
 			"<buffer>",
 			function()
 				require("lint").try_lint()
