@@ -349,6 +349,10 @@ lsp.sumneko_lua.setup {
 				maxPreload = 3000, -- default 1000
 				preloadFileSize = 1024, -- default 100 ( KiB )
 			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
 		},
 	}, -- end settings
 }
