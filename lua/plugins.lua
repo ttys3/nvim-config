@@ -270,13 +270,8 @@ return require("packer").startup {
 				npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
 
 				-- https://github.com/windwp/nvim-autopairs#mapping-cr
-				-- you need setup cmp first put this after cmp.setup()
-				require("nvim-autopairs.completion.cmp").setup {
-					map_cr = true, --  map <CR> on insert mode
-					map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
-					auto_select = true, -- automatically select the first item
-					insert = false, -- we need use replace confirm behavior
-				}
+				-- [nvim-autopairs] function nvim-autopairs.completion.cmp setup is deprecated.
+				-- [nvim-autopairs]you only need to add <cr> mapping on nvim-cmp.
 			end,
 		}
 
