@@ -9,10 +9,8 @@ nnoremap { "<leader>ff", ":NvimTreeFindFile<CR>" }
 -- jump to the main window (startify)
 -- :h startify-faq-06
 Variable.g {
-	nvim_tree_ignore = { ".git", "node_modules", ".cache", ".idea" }, -- empty by default
 	nvim_tree_quit_on_open = 1, -- 0 by default, closes the tree when you open a file
 	nvim_tree_indent_markers = 0, -- 0 by default, this option shows indent markers when folders are open
-	nvim_tree_hide_dotfiles = 1, -- 0 by default, this option hides files and folders starting with a dot `.`
 	nvim_tree_git_hl = 1, -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
 	nvim_tree_root_folder_modifier = ":~", -- This is the default. See :help filename-modifiers for more options
 	nvim_tree_allow_resize = 1, -- 0 by default, will not resize the tree when opening a file
@@ -51,5 +49,9 @@ require("nvim-tree").setup {
 		-- closes neovim automatically when the tree is the last **WINDOW** in the view
 		auto_close = true,
 		width = 45, -- 30 by default
+	},
+	filters = {
+		dotfiles = true, -- hide dot files
+		custom = { ".git", "node_modules", ".cache", ".idea" }, -- custom hide
 	},
 }
