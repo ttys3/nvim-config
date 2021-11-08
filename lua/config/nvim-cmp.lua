@@ -32,7 +32,7 @@ cmp.setup {
 
 		-- https://github.com/hrsh7th/nvim-cmp#what-is-the-pairs-wise-plugin-automatically-supported
 		["<CR>"] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
+			-- behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
 		-- https://github.com/hrsh7th/nvim-cmp/issues/231
