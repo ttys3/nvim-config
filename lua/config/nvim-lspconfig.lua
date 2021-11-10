@@ -260,8 +260,7 @@ lsp.pyright.setup {
 	capabilities = capabilities,
 }
 
--- lsp.rust_analyzer.setup{}
-lsp.rust_analyzer.setup {
+local rust_lsp_options = {
 	on_attach = mix_attach,
 	capabilities = capabilities,
 
@@ -290,13 +289,23 @@ lsp.rust_analyzer.setup {
 	},
 }
 
+-- override by rust-tools setup
+-- so we do not need setup here
+-- lsp.rust_analyzer.setup(rust_lsp_options)
+
 require("rust-tools").setup {
-	-- automatically set inlay hints (type hints)
-	-- There is an issue due to which the hints are not applied on the first
-	-- opened file. For now, write to the file to trigger a reapplication of
-	-- the hints or just run :RustSetInlayHints.
-	-- default: true
-	autoSetHints = true,
+	-- rust-tools options
+	tools = {
+		-- default: true
+		autoSetHints = true,
+	},
+
+	-- rust-tools will call: rust_analyzer.setup(config.options.server)
+	-- all the opts to send to nvim-lspconfig
+	-- these override the defaults set by rust-tools.nvim
+	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+	-- rust-analyer options
+	server = rust_lsp_options,
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
