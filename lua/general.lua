@@ -395,6 +395,7 @@ Augroup {
 				-- https://github.com/cappyzawa/trim.nvim/blob/9959b6638432d4f6674194fab1a3c50c44cdbf08/lua/trim/config.lua#L6
 				local patterns = {
 					[[%s/\s\+$//e]],
+					[[%s/\%u200b\+$//e]],
 					-- [[%s/\($\n\s*\)\+\%$//]],
 					-- [[%s/\%^\n\+//]],
 					-- [[%s/\(\n\n\)\n\+/\1/]],
