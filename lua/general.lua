@@ -397,6 +397,7 @@ Augroup {
 				local protect_dirs = {
 					"^" .. vim.fn.expand "~" .. "/.rustup/toolchains/",
 					"^" .. vim.fn.expand "~" .. "/.cargo/git/",
+					"^" .. vim.fn.expand "~" .. "/.cargo/registry/",
 				}
 				for _, prefix in ipairs(protect_dirs) do
 					if string.match(vim.fn.expand "%:p", prefix) ~= nil then
