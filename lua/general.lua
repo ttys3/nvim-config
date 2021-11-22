@@ -386,6 +386,27 @@ Augroup {
 			end,
 		},
 	},
+	ProtectFile = {
+		{
+			"BufReadPost",
+			"*.rs",
+			function()
+				-- protect rust source files under ~/.rustup/toolchains/
+				-- idea from https://github.com/Xvezda/vim-readonly/blob/master/plugin/readonly.vim
+				-- and https://github.com/rust-lang/rustup/issues/2550
+				local protect_dirs = {
+					"^" .. vim.fn.expand "~" .. "/.rustup/toolchains/",
+					"^" .. vim.fn.expand "~" .. "/.cargo/git/",
+				}
+				for _, prefix in ipairs(protect_dirs) do
+					if string.match(vim.fn.expand "%:p", prefix) ~= nil then
+						vim.bo.readonly = true
+						vim.bo.modifiable = false
+					end
+				end
+			end,
+		},
+	},
 	RemoveTrailingWhitespace = {
 		{
 			-- must use BufWritePre, if use BufWritePost has problem with other formatters (whitespace not got removed)
