@@ -526,7 +526,7 @@ return require("packer").startup {
 		-- use {
 		-- 	"arcticicestudio/nord-vim",
 		-- 	config = function()
-		-- 		require("nord").set()
+		-- 		vim.cmd [[ silent! colorscheme nord ]]
 		-- 	end,
 		-- }
 
@@ -535,7 +535,6 @@ return require("packer").startup {
 		-- 	"shaunsingh/nord.nvim",
 		-- 	config = function()
 		-- 		-- require("nord").set()
-		-- 		-- vim.cmd [[ silent! colorscheme nord ]]
 		-- 	end,
 		-- }
 
