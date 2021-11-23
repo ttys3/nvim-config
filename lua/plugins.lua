@@ -486,6 +486,7 @@ return require("packer").startup {
 
 		-- colorscheme
 
+		-- https://github.com/EdenEast/nightfox.nvim
 		use {
 			"EdenEast/nightfox.nvim",
 			config = function()
