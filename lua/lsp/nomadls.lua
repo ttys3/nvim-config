@@ -1,5 +1,6 @@
-local configs = require "lspconfig/configs"
-local util = require "lspconfig/util"
+local lspconfig = require "lspconfig"
+local configs = require "lspconfig.configs"
+local util = require "lspconfig.util"
 
 configs.nomadls = {
 	default_config = {
@@ -19,4 +20,6 @@ Language Server Protocol for Nomad.
 		},
 	},
 }
+lspconfig.nomadls.setup({})
+
 -- vim:et ts=2 sw=2
