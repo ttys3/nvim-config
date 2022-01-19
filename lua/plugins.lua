@@ -15,6 +15,7 @@ return require("packer").startup {
 		-- replacement
 		-- add the following to init.lua to tell nvim not source the default filetype.vim
 		-- vim.g.did_load_filetypes = 1
+		-- following to core status: https://github.com/nathom/filetype.nvim/issues/36
 		use {
 			"nathom/filetype.nvim",
 		}
