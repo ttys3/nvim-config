@@ -58,16 +58,11 @@ local make_mapper = function(mode, defaults, opts)
 end
 
 --- Helper function for ':map'.
----
---@see |vim.keymap.nmap|
----
 function keymap.map(opts)
     return make_mapper("", { noremap = false }, opts)
 end
 
 --- Helper function for ':noremap'
---@see |vim.keymap.nmap|
----
 function keymap.noremap(opts)
     return make_mapper("", { noremap = true }, opts)
 end
@@ -75,7 +70,7 @@ end
 --- Helper function for ':nmap'.
 ---
 --- <pre>
----   vim.keymap.nmap { 'lhs', function() print("real lua function") end, silent = true }
+---   keymap.nmap { 'lhs', function() print("real lua function") end, silent = true }
 --- </pre>
 --@param opts (table): A table with keys:
 ---     - [1] = left hand side: Must be a string
@@ -88,7 +83,7 @@ end
 
 --- Helper function for ':nnoremap'
 --- <pre>
----   vim.keymap.nmap { 'lhs', function() print("real lua function") end, silent = true }
+---   keymap.nmap { 'lhs', function() print("real lua function") end, silent = true }
 --- </pre>
 --@param opts (table): A table with keys
 ---     - [1] = left hand side: Must be a string
@@ -101,125 +96,87 @@ function keymap.nnoremap(opts)
 end
 
 --- Helper function for ':vmap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.vmap(opts)
     return make_mapper("v", { noremap = false }, opts)
 end
 
 --- Helper function for ':vnoremap'
---@see |vim.keymap.nmap|
----
 function keymap.vnoremap(opts)
     return make_mapper("v", { noremap = true }, opts)
 end
 
 --- Helper function for ':xmap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.xmap(opts)
     return make_mapper("x", { noremap = false }, opts)
 end
 
 --- Helper function for ':xnoremap'
---@see |vim.keymap.nmap|
----
 function keymap.xnoremap(opts)
     return make_mapper("x", { noremap = true }, opts)
 end
 
 --- Helper function for ':smap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.smap(opts)
     return make_mapper("s", { noremap = false }, opts)
 end
 
 --- Helper function for ':snoremap'
---@see |vim.keymap.nmap|
----
 function keymap.snoremap(opts)
     return make_mapper("s", { noremap = true }, opts)
 end
 
 --- Helper function for ':omap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.omap(opts)
     return make_mapper("o", { noremap = false }, opts)
 end
 
 --- Helper function for ':onoremap'
---@see |vim.keymap.nmap|
----
 function keymap.onoremap(opts)
     return make_mapper("o", { noremap = true }, opts)
 end
 
 --- Helper function for ':imap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.imap(opts)
     return make_mapper("i", { noremap = false }, opts)
 end
 
 --- Helper function for ':inoremap'
---@see |vim.keymap.nmap|
----
 function keymap.inoremap(opts)
     return make_mapper("i", { noremap = true }, opts)
 end
 
 --- Helper function for ':lmap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.lmap(opts)
     return make_mapper("l", { noremap = false }, opts)
 end
 
 --- Helper function for ':lnoremap'
---@see |vim.keymap.nmap|
----
 function keymap.lnoremap(opts)
     return make_mapper("l", { noremap = true }, opts)
 end
 
 --- Helper function for ':cmap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.cmap(opts)
     return make_mapper("c", { noremap = false }, opts)
 end
 
 --- Helper function for ':cnoremap'
---@see |vim.keymap.nmap|
----
 function keymap.cnoremap(opts)
     return make_mapper("c", { noremap = true }, opts)
 end
 
 --- Helper function for ':tmap'.
----
---@see |vim.keymap.nmap|
----
 function keymap.tmap(opts)
     return make_mapper("t", { noremap = false }, opts)
 end
 
 --- Helper function for ':tnoremap'
---@see |vim.keymap.nmap|
----
 function keymap.tnoremap(opts)
     return make_mapper("t", { noremap = true }, opts)
 end
 
-vim.keymap = vim.keymap or keymap
+-- DO NOT USE `vim.keymap` !!! nvim 0.7.x now has builtin vim.keymap
+-- see runtime/lua/vim/keymap.lua and https://github.com/neovim/neovim/pull/16591
+-- print("type(vim.keymap)=".. type(vim.keymap))
 
 return keymap
