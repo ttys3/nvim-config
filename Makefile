@@ -359,3 +359,8 @@ startuptime:
 
 plugtime:
 	nvim --startuptime startup.log -c ":q" && cat startup.log | sort -k2 && rm -f startup.log
+
+debug:
+	- rm -f bat /tmp/nvim.log
+	nvim -V10/tmp/nvim.log
+	bat /tmp/nvim.log
