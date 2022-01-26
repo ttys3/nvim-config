@@ -7,6 +7,7 @@ require("telescope").load_extension "fzy_native"
 nnoremap { "<leader><leader>", "<cmd>lua require('telescope.builtin').find_files()<cr>" }
 nnoremap { "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>" }
 nnoremap { "<leader>t", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>" }
+nnoremap { "<leader>d", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<cr>" }
 
 -- internal.buffers
 -- https://github.com/nvim-telescope/telescope.nvim/blob/9cad3a4a5d0e36b07b25c4be1db1c1306fcec945/lua/telescope/builtin/internal.lua
