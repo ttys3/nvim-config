@@ -18,11 +18,17 @@ if components.active[1] then
 		provider = "lsp_client_names",
 		left_sep = "  ",
 	})
-	table.insert(components.active[1], {
-		provider = "lsp_progress",
-		left_sep = " ",
-		-- right_sep = ' ',
-	})
+
+	-- do not set lsp progress if fidget.nvim plugin loaded
+	local fidget_load_ok, _ = pcall(require, "fidget")
+	if not fidget_load_ok then
+		table.insert(components.active[1], {
+			provider = "lsp_progress",
+			left_sep = " ",
+			-- right_sep = ' ',
+		})
+	else
+	end
 end
 
 -- enable full-path type for file_info
