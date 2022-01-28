@@ -134,19 +134,19 @@ return require("packer").startup {
 			config = [[require('config.nvim-lspconfig')]],
 		}
 
-		use {
-			-- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md
-			-- Standalone UI for nvim-lsp progress
-			"j-hui/fidget.nvim",
-			config = function()
-				require("fidget").setup {
-					text = {
-						-- see https://github.com/j-hui/fidget.nvim/blob/main/lua/fidget/spinners.lua for predefined spinners
-						spinner = "meter",
-					},
-				}
-			end,
-		}
+		-- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md
+		-- Standalone UI for nvim-lsp progress
+		-- see https://github.com/j-hui/fidget.nvim/blob/main/lua/fidget/spinners.lua for predefined spinners
+		-- use {
+		-- 	"j-hui/fidget.nvim",
+		-- 	config = function()
+		-- 		require("fidget").setup {
+		-- 			text = {
+		-- 				spinner = "meter",
+		-- 			},
+		-- 		}
+		-- 	end,
+		-- }
 
 		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
 		-- " Integrates with Neovim's LSP client for intelligent highlighting.
