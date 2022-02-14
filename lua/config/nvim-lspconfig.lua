@@ -219,7 +219,13 @@ function _G.goimports(timeout_ms)
 	-- should be executed first.
 	if action.edit or type(action.command) == "table" then
 		if action.edit then
-			vim.lsp.util.apply_workspace_edit(action.edit)
+			-- offset_encoding string utf-8|utf-16|utf-32 (required)
+			-- see https://github.com/neovim/neovim/issues/14090#issuecomment-1012005684
+			-- If you were affected by this in your plugin, you will need to fetch the client.offset_encoding (available via ctx.client_id from most handlers).
+			-- If you were using LSP functions for something not involving LSP, you should consider vendoring your own solution,
+			-- although the default offset_encoding is most commonly "utf-16".
+			-- gopls: offset_encoding = "utf-16"
+			vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
 		end
 		if type(action.command) == "table" then
 			vim.lsp.buf.execute_command(action.command)

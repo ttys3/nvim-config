@@ -8,14 +8,27 @@ require("feline").setup {
 		lsp_progress = function()
 			return #vim.lsp.buf_get_clients() > 0 and require("lsp").lsp_progress() or ""
 		end,
+
+		lsp_client_offset_encoding = function()
+			local clients = {}
+			for _, client in pairs(vim.lsp.buf_get_clients(0)) do
+				clients[#clients + 1] = client.name .. ": " .. client.offset_encoding
+			end
+			return table.concat(clients, ", "), "🌵"
+		end,
 	},
 }
 
 local components = require("feline.presets")["default"]
 
 if components.active[1] then
+	-- table.insert(components.active[1], {
+	-- 	provider = "lsp_client_names",
+	-- 	left_sep = "  ",
+	-- })
+
 	table.insert(components.active[1], {
-		provider = "lsp_client_names",
+		provider = "lsp_client_offset_encoding",
 		left_sep = "  ",
 	})
 
