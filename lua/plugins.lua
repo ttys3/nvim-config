@@ -49,6 +49,9 @@ return require("packer").startup {
 
 		use {
 			"kyazdani42/nvim-tree.lua",
+			-- we can remove the commit lock until issue #983 resolved
+			-- https://github.com/kyazdani42/nvim-tree.lua/issues/983
+			commit = "3f4ed9b6c2598ab8304186486a05ae7a328b8d49",
 			config = [[require('config.nvim-tree')]],
 			requires = { "kyazdani42/nvim-web-devicons" },
 		}
