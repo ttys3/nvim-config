@@ -29,11 +29,14 @@ Variable.g {
 		["README.md"] = 1,
 		["Makefile"] = 1,
 		["MAKEFILE"] = 1,
+		["composer.json"] = 1,
+		["package.json"] = 1,
 	}, -- List of filenames that gets highlighted with NvimTreeSpecialFile
 	nvim_tree_window_picker_exclude = {
 		filetype = {
 			"packer",
 			"qf",
+			"startify",
 		},
 		buftype = {
 			"terminal",
