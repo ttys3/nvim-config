@@ -529,6 +529,12 @@ Augroup {
 					vim.bo.commentstring = "# %s"
 				end,
 			},
+			{
+				"nomad",
+				function()
+					vim.bo.commentstring = "# %s"
+				end,
+			},
 		},
 	},
 	MiscFileType = {
@@ -543,25 +549,6 @@ Augroup {
 				"*.{automount,service,socket,target,timer}",
 				function()
 					vim.api.nvim_command "setlocal filetype=systemd"
-				end,
-			},
-			{
-				"*.hcl",
-				function()
-					vim.api.nvim_command "setlocal filetype=hcl"
-				end,
-			},
-			{
-				"*.nomad",
-				function()
-					vim.api.nvim_command "setlocal filetype=nomad"
-					vim.api.nvim_command "setlocal filetype=hcl"
-				end,
-			},
-			{
-				".tf",
-				function()
-					vim.api.nvim_command "setlocal filetype=terraform"
 				end,
 			},
 		},
