@@ -38,4 +38,7 @@ require("nvim-treesitter.configs").setup {
 -- hlmap["punctuation.bracket"] = nil
 
 -- nomad
-require("nvim-treesitter.parsers").get_parser_configs().hcl.used_by = { "nomad", "terraform", "tf" }
+local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+ft_to_parser.nomad = "hcl" -- the nomad filetype will use the hcl parser and queries.
+ft_to_parser.tf = "hcl"
+ft_to_parser.terraform = "hcl"
