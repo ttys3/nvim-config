@@ -87,6 +87,12 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client)
+	-- force enable yamlls formatting feature
+	-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
+	if client.name == "yamlls" then
+		client.resolved_capabilities.document_formatting = true
+	end
+
 	-- require("lsp").set_lsp_omnifunc()
 	local has_illuminate, illuminate = pcall(require, "illuminate")
 	if has_illuminate then
@@ -436,6 +442,7 @@ Augroup {
 			{ "*.rs", require("lsp").formatting_sync },
 			{ "*.py", require("lsp").formatting_sync },
 			{ "*.php", require("lsp").formatting_sync },
+			{ "*.{yaml,yml}", require("lsp").formatting_sync },
 			-- { "*.js", require("lsp").formatting_sync },
 		},
 	},
