@@ -9,7 +9,6 @@ nnoremap { "<leader>ff", ":NvimTreeFindFile<CR>" }
 -- jump to the main window (startify)
 -- :h startify-faq-06
 Variable.g {
-	nvim_tree_quit_on_open = 1, -- 0 by default, closes the tree when you open a file
 	nvim_tree_indent_markers = 0, -- 0 by default, this option shows indent markers when folders are open
 	nvim_tree_git_hl = 1, -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
 	nvim_tree_root_folder_modifier = ":~", -- This is the default. See :help filename-modifiers for more options
@@ -32,19 +31,10 @@ Variable.g {
 		["composer.json"] = 1,
 		["package.json"] = 1,
 	}, -- List of filenames that gets highlighted with NvimTreeSpecialFile
-	nvim_tree_window_picker_exclude = {
-		filetype = {
-			"packer",
-			"qf",
-			"startify",
-		},
-		buftype = {
-			"terminal",
-		},
-	},
 }
 
 -- https://github.com/kyazdani42/nvim-tree.lua#setup
+--  Migration guide https://github.com/kyazdani42/nvim-tree.lua/issues/674
 require("nvim-tree").setup {
 	view = {
 		-- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
@@ -56,5 +46,22 @@ require("nvim-tree").setup {
 	filters = {
 		dotfiles = true, -- hide dot files
 		custom = { ".git", "node_modules", ".cache", ".idea" }, -- custom hide
+	},
+	actions = {
+		open_file = {
+			quit_on_open = true,
+			window_picker = {
+				exclude = {
+					filetype = {
+						"packer",
+						"qf",
+						"startify",
+					},
+					buftype = {
+						"terminal",
+					},
+				},
+			},
+		},
 	},
 }
