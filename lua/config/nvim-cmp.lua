@@ -11,8 +11,10 @@ local luasnip = require "luasnip"
 local cmp = require "cmp"
 
 cmp.setup {
-	documentation = {
-		border = "single",
+	window = {
+		documentation = {
+			border = "single",
+		},
 	},
 	snippet = {
 		expand = function(args)
@@ -26,7 +28,7 @@ cmp.setup {
 			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
-	mapping = {
+	mapping = cmp.mapping.preset.insert {
 		-- item go down and up
 		["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
 		["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
