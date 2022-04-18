@@ -11,6 +11,8 @@ this repo: https://github.com/ttys3/nvim-config
 # download the config
 git clone https://github.com/ttys3/nvim-config.git $HOME/.config/nvim
 
+cd $HOME/.config/nvim
+
 # init plugin installation
 nvim -i NONE -c "PackerInstall" -c "PackerCompile"
 
@@ -23,7 +25,7 @@ curl -LZ -o/tmp/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/dow
 cd /tmp; \
 unzip stylua.zip; \
 rm -f stylua.zip; \
-sudo install -vDm 755 stylua /usr/bin; \
+sudo install -vDm 755 stylua /usr/local/bin; \
 stylua --version
 ```
 
