@@ -209,13 +209,10 @@ tools/fedora:
 	sudo install -y copyq
 
 devel/fedora:
-	# x11 lib for suxpert/vimcaps
-	sudo dnf install -y libX11-devel
+	# or sudo dnf builddep neovim
 	# compat-lua is lua5.1
-	sudo dnf install compat-lua compat-lua-libs compat-lua-devel lua-filesystem-compat lua-socket-compat lua5.1-compat53 \
-	lua5.1-luv-devel lua5.1-http lua5.1-lpeg lua5.1-luaossl \
-	lua5.1-mmdb lua5.1-mpack lua5.1-psl lua5.1-sec lua5.1-basexx lua5.1-binaryheap lua5.1-bitop \
-	luajit
+	sudo dnf groupinstall -y "Development Tools" "Development Libraries"
+	sudo dnf install -y cmake ninja-build gcc-c++ libtool
 
 luarocks:
 	# append this to .zshrc to setup correct lua env vars: eval "$(luarocks path --bin)"
@@ -310,7 +307,9 @@ nvim:
 	test -d neovim || git clone https://github.com/neovim/neovim.git
 	# https://github.com/ninja-build/ninja/issues/1302
 	sudo chown -R $$USER:$$GROUP ./neovim
-	test -d neovim && cd neovim && git pull origin master --tags --force && make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(($(nproc)+4)) && sudo make install && cd ../ && nvim --version
+	# https://github.com/neovim/neovim/wiki/Building-Neovim#building
+	# Do not add a -j flag if ninja is installed! The build will be in parallel automatically.
+	test -d neovim && cd neovim && git pull origin master --tags --force && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install && cd ../ && nvim --version
 
 
 symlink/ubuntu:
