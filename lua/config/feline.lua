@@ -14,7 +14,7 @@ require("feline").setup {
 			for _, client in pairs(vim.lsp.buf_get_clients(0)) do
 				clients[#clients + 1] = client.name .. ": " .. client.offset_encoding
 			end
-			return table.concat(clients, ", "), "🌵"
+			return table.concat(clients, ", "), "⚙️"
 		end,
 	},
 }
