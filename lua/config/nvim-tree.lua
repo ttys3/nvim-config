@@ -38,8 +38,6 @@ require("nvim-tree").setup {
 	view = {
 		-- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
 		side = "left",
-		-- closes neovim automatically when the tree is the last **WINDOW** in the view
-		auto_close = true,
 		width = 45, -- 30 by default
 	},
 	filters = {
@@ -69,3 +67,17 @@ require("nvim-tree").setup {
 		},
 	},
 }
+
+-- closes neovim automatically when the tree is the last **WINDOW** in the view
+-- https://github.com/kyazdani42/nvim-tree.lua/pull/155/files
+-- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+-- https://neovim.io/doc/dev/api_2autocmd_8c.html#a4bf35800481959bb8583e9593a277eb7
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*" },
+	nested = true,
+	callback = function()
+		if vim.fn.winnr "$" == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
+			vim.api.nvim_command ":silent qa!"
+		end
+	end,
+})
