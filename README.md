@@ -3,7 +3,9 @@
 this repo: https://github.com/ttys3/nvim-config
 
 * Following HEAD (nightly build), you should check https://github.com/neovim/neovim/issues/14090 daily
+* nvim-treesitter Breaking Changes https://github.com/nvim-treesitter/nvim-treesitter/issues/2293
 * Linux only
+
 
 ## Installation
 
@@ -21,7 +23,7 @@ nvim -i NONE -c "PackerInstall" -c "PackerCompile"
 
 # stylua is used as lua formatter
 # stylua installation
-curl -LZ -o/tmp/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.10.0/stylua-0.10.0-linux.zip"; \
+curl -LZ -o/tmp/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.1/stylua-linux.zip"; \
 cd /tmp; \
 unzip stylua.zip; \
 rm -f stylua.zip; \
