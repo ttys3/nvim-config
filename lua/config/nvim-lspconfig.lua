@@ -438,14 +438,14 @@ Augroup {
 		-- " nmap <Leader>gi :%!goimports -srcdir %<CR>
 		-- " nmap <Leader>gf :%!gofumpt -s %<CR>
 		["BufWritePre"] = {
-			{ "*.lua", require("lsp").formatting_sync },
-			{ "*.c", require("lsp").formatting_sync },
-			{ "*.go", require("lsp").formatting_sync },
-			{ "*.rs", require("lsp").formatting_sync },
-			{ "*.py", require("lsp").formatting_sync },
-			{ "*.php", require("lsp").formatting_sync },
-			{ "*.{yaml,yml}", require("lsp").formatting_sync },
-			-- { "*.js", require("lsp").formatting_sync },
+			{ "*.lua", require("lsp").format },
+			{ "*.c", require("lsp").format },
+			{ "*.go", require("lsp").format },
+			{ "*.rs", require("lsp").format },
+			{ "*.py", require("lsp").format },
+			{ "*.php", require("lsp").format },
+			{ "*.{yaml,yml}", require("lsp").format },
+			-- { "*.js", require("lsp").format },
 		},
 	},
 }

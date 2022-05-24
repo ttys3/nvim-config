@@ -8,8 +8,8 @@ M.set_lsp_omnifunc = function()
 	vim.api.nvim_command "setlocal omnifunc=v:lua.vim.lsp.omnifunc"
 end
 
-M.formatting_sync = function()
-	vim.lsp.buf.formatting_sync(nil, 1000)
+M.format = function(opts)
+	vim.lsp.buf.format(opts)
 end
 
 -- https://www.reddit.com/r/neovim/comments/l00zzb/improve_style_of_builtin_lsp_diagnostic_messages/gjt2hek/
