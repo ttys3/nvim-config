@@ -16,7 +16,6 @@ nnoremap {
 	"<cmd>lua require('telescope.builtin').buffers({ignore_current_buffer = true, sort_mru = true, layout_strategy='vertical',layout_config={width=80}})<cr>",
 }
 nnoremap { "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>" }
-nnoremap { "<leader>a", "<cmd>lua require('telescope.builtin').lsp_code_actions({layout_strategy='cursor',layout_config={width=50, height = 10}})<cr>" }
 
 local actions = require "telescope.actions"
 -- Global remapping

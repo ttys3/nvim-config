@@ -56,7 +56,9 @@ nnoremap { "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", silent = true }
 -- commentary took gc and gcc, so ...
 -- lsp builtin code_action
 nnoremap { "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
+nnoremap { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
 vnoremap { "ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = true }
+vnoremap { "<leader>a", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = true }
 
 -- lspsaga code action
 -- nnoremap { "ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", silent = true }
