@@ -19,7 +19,10 @@ require("feline").setup {
 	},
 }
 
-local components = require("feline.presets")["default"]
+-- require("feline").winbar.setup()
+
+-- local components = require("feline.default_components").statusline.icons
+local components = require("feline").statusline_module.components
 
 if components.active[1] then
 	-- table.insert(components.active[1], {
