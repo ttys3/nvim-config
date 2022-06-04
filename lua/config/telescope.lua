@@ -34,4 +34,9 @@ require("telescope").setup {
 			},
 		},
 	},
+	pickers = {
+		find_files = {
+			prompt_prefix='🔍',
+		},
+	},
 }
