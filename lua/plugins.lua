@@ -134,6 +134,13 @@ return require("packer").startup {
 			config = [[require('config.nvim-lspconfig')]],
 		}
 
+		use {
+			"smjonas/inc-rename.nvim",
+			config = function()
+				require("inc_rename").setup()
+				vim.keymap.set("n", "<leader>r", ":IncRename ")
+			end,
+		}
 		-- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md
 		-- Standalone UI for nvim-lsp progress
 		-- see https://github.com/j-hui/fidget.nvim/blob/main/lua/fidget/spinners.lua for predefined spinners
