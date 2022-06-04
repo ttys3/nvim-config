@@ -9,27 +9,7 @@ nnoremap { "<leader>ff", ":NvimTreeFindFile<CR>" }
 -- jump to the main window (startify)
 -- :h startify-faq-06
 Variable.g {
-	nvim_tree_git_hl = 1, -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
-	nvim_tree_root_folder_modifier = ":~", -- This is the default. See :help filename-modifiers for more options
 	nvim_tree_allow_resize = 1, -- 0 by default, will not resize the tree when opening a file
-	nvim_tree_show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 1,
-	},
-	--If 0, do not show the icons for one of 'git' 'folder' and 'files'
-	--1 by default, notice that if 'files' is 1, it will only display
-	--if nvim-web-devicons is installed and on your runtimepath
-	nvim_tree_special_files = {
-		["go.mod"] = 1,
-		["Cargo.toml"] = 1,
-		["README.md"] = 1,
-		["Makefile"] = 1,
-		["MAKEFILE"] = 1,
-		["composer.json"] = 1,
-		["package.json"] = 1,
-	}, -- List of filenames that gets highlighted with NvimTreeSpecialFile
 }
 
 -- https://github.com/kyazdani42/nvim-tree.lua#setup
@@ -45,6 +25,20 @@ require("nvim-tree").setup {
 		custom = { ".git", "node_modules", ".cache", ".idea" }, -- custom hide
 	},
 	renderer = {
+		root_folder_modifier = ":~",
+		special_files = {
+			["go.mod"] = 1,
+			["Cargo.toml"] = 1,
+			["README.md"] = 1,
+			["Makefile"] = 1,
+			["MAKEFILE"] = 1,
+			["composer.json"] = 1,
+			["package.json"] = 1,
+		},
+		icons = {
+			show = { file = true, folder = true, folder_arrow = true },
+		},
+		highlight_git = true,
 		indent_markers = {
 			enable = false,
 		},
