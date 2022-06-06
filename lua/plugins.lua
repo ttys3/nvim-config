@@ -262,6 +262,20 @@ return require("packer").startup {
 		use "hrsh7th/cmp-buffer"
 		use "hrsh7th/cmp-path"
 		use {
+			"zbirenbaum/copilot.lua",
+			event = { "VimEnter" },
+			requires = "github/copilot.vim",
+			config = function()
+				vim.defer_fn(function()
+					require("copilot").setup()
+				end, 100)
+			end,
+		}
+		use {
+			"zbirenbaum/copilot-cmp",
+			after = { "copilot.lua", "nvim-cmp" },
+		}
+		use {
 			"tzachar/cmp-tabnine",
 			run = "./install.sh",
 			requires = "hrsh7th/nvim-cmp",

@@ -76,26 +76,30 @@ cmp.setup {
 		}),
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		-- https://github.com/hrsh7th/cmp-copilot
+		-- https://github.com/zbirenbaum/copilot-cmp
+		{ name = "copilot", group_index = 1 },
+
+		{ name = "cmp_tabnine", group_index = 2 },
+
+		{ name = "nvim_lsp", group_index = 3 },
 
 		-- For vsnip user.
 		-- { name = "vsnip" },
 
 		-- For luasnip user.
-		{ name = "luasnip" },
+		{ name = "luasnip", group_index = 4 },
+
+		{ name = "nvim_lua", group_index = 4 },
 
 		-- For ultisnips user.
 		-- { name = "ultisnips" },
 
-		{ name = "crates" },
-
-		{ name = "cmp_tabnine" },
-
-		{ name = "nvim_lua" },
+		{ name = "crates", group_index = 4 },
 
 		-- { name = "omni" },
 
-		{ name = "buffer" },
+		{ name = "buffer", group_index = 9 },
 	},
 	formatting = {
 		format = require("lsp").cmp_format {
@@ -109,6 +113,7 @@ cmp.setup {
 				crates = "[Crates]",
 				cmp_tabnine = "[TabNine]",
 				latex_symbols = "[Latex]",
+				copilot = "[Copilot]",
 			},
 		},
 	},
