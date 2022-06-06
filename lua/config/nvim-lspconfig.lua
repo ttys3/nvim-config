@@ -201,46 +201,17 @@ function _G.goimports(timeout_ms)
 	-- we only need source.organizeImports
 	-- see runtime/lua/vim/lsp/buf.lua code_action()
 	-- see https://github.com/golang/tools/commit/6e9046bfcd34178dc116189817430a2ad1ee7b43
-	local context = { only = { "source.organizeImports" } }
-	vim.validate { context = { context, "t", true } }
-
 	local params = vim.lsp.util.make_range_params()
-	params.context = context
-
-	-- See the implementation of the textDocument/codeAction callback
-	-- (lua/vim/lsp/handler.lua) for how to do this properly.
-	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-	if not result or next(result) == nil then
-		return
-	end
-
-	-- for debug
-	-- log_to_file("goimports", result)
-
-	local actions = result[1].result
-	if not actions or type(actions) ~= "table" then
-		return
-	end
-	local action = actions[1]
-
-	-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-	-- is a CodeAction, it can have either an edit, a command or both. Edits
-	-- should be executed first.
-	if action.edit or type(action.command) == "table" then
-		if action.edit then
-			-- offset_encoding string utf-8|utf-16|utf-32 (required)
-			-- see https://github.com/neovim/neovim/issues/14090#issuecomment-1012005684
-			-- If you were affected by this in your plugin, you will need to fetch the client.offset_encoding (available via ctx.client_id from most handlers).
-			-- If you were using LSP functions for something not involving LSP, you should consider vendoring your own solution,
-			-- although the default offset_encoding is most commonly "utf-16".
-			-- gopls: offset_encoding = "utf-16"
-			vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
+	params.context = { only = { "source.organizeImports" } }
+	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+	for _, res in pairs(result or {}) do
+		for _, r in pairs(res.result or {}) do
+			if r.edit then
+				vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+			else
+				vim.lsp.buf.execute_command(r.command)
+			end
 		end
-		if type(action.command) == "table" then
-			vim.lsp.buf.execute_command(action.command)
-		end
-	else
-		vim.lsp.buf.execute_command(action)
 	end
 end
 vim.api.nvim_command "autocmd BufWritePre *.go lua goimports(1000)"
