@@ -458,6 +458,7 @@ return require("packer").startup {
 		-- "justinmk/vim-sneak"
 		use {
 			"phaazon/hop.nvim",
+			branch = 'v2',
 			config = [[require('config.hop')]],
 		}
 
