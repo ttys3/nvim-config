@@ -5,9 +5,6 @@ local pluginman_opt = true
 local pluginman_repo = "https://github.com/wbthomason/packer.nvim"
 local print_err = vim.api.nvim_err_writeln
 
--- interal replacement
--- add the following to init.lua to tell nvim not source the default filetype.vim
-vim.g.did_load_filetypes = 1
 
 local bootstrap = function()
 	local execute = vim.api.nvim_command
