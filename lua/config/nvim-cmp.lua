@@ -78,7 +78,7 @@ cmp.setup {
 	sources = {
 		-- https://github.com/hrsh7th/cmp-copilot
 		-- https://github.com/zbirenbaum/copilot-cmp
-		{ name = "copilot", group_index = 1 },
+		-- { name = "copilot", group_index = 1 },
 
 		{ name = "cmp_tabnine", group_index = 2 },
 
