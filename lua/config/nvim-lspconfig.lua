@@ -189,8 +189,8 @@ lsp.gopls.setup {
 			experimentalPostfixCompletions = true,
 			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#expandworkspacetomodule-bool
 			expandWorkspaceToModule = true,
-			experimentalTemplateSupport = true,
 			experimentalWorkspaceModule = true,
+			templateExtensions = {},
 			hints = {
 				assignVariableTypes = true,
 				compositeLiteralFields = true,
