@@ -5,7 +5,6 @@ local pluginman_opt = true
 local pluginman_repo = "https://github.com/wbthomason/packer.nvim"
 local print_err = vim.api.nvim_err_writeln
 
-
 local bootstrap = function()
 	local execute = vim.api.nvim_command
 	local fn = vim.fn
