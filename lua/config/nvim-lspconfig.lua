@@ -174,6 +174,13 @@ lsp.dockerls.setup {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#gopls
 lsp.gopls.setup {
 	on_attach = mix_attach,
+	cmd = { "gopls", "serve" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_dir = function(fname)
+		local util = require "lspconfig.util"
+		return util.root_pattern "go.work"(fname) or util.root_pattern("go.mod", ".git")(fname)
+	end,
+	single_file_support = true,
 	settings = {
 		gopls = {
 			usePlaceholders = true,
@@ -185,11 +192,6 @@ lsp.gopls.setup {
 			-- https://go-review.googlesource.com/c/tools/+/241985/7/gopls/internal/hooks/hooks.go#22
 			gofumpt = true,
 			staticcheck = true,
-			-- Postfix completion snippets https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimentalpostfixcompletions-bool
-			experimentalPostfixCompletions = true,
-			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#expandworkspacetomodule-bool
-			expandWorkspaceToModule = true,
-			experimentalWorkspaceModule = true,
 			templateExtensions = {},
 			hints = {
 				assignVariableTypes = true,
@@ -206,24 +208,37 @@ lsp.gopls.setup {
 }
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-function _G.goimports(timeout_ms)
+function _G.go_org_imports(options)
+	options = options or {}
+	local timeout_ms = options.timeout_ms or 1000
 	-- we only need source.organizeImports
 	-- see runtime/lua/vim/lsp/buf.lua code_action()
 	-- see https://github.com/golang/tools/commit/6e9046bfcd34178dc116189817430a2ad1ee7b43
 	local params = vim.lsp.util.make_range_params()
 	params.context = { only = { "source.organizeImports" } }
-	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-	for _, res in pairs(result or {}) do
+	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+	for cid, res in pairs(result or {}) do
 		for _, r in pairs(res.result or {}) do
 			if r.edit then
-				vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+				local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+				vim.lsp.util.apply_workspace_edit(r.edit, enc)
 			else
 				vim.lsp.buf.execute_command(r.command)
 			end
 		end
 	end
 end
-vim.api.nvim_command "autocmd BufWritePre *.go lua goimports(1000)"
+
+-- https://github.com/neovim/nvim-lspconfig/issues/115
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.go" },
+	callback = vim.lsp.buf.format,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.go" },
+	callback = go_org_imports,
+})
 
 -- https://clangd.llvm.org/features.html
 lsp.clangd.setup {
