@@ -174,18 +174,11 @@ lsp.dockerls.setup {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#gopls
 lsp.gopls.setup {
 	on_attach = mix_attach,
-	cmd = { "gopls", "serve" },
-	filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	root_dir = function(fname)
-		local util = require "lspconfig.util"
-		return util.root_pattern "go.work"(fname) or util.root_pattern("go.mod", ".git")(fname)
-	end,
 	single_file_support = true,
 	settings = {
 		gopls = {
 			usePlaceholders = true,
 			completeUnimported = true,
-			allowImplicitNetworkAccess = true,
 			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#gofumpt-bool
 			-- https://github.com/mvdan/gofumpt/commit/38fc491470bae6f44e2d38b06277dd95cf1bdf97
 			-- https://go-review.googlesource.com/c/tools/+/241985/7/gopls/internal/hooks/hooks.go#22
