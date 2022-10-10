@@ -185,7 +185,6 @@ lsp.gopls.setup {
 		gopls = {
 			usePlaceholders = true,
 			completeUnimported = true,
-			allowModfileModifications = true,
 			allowImplicitNetworkAccess = true,
 			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#gofumpt-bool
 			-- https://github.com/mvdan/gofumpt/commit/38fc491470bae6f44e2d38b06277dd95cf1bdf97
