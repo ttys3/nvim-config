@@ -517,6 +517,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+	group = vim.api.nvim_create_augroup("FixNomadFileType", { clear = false }),
+	pattern = { "*.nomad" },
+	callback = function()
+		vim.bo.filetype = "nomad"
+		-- vim.api.nvim_command "set filetype=nomad"
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("CommentString", { clear = false }),
 	pattern = { "toml,nomad" },
