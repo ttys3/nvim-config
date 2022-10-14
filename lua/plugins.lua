@@ -159,15 +159,6 @@ return require("packer").startup {
 		-- https://github.com/ray-x/lsp_signature.nvim
 		use "ray-x/lsp_signature.nvim"
 
-		-- vista.vim: A tagbar alternative that supports LSP symbols and async processing
-		use {
-			"liuchengxu/vista.vim",
-			config = function()
-				vim.g.vista_default_executive = "nvim_lsp"
-				nnoremap { "<F3>", ":Vista!!<CR>" }
-			end,
-		}
-
 		-- A pretty diagnostics list to help you solve all the trouble your code is causing.
 		-- https://github.com/folke/lsp-trouble.nvim
 		-- use {
@@ -309,11 +300,6 @@ return require("packer").startup {
 			end,
 		}
 
-		-- " https://github.com/RishabhRD/nvim-cheat.sh
-		-- " curl -sSf https://cht.sh/:cht.sh > ~/.local/bin/cht.sh && chmod +x ~/.local/bin/cht.sh
-		-- usage: :Cheat cpp reverse number
-		use { "RishabhRD/nvim-cheat.sh", requires = "RishabhRD/popfix" }
-
 		-- debugger
 		-- https://github.com/jodosha/vim-godebug
 		-- https://github.com/puremourning/vimspector
@@ -321,11 +307,11 @@ return require("packer").startup {
 		-- dap https://microsoft.github.io/debug-adapter-protocol/implementors/tools/
 		-- https://github.com/mfussenegger/nvim-dap
 
-		use {
-			"mfussenegger/nvim-dap",
-			requires = { "theHamsta/nvim-dap-virtual-text" },
-			config = [[require('config.nvim-dap')]],
-		}
+		-- use {
+		-- 	"mfussenegger/nvim-dap",
+		-- 	requires = { "theHamsta/nvim-dap-virtual-text" },
+		-- 	config = [[require('config.nvim-dap')]],
+		-- }
 		-- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
 		-- use {
@@ -444,7 +430,7 @@ return require("packer").startup {
 		}
 
 		-- Press + to expand the visual selection and _ to shrink it.
-		use "terryma/vim-expand-region"
+		-- use "terryma/vim-expand-region"
 
 		-- " Plug 'easymotion/vim-easymotion'
 		-- " like https://github.com/easymotion/vim-easymotion
