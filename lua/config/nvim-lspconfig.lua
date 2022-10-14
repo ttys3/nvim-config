@@ -234,6 +234,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- https://clangd.llvm.org/features.html
 lsp.clangd.setup {
+	-- remove support to proto due to includes error
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	init_options = {
 		clangdFileStatus = true,
 	},
