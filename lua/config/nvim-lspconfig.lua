@@ -91,7 +91,10 @@ local mix_attach = function(client)
 	-- force enable yamlls formatting feature
 	-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
 	if client.name == "yamlls" then
-		client.resolved_capabilities.document_formatting = true
+		-- Accessing client.resolved_capabilities is deprecated, update your plugins or configuration
+		-- to access client.server_capabilities instead.
+		-- The new key/value pairs in server_capabilities directly match those defined in the language server protocol
+		client.server_capabilities.document_formatting = true
 	end
 
 	-- require("lsp").set_lsp_omnifunc()
@@ -419,23 +422,13 @@ lsp.nomadls.setup {
 	capabilities = capabilities,
 }
 
-Augroup {
-	LspBufWritePre = {
-		-- " autocmd BufWritePre *.go execute '!gofmt %' | edit
-		-- " autocmd BufWritePre *.go execute '!goimports -w -v -srcdir %' | edit
-		-- " https://www.rockyourcode.com/til-how-to-execute-an-external-command-in-vim-and-reload-the-file/
-		-- " autocmd BufWritePre *.go :%!goimports -srcdir %
-		-- " nmap <Leader>gi :%!goimports -srcdir %<CR>
-		-- " nmap <Leader>gf :%!gofumpt -s %<CR>
-		["BufWritePre"] = {
-			{ "*.lua", require("lsp").format },
-			{ "*.c", require("lsp").format },
-			{ "*.go", require("lsp").format },
-			{ "*.rs", require("lsp").format },
-			{ "*.py", require("lsp").format },
-			{ "*.php", require("lsp").format },
-			{ "*.{yaml,yml}", require("lsp").format },
-			-- { "*.js", require("lsp").format },
-		},
-	},
-}
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = vim.api.nvim_create_augroup("LspBufWritePre", { clear = true }),
+	pattern = { "*.go", "*.rs", "*.lua", "*.c", "*.cpp", "*.py", "*.php", "*.{yaml,yml}" },
+	callback = function(opts)
+		opts = opts or {}
+		opts.id = nil
+		-- dump(opts)
+		vim.lsp.buf.format(opts)
+	end,
+})
