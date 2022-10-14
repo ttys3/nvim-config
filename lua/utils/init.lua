@@ -5,9 +5,6 @@ local M = {
 Option = require "utils.option"
 Variable = require "utils.variable"
 Keymap = require "utils.keymap"
-Agrp = require "utils.agrp"
-Augroup = Agrp.set
---print ("fuck require utils.agrp and set global Augroup.type=" .. type(Augroup) .. ', my_name=' .. Agrp.my_name)
 
 _G.map = Keymap.map
 _G.noremap = Keymap.noremap

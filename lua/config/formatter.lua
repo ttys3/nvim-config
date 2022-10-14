@@ -1,15 +1,10 @@
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.lua FormatWrite
-  autocmd BufWritePost *.{hcl,nomad,terraform,tf} FormatWrite
-  autocmd BufWritePost *.{yaml,yml} FormatWrite
-  autocmd BufWritePost *.{proto,proto3,proto2} FormatWrite
-augroup END
-]],
-	true
-)
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true }),
+    pattern = { "*.lua", "*.{hcl,nomad,terraform,tf}", "*.{yaml,yml}", "*.{proto,proto3,proto2}" },
+    callback = function(opts)
+        vim.api.nvim_command('FormatWrite')
+    end,
+})
 
 require("formatter").setup {
 	-- Enable or disable logging

@@ -423,7 +423,7 @@ lsp.nomadls.setup {
 }
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	group = vim.api.nvim_create_augroup("LspBufWritePre", { clear = true }),
+	group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
 	pattern = { "*.go", "*.rs", "*.lua", "*.c", "*.cpp", "*.py", "*.php", "*.{yaml,yml}" },
 	callback = function(opts)
 		opts = opts or {}
