@@ -22,18 +22,6 @@ return require("packer").startup {
 			config = [[require('config.nvim-treesitter')]],
 		}
 
-		-- https://github.com/nvim-treesitter/playground
-		-- use {
-		-- 	"nvim-treesitter/playground",
-		-- 	requires = { "nvim-treesitter/nvim-treesitter" },
-		-- 	config = function()
-		-- 		nnoremap {
-		-- 			"<Leader>hl",
-		-- 			[[:call luaeval("require'nvim-treesitter-playground.hl-info'.show_hl_captures()")<CR>]],
-		-- 		}
-		-- 	end,
-		-- }
-
 		use {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			requires = { "nvim-treesitter/nvim-treesitter" },
@@ -44,30 +32,6 @@ return require("packer").startup {
 			config = [[require('config.nvim-tree')]],
 			requires = { "kyazdani42/nvim-web-devicons" },
 		}
-
-		-- use {
-		-- 	"akinsho/bufferline.nvim",
-		-- 	requires = "kyazdani42/nvim-web-devicons",
-		-- 	config = function()
-		-- 		require("bufferline").setup {}
-		-- 	end,
-		-- }
-
-		-- support split window resizing and moving
-		-- resize windows continuously by using typical keymaps of Vim. (h, j, k, l)
-		-- use {
-		-- 	"simeji/winresizer",
-		-- 	config = function()
-		-- 		Variable.g {
-		-- 			winresizer_start_key = "<C-e>",
-		-- 		}
-		-- 		noremap { "<leader>nh", ":set nosplitright<CR>:vnew<CR>" }
-		-- 		noremap { "<leader>nl", ":set splitright<CR>:vnew<CR>" }
-		-- 		noremap { "<leader>nj", ":set splitbelow<CR>:new<CR>" }
-		-- 		noremap { "<leader>nk", ":set nosplitbelow<CR>:new<CR>" }
-		-- 	end,
-		-- }
-		--
 
 		-- https://github.com/folke/todo-comments.nvim
 		use {
@@ -81,11 +45,6 @@ return require("packer").startup {
 				}
 			end,
 		}
-
-		-- use {
-		-- 	"vim-test/vim-test",
-		-- 	config = [[require('config.vim-test')]],
-		-- }
 
 		-- Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 		-- related works: godlygeek/tabular
@@ -133,19 +92,6 @@ return require("packer").startup {
 				vim.keymap.set("n", "<leader>r", ":IncRename ")
 			end,
 		}
-		-- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md
-		-- Standalone UI for nvim-lsp progress
-		-- see https://github.com/j-hui/fidget.nvim/blob/main/lua/fidget/spinners.lua for predefined spinners
-		-- use {
-		-- 	"j-hui/fidget.nvim",
-		-- 	config = function()
-		-- 		require("fidget").setup {
-		-- 			text = {
-		-- 				spinner = "meter",
-		-- 			},
-		-- 		}
-		-- 	end,
-		-- }
 
 		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
 		-- " Integrates with Neovim's LSP client for intelligent highlighting.
@@ -158,13 +104,6 @@ return require("packer").startup {
 
 		-- https://github.com/ray-x/lsp_signature.nvim
 		use "ray-x/lsp_signature.nvim"
-
-		-- A pretty diagnostics list to help you solve all the trouble your code is causing.
-		-- https://github.com/folke/lsp-trouble.nvim
-		-- use {
-		--     folke/lsp-trouble.nvim",
-		--     config = [[require('config.lsp-trouble')]],
-		-- }
 
 		-- Lang extra
 
@@ -189,23 +128,6 @@ return require("packer").startup {
 		-- edting
 
 		-- Snippet support
-		-- " https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-		-- " UltiSnips will search each 'runtimepath' directory for the subdirectory names
-		-- " defined in g:UltiSnipsSnippetDirectories in the order they are defined.
-		-- " Note that "snippets" is reserved for snipMate snippets and cannot be used in this list.
-		-- " If the list has only one entry that is an absolute path, UltiSnips will not
-		-- " iterate through &runtimepath but only look in this one directory for snippets.
-		-- " This can lead to significant speedup. This means you will miss out on snippets
-		-- " that are shipped with third party plugins. You'll need to copy them into this
-		-- " directory manually.
-		-- " mkdir -p $HOME/.config/nvim/UltiSnip
-		-- use {
-		-- 	"SirVer/ultisnips",
-		-- 	requires = { "honza/vim-snippets" },
-		-- 	config = [[require('config.ultisnips')]],
-		-- }
-		-- use "quangnguyen30192/cmp-nvim-ultisnips"
-
 		-- For luasnip user.
 		use {
 			"L3MON4D3/LuaSnip",
@@ -241,7 +163,6 @@ return require("packer").startup {
 		-- complete plugin
 		use "hrsh7th/cmp-nvim-lsp"
 		use "hrsh7th/cmp-nvim-lua"
-		-- use "hrsh7th/cmp-omni"
 		use "hrsh7th/cmp-buffer"
 		use "hrsh7th/cmp-path"
 
@@ -300,40 +221,6 @@ return require("packer").startup {
 			end,
 		}
 
-		-- debugger
-		-- https://github.com/jodosha/vim-godebug
-		-- https://github.com/puremourning/vimspector
-
-		-- dap https://microsoft.github.io/debug-adapter-protocol/implementors/tools/
-		-- https://github.com/mfussenegger/nvim-dap
-
-		-- use {
-		-- 	"mfussenegger/nvim-dap",
-		-- 	requires = { "theHamsta/nvim-dap-virtual-text" },
-		-- 	config = [[require('config.nvim-dap')]],
-		-- }
-		-- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-
-		-- use {
-		-- 	"dstein64/nvim-scrollview",
-		-- 	branch = "main",
-		-- 	config = function()
-		-- 		Variable.g {
-		-- 			scrollview_on_startup = true,
-		-- 			scrollview_excluded_filetypes = {
-		-- 				"NvimTree",
-		-- 				"packer",
-		-- 				"startify",
-		-- 				"fugitive",
-		-- 				"fugitiveblame",
-		-- 				"vista_kind",
-		-- 				"qf",
-		-- 				"help",
-		-- 			},
-		-- 		}
-		-- 	end,
-		-- }
-
 		-- quickfix
 		-- " https://github.com/romainl/vim-qf
 		-- " Vim-qf and all quickfix-related plugins necessarily have overlapping features and thus undefined behaviors.
@@ -368,15 +255,6 @@ return require("packer").startup {
 				}
 			end,
 		}
-
-		-- use {
-		-- 	"luochen1990/rainbow",
-		-- 	config = function()
-		-- 		Variable.g {
-		-- 			rainbow_active = 1,
-		-- 		}
-		-- 	end,
-		-- }
 
 		-- " if no color: export TERM=xterm-256color
 		-- " show the final result: :echo &statusline
@@ -429,14 +307,7 @@ return require("packer").startup {
 			end,
 		}
 
-		-- Press + to expand the visual selection and _ to shrink it.
-		-- use "terryma/vim-expand-region"
-
-		-- " Plug 'easymotion/vim-easymotion'
-		-- " like https://github.com/easymotion/vim-easymotion
-		-- " https://github.com/goldfeld/vim-seek
-		-- " emulate easymotion label and jump mode
-		-- "justinmk/vim-sneak"
+		-- https://github.com/ggandor/leap.nvim
 		use {
 			"phaazon/hop.nvim",
 			branch = "v2",
