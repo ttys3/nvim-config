@@ -100,6 +100,11 @@ lang/rust:
 	cargo install cargo-edit
 	# https://github.com/kbknapp/cargo-outdated
 	cargo install --locked cargo-outdated
+	# https://github.com/svenstaro/cargo-profiler
+	cargo install cargo-profiler
+	# cargo-machete is a Cargo tool that detects unused dependencies in Rust projects
+	# https://github.com/bnjbvr/cargo-machete
+	cargo install cargo-machete
 	# https://github.com/RazrFalcon/cargo-bloat
 	cargo install cargo-bloat --features regex-filter
 	# https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#rustup-and-the-role-of-rust-nightly
