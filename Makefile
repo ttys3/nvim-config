@@ -47,8 +47,8 @@ tools:
 	npm install -g vim-language-server
 	# markdown linter https://github.com/igorshubovych/markdownlint-cli
 	# npm install -g markdownlint-cli
-	# https://docs.errata.ai/vale/cli
-	curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s - -b ~/.local/bin v2.10.2
+	# https://vale.sh/docs/vale-cli/installation/
+	go install github.com/errata-ai/vale/v2/cmd/vale@latest
 	# fedora
 	test -L /etc/fedora-release && sudo dnf copr enable -y mczernek/vale && sudo dnf install -y vale
 	# vue
@@ -67,7 +67,7 @@ tools/archlinux:
 	paru -S --needed shellcheck-static
 	# markdown linter https://github.com/errata-ai/vale
 	#paru -S --needed vale-bin
-	curl -SsfL https://github.com/errata-ai/vale/releases/download/v2.10.5/vale_2.10.5_Linux_64-bit.tar.gz | bsdtar -xzf - -C$$HOME/.local/bin/
+	curl -SsfL https://github.com/errata-ai/vale/releases/download/v2.23.0/vale_2.23.0_Linux_64-bit.tar.gz | bsdtar -xzf - -C$$HOME/.local/bin/
 	# https://github.com/hadolint/hadolint
 	paru -S --needed hadolint-bin
 
