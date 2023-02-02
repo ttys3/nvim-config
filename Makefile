@@ -59,6 +59,8 @@ tools:
 	pip3 install --user --upgrade pynvim
 	# https://github.com/mhinz/neovim-remote
 	pip3 install --user --upgrade neovim-remote
+	# https://github.com/mvdan/sh
+	go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
 tools/archlinux:
 	sudo pacman -S --needed mkcert
