@@ -187,7 +187,7 @@ here is the simple reason.
 - ttys3/vim-gomodifytags as a golang user, essential
 - rhysd/vim-go-impl as a golang user, essential
 - norcalli/nvim-colorizer.lua when I edit CSS or HTML files, essential
-- cursorword.lua module from echasnovski/mini.nvim automatically highlighting other uses of the word under the cursor
+- local-highlight.nvim: blazing fast highlight of word under the cursor
 - iamcco/markdown-preview.nvim the must have plugin for me
 - plasticboy/vim-markdown better markdown support
 - ekickx/clipboard-image.nvim NeoVim plugin to paste image from clipboard written in lua.
