@@ -171,7 +171,7 @@ here is the simple reason.
 - numtostr/FTerm.nvim float term plugin, essential
 - rlue/vim-barbaric switch input method, as a CJK lang user, this is essential
 - famiu/feline.nvim the status line plugin, essential
-- mhinz/vim-startify best MRU dashbaord plugin, even today I did not found a lua version replacement
+- goolord/alpha-nvim MRU dashbaord plugin
 - mhartington/formatter.nvim this plugin can do all kinds of auto formater for you, essential
 - glepnir/indent-guides.nvim use it everyday, essential
 - tpope/vim-surround he most famous surround plugin, did not found a replacement

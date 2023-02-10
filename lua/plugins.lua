@@ -99,7 +99,7 @@ return require("packer").startup {
 							'tzachar/local-highlight.nvim',
 							config = function()
 								require('local-highlight').setup({
-										file_types = { 'python', 'cpp' },
+										file_types = { 'c', 'rust', 'go', 'html', 'javascript', 'java', 'swift', 'lua', 'python', 'cpp' },
 										hlgroup = 'TSDefinitionUsage',
 								})
 							end
@@ -278,8 +278,12 @@ return require("packer").startup {
 					}
 
 					use {
-							"mhinz/vim-startify",
-							config = [[require('config.vim-startify')]],
+							'goolord/alpha-nvim',
+							requires = { 'nvim-tree/nvim-web-devicons' },
+							config = function()
+								require 'alpha'.setup(require 'alpha.themes.startify'.config)
+								-- require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+							end
 					}
 
 					use {
