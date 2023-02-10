@@ -49,6 +49,8 @@ tools:
 	# npm install -g markdownlint-cli
 	# https://docs.errata.ai/vale/cli
 	curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s - -b ~/.local/bin v2.10.2
+	# fedora
+	test -L /etc/fedora-release && sudo dnf copr enable -y mczernek/vale && sudo dnf install -y vale
 	# vue
 	npm install -g vls
 	# does not install via npm https://github.com/redhat-developer/yaml-language-server
