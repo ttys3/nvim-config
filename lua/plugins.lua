@@ -385,6 +385,10 @@ return require("packer").startup {
 							requires = 'nvim-lua/plenary.nvim',
 							config = function()
 								require "gitlinker".setup({
+										callbacks = {
+												["gitlab.gnome.org"] = require "gitlinker.hosts".get_gitlab_type_url,
+												["code.pterclub.com"] = require "gitlinker.hosts".get_gitea_type_url,
+										},
 										opts = {
 												-- callback for what to do with the url
 												-- action_callback = require "gitlinker.actions".copy_to_clipboard,
