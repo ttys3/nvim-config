@@ -170,7 +170,7 @@ here is the simple reason.
 - nvim-telescope/telescope.nvim you know what this is
 - numtostr/FTerm.nvim float term plugin, essential
 - rlue/vim-barbaric switch input method, as a CJK lang user, this is essential
-- famiu/feline.nvim the status line plugin, essential
+- windwp/windline.nvim the status line plugin, essential
 - goolord/alpha-nvim MRU dashbaord plugin
 - mhartington/formatter.nvim this plugin can do all kinds of auto formater for you, essential
 - glepnir/indent-guides.nvim use it everyday, essential

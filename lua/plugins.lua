@@ -293,9 +293,14 @@ return require("packer").startup {
 					-- " let g:lightline#ale#indicator_infos = "ℹ️  "
 					-- " https://emojipedia.org/check-mark-button/
 					-- " let g:lightline#ale#indicator_ok = " ✅"
+					-- use {
+					-- 		"famiu/feline.nvim",
+					-- 		config = [[require('config.status_line')]],
+					-- }
+
 					use {
-							"famiu/feline.nvim",
-							config = [[require('config.feline')]],
+							"windwp/windline.nvim",
+							config = [[require('config.status_line')]],
 					}
 
 					use {
