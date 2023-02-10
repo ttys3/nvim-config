@@ -101,9 +101,6 @@ require("lazy").setup({
 		-- https://github.com/simrat39/rust-tools.nvim
 		{
 				"simrat39/rust-tools.nvim",
-				config = function()
-					require('config.rust-tools')
-				end,
 		},
 
 		-- lsp
@@ -111,6 +108,7 @@ require("lazy").setup({
 				"neovim/nvim-lspconfig",
 				dependencies = { "rcarriga/nvim-notify", "simrat39/rust-tools.nvim" },
 				config = function()
+					require('config.rust-tools')
 					require('config.nvim-lspconfig')
 				end,
 		},
