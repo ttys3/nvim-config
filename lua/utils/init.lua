@@ -6,6 +6,8 @@ Option = require "utils.option"
 Variable = require "utils.variable"
 Keymap = require "utils.keymap"
 
+require "utils.mini_cursorword".setup({})
+
 _G.map = Keymap.map
 _G.noremap = Keymap.noremap
 _G.nmap = Keymap.nmap

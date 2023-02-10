@@ -95,12 +95,12 @@ return require("packer").startup {
 
 		-- " illuminate.vim - Vim plugin for automatically highlighting other uses of the word under the cursor.
 		-- " Integrates with Neovim's LSP client for intelligent highlighting.
-		use {
-			"rrethy/vim-illuminate",
-			config = function()
-				vim.g.Illuminate_ftblacklist = { "NvimTree" }
-			end,
-		}
+		-- use {
+		-- 	"rrethy/vim-illuminate",
+		-- 	config = function()
+		-- 		vim.g.Illuminate_ftblacklist = { "NvimTree" }
+		-- 	end,
+		-- }
 
 		-- https://github.com/ray-x/lsp_signature.nvim
 		use "ray-x/lsp_signature.nvim"
