@@ -117,8 +117,8 @@ lang/lua:
 	# related works: https://github.com/romgrk/fzy-lua-native
 	# https://github.com/mpeterv/luacheck
 	luarocks install --local luacheck
-	# lang server https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-	git clone https://github.com/sumneko/lua-language-server ~/.local/share/lua-language-server; \
+	# lang server https://github.com/LuaLS/lua-language-server/wiki/Build-and-Run-(Standalone)
+	git clone https://github.com/LuaLS/lua-language-server ~/.local/share/lua-language-server; \
 	cd ~/.local/share/lua-language-server; \
 	git submodule update --init --recursive; \
 	cd ~/.local/share/lua-language-server/3rd/luamake; \
@@ -194,7 +194,7 @@ vala/ubuntu:
 
 tools/ubuntu:
 	# https://clangd.llvm.org/installation.html
-	# clangd for c lang server, clang for build sumneko/lua-language-server
+	# clangd for c lang server, clang for build LuaLS/lua-language-server
 	sudo apt install -y clangd clang
 	# Ubuntu 20.10 and newer
 	sudo apt-get -y update

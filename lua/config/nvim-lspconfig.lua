@@ -326,8 +326,8 @@ lsp.sumneko_lua.setup {
 	capabilities = capabilities,
 	log_level = vim.lsp.protocol.MessageType.Log,
 	message_level = vim.lsp.protocol.MessageType.Log,
-	-- https://github.com/sumneko/lua-language-server/wiki/Setting-without-VSCode#neovim-with-built-in-lsp-client
-	-- https://github.com/sumneko/lua-language-server/blob/7a63f98e41305e8deb114164e86a621881a5a2bc/script/config.lua#L96
+	-- https://github.com/LuaLS/lua-language-server/wiki/Setting-without-VSCode#neovim-with-built-in-lsp-client
+	-- https://github.com/LuaLS/lua-language-server/blob/7a63f98e41305e8deb114164e86a621881a5a2bc/script/config.lua#L96
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {

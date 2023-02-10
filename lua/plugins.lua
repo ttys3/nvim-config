@@ -27,6 +27,7 @@ return require("packer").startup {
 							requires = { "nvim-treesitter/nvim-treesitter" },
 					}
 
+					-- alternatives: https://github.com/nvim-neo-tree/neo-tree.nvim
 					use {
 							"kyazdani42/nvim-tree.lua",
 							config = [[require('config.nvim-tree')]],
