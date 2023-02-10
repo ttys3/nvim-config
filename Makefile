@@ -123,6 +123,7 @@ lang/lua:
 	# https://github.com/mpeterv/luacheck
 	luarocks install --local luacheck
 	# lang server https://github.com/LuaLS/lua-language-server/wiki/Build-and-Run-(Standalone)
+	# need `sudo dnf install -y libstdc++-static` under Fedora
 	git clone https://github.com/LuaLS/lua-language-server ~/.local/share/lua-language-server; \
 	cd ~/.local/share/lua-language-server; \
 	git submodule update --init --recursive; \
