@@ -299,7 +299,16 @@ return require("packer").startup {
 							config = [[require('config.indent-guides')]],
 					}
 
-					use "tpope/vim-surround"
+					use {
+							"kylechui/nvim-surround",
+							tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+							config = function()
+								require("nvim-surround").setup({
+										-- Configuration here, or leave empty to use defaults
+								})
+							end
+					}
+
 					use "tpope/vim-repeat"
 					-- " unimpaired has many useful maps, like
 					-- " ]p pastes on the line below, [p pastes on the line above

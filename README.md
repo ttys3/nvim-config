@@ -174,7 +174,7 @@ here is the simple reason.
 - goolord/alpha-nvim MRU dashbaord plugin
 - mhartington/formatter.nvim this plugin can do all kinds of auto formater for you, essential
 - glepnir/indent-guides.nvim use it everyday, essential
-- tpope/vim-surround he most famous surround plugin, did not found a replacement
+- kylechui/nvim-surround Add/change/delete surrounding delimiter pairs with ease. Written with heart in Lua
 - tpope/vim-repeat use it everyday, did not found a replacement
 - tpope/vim-unimpaired maybe I will remove this
 - numToStr/Comment.nvim use it everyday, essential, maybe I will replace it with a lua one later
