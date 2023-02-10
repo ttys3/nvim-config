@@ -84,7 +84,8 @@ require("lsp").setup_item_kind_icons()
 require("lsp").setup_lsp_doc_border()
 
 -- nvim-cmp related config
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1279744539
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client)
