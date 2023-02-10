@@ -305,14 +305,14 @@ require("lazy").setup({
 		-- {
 		-- 		"famiu/feline.nvim",
 		-- 		config = function()
-		--           require('config.status_line')
+		--           require('config.feline')
 		--      end,
 		-- }
 
 		{
 				"windwp/windline.nvim",
 				config = function()
-					require('config.status_line')
+					require('config.windline')
 				end,
 		},
 
