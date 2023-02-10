@@ -34,6 +34,26 @@ return require("packer").startup {
 							requires = { "kyazdani42/nvim-web-devicons" },
 					}
 
+					use {
+							'nvim-pack/nvim-spectre',
+							requires = "nvim-lua/plenary.nvim",
+							config = function()
+								require('spectre').setup({})
+								-- open
+								vim.api.nvim_set_keymap('n', '<leader>S', "<cmd>lua require('spectre').open()<CR>", { silent = true })
+
+								-- search current word
+								vim.api.nvim_set_keymap('n', '<leader>sw',
+										"<cmd>lua require('spectre').open_visual({select_word=true})<CR>", { silent = true })
+								vim.api.nvim_set_keymap('v', '<leader>S', "<esc>:lua require('spectre').open_visual()<CR> ",
+										{ silent = true })
+
+								-- search in current file
+								vim.api.nvim_set_keymap('n', '<leader>sp', "viw:lua require('spectre').open_file_search()<cr>",
+										{ silent = true })
+							end
+					}
+
 					-- https://github.com/folke/todo-comments.nvim
 					use {
 							"folke/todo-comments.nvim",
