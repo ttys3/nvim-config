@@ -348,6 +348,25 @@ return require("packer").startup {
 							config = [[require('config.gitsigns')]],
 					}
 
+					use {
+							'ruifm/gitlinker.nvim',
+							requires = 'nvim-lua/plenary.nvim',
+							config = function()
+								require "gitlinker".setup({
+										opts = {
+												-- callback for what to do with the url
+												-- action_callback = require "gitlinker.actions".copy_to_clipboard,
+												action_callback = require "gitlinker.actions".open_in_browser,
+												-- print the url after performing the action
+												print_url = true,
+										},
+										-- default mapping to call url generation with action_callback
+										mappings = "<leader>gy"
+								})
+							end
+					}
+
+
 					-- " https://github.com/ttys3/vim-gomodifytags
 					-- " Add or remove tags on struct fields with :GoAddTags and :GoRemoveTags
 					use "ttys3/vim-gomodifytags"
