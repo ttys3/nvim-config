@@ -90,7 +90,12 @@ lang/go:
 
 # 🦀 https://www.rust-lang.org/tools/install
 lang/rust:
-	curl -LZ https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer
+	# curl -LZ https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer
+	# https://rust-analyzer.github.io/manual.html#rustup
+	rustup component add rust-analyzer
+	# However, in contrast to component add clippy or component add rustfmt, this does not actually place a rust-analyzer binary in ~/.cargo/bin, see this issue.
+	# https://github.com/rust-lang/rustup/issues/2411
+	ln -s $(rustup which --toolchain stable rust-analyzer) ~/.cargo/bin/
 	# cargo add / rm / upgrade https://github.com/killercup/cargo-edit
 	cargo install cargo-edit
 	# https://github.com/kbknapp/cargo-outdated
