@@ -193,3 +193,6 @@ here is the simple reason.
 - ekickx/clipboard-image.nvim NeoVim plugin to paste image from clipboard written in lua.
 - and last, Some of my favorite colorschemes: sainnhe/edge, EdenEast/nightfox.nvim (I use nordfox)
 
+## other neovim config
+
+A modern plugin manager for Neovim https://github.com/LazyVim/LazyVim
