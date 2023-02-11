@@ -386,11 +386,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
-
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("ProtectFile", { clear = false }),
 	pattern = { "*.rs" },
-	callback = 	function()
+	callback = function()
 		-- protect rust source files under ~/.rustup/toolchains/
 		-- idea from https://github.com/Xvezda/vim-readonly/blob/master/plugin/readonly.vim
 		-- and https://github.com/rust-lang/rustup/issues/2550
@@ -407,7 +406,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
-
 
 -- must use BufWritePre, if use BufWritePost has problem with other formatters (whitespace not got removed)
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -519,7 +517,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
 	group = vim.api.nvim_create_augroup("FixNomadFileType", { clear = false }),
-	pattern = { "*.nomad" },
+	pattern = { "*.nomad.hcl", "*.nomad" },
 	callback = function()
 		vim.bo.filetype = "nomad"
 		-- vim.api.nvim_command "set filetype=nomad"
@@ -572,5 +570,4 @@ for _, tmpl in ipairs(template_files) do
 			vim.api.nvim_exec(string.format("0r %s", tmpl), true)
 		end,
 	})
-
 end
