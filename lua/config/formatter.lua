@@ -1,9 +1,9 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
-    group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true }),
-    pattern = { "*.lua", "*.{hcl,nomad,terraform,tf}", "*.{yaml,yml}", "*.{proto,proto3,proto2}" },
-    callback = function(opts)
-        vim.api.nvim_command('FormatWrite')
-    end,
+	group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true }),
+	pattern = { "*.lua", "*.{hcl,nomad,terraform,tf}", "*.{yaml,yml}", "*.{proto,proto3,proto2}" },
+	callback = function(opts)
+		vim.api.nvim_command "FormatWrite"
+	end,
 })
 
 require("formatter").setup {
@@ -51,11 +51,12 @@ require("formatter").setup {
 				}
 			end,
 		},
+		-- .nomad.hcl
 		nomad = {
 			function()
 				return {
-					exe = "hclfmt",
-					args = { "--" },
+					exe = "nomad",
+					args = { "fmt", "-check", "-" },
 					stdin = true,
 				}
 			end,

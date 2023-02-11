@@ -23,7 +23,7 @@ nvim -i NONE -c "PackerInstall" -c "PackerCompile"
 
 # stylua is used as lua formatter
 # stylua installation
-curl -LZ -o/tmp/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.1/stylua-linux.zip"; \
+curl -LZ -o/tmp/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.16.1/stylua-linux-x86_64.zip"; \
 cd /tmp; \
 unzip stylua.zip; \
 rm -f stylua.zip; \

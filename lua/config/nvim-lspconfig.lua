@@ -110,11 +110,9 @@ local mix_attach = function(client)
 			bind = true, -- This is mandatory, otherwise border config won't get registered.
 			-- If you want to hook lspsaga or other signature handler, pls set to false
 			doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
-
 			hint_enable = true, -- virtual hint enable
 			hint_prefix = "🐼 ", -- Panda for parameter
 			hint_scheme = "String",
-
 			handler_opts = {
 				border = "shadow", -- double, single, shadow, none
 			},
@@ -271,7 +269,6 @@ lsp.pyright.setup {
 local rust_lsp_options = {
 	on_attach = mix_attach,
 	capabilities = capabilities,
-
 	settings = {
 		-- https://rust-analyzer.github.io/manual.html#configuration
 		-- https://rust-analyzer.github.io/manual.html#nvim-lsp
@@ -331,6 +328,10 @@ lsp.sumneko_lua.setup {
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
+			-- disable lsp formatter, we use stylua to do this
+			format = {
+				enable = false,
+			},
 			runtime = {
 				version = "Lua 5.1",
 				-- version = 'LuaJIT',
