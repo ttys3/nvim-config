@@ -22,6 +22,10 @@ require("lazy").setup({
 				dependencies = { "nvim-treesitter/nvim-treesitter" },
 		},
 
+		-- https://github.com/IndianBoy42/tree-sitter-just
+		-- Tree-sitter grammar for Justfiles (https://github.com/casey/just)
+		"IndianBoy42/tree-sitter-just",
+
 		-- alternatives: https://github.com/nvim-neo-tree/neo-tree.nvim
 		{
 				"nvim-tree/nvim-tree.lua",
