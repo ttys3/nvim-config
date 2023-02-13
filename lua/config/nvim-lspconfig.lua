@@ -315,17 +315,17 @@ require("rust-tools").setup {
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = vim.fn.getenv "HOME" .. "/.local/share/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
+local lua_ls_root_path = vim.fn.getenv "HOME" .. "/.local/share/lua-language-server"
+local lua_ls_binary = lua_ls_root_path .. "/bin/lua-language-server"
 
-lsp.sumneko_lua.setup {
+lsp.lua_ls.setup {
 	on_attach = mix_attach,
 	capabilities = capabilities,
 	log_level = vim.lsp.protocol.MessageType.Log,
 	message_level = vim.lsp.protocol.MessageType.Log,
 	-- https://github.com/LuaLS/lua-language-server/wiki/Setting-without-VSCode#neovim-with-built-in-lsp-client
 	-- https://github.com/LuaLS/lua-language-server/blob/7a63f98e41305e8deb114164e86a621881a5a2bc/script/config.lua#L96
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+	cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
 			-- disable lsp formatter, we use stylua to do this
