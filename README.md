@@ -102,6 +102,12 @@ https://github.com/windwp/nvim-autopairs
 
 https://github.com/mhartington/formatter.nvim
 
+## lua api
+
+<https://neovim.io/doc/user/api.html>
+
+<https://neovim.io/doc/user/lsp.html>
+
 ## NeoVim Related Document
 
 > The following changes may require users to update configuration, plugins, or expectations. Only breaking changes are mentioned here
@@ -152,7 +158,6 @@ here is the simple reason.
 - JoosepAlviste/nvim-ts-context-commentstring for context comment, essential
 - kyazdani42/nvim-tree.lua the lua version nerd-tree, I use it every day
 - kyazdani42/nvim-web-devicons Unicode emoji support, essential
-- liuchengxu/vista.vim A tagbar alternative that supports LSP symbols and async processing
 - junegunn/vim-easy-align the must have align plugin, essential
 - karb94/neoscroll.nvim for smooth scroll
 - simnalamburt/vim-mundo best undo history plugin I've found, did not found a lua replacement
@@ -164,8 +169,6 @@ here is the simple reason.
 - L3MON4D3/LuaSnip + rafamadriz/friendly-snippets the snippet plugin and the snippets
 - hrsh7th/nvim-cmp Auto completion Lua plugin for nvim, use it everyday
 - tzachar/cmp-tabnine tabnine nvim-compe source, use it everyday
-- RishabhRD/nvim-cheat.sh this plugin can make you copy and paste more effectively
-- mfussenegger/nvim-dap the dap plugin, for interactive debug
 - kevinhwang91/nvim-bqf this plugin just works like a charm, a better quickfix
 - nvim-telescope/telescope.nvim you know what this is
 - numtostr/FTerm.nvim float term plugin, essential
@@ -179,7 +182,6 @@ here is the simple reason.
 - tpope/vim-unimpaired maybe I will remove this
 - numToStr/Comment.nvim use it everyday, essential, maybe I will replace it with a lua one later
 - folke/todo-comments.nvim TODO comments highlighting
-- terryma/vim-expand-region Press + to expand the visual selection and _ to shrink it.
 - phaazon/hop.nvim the lua version vim-easymotion or vim-sneak, but better
 - mg979/vim-visual-multi multi cursor plugin, essential
 - mfussenegger/nvim-lint async lint plugin, essential

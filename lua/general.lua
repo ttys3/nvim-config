@@ -151,7 +151,7 @@ else
 	vim.go.clipboard = "unnamed" --   "sync with OS clipboard
 end
 
--- fixupSHELL env in docker (for example: FTerm.nvim depends on SHELL env)
+-- fixup SHELL env in docker (for example: FTerm.nvim depends on SHELL env)
 if not os.getenv "SHELL" then
 	vim.fn.setenv("SHELL", "sh")
 end
