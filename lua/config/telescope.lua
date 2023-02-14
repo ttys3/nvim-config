@@ -36,7 +36,20 @@ require("telescope").setup {
 	},
 	pickers = {
 		find_files = {
-			prompt_prefix='🔍',
+			prompt_prefix = "🔍",
+		},
+	},
+	extensions = {
+		undo = {
+			-- telescope-undo.nvim config, see below
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
 		},
 	},
 }
+
+require("telescope").load_extension "undo"
+vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
