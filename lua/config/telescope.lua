@@ -40,9 +40,11 @@ require("telescope").setup {
 		},
 	},
 	extensions = {
+		-- telescope-undo.nvim config
 		undo = {
-			-- telescope-undo.nvim config, see below
+			use_delta = true,
 			side_by_side = true,
+			diff_context_lines = 3,
 			layout_strategy = "vertical",
 			layout_config = {
 				preview_height = 0.8,
@@ -52,4 +54,8 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension "undo"
+-- telescope-undo.nvim default mappings
+-- "<cr>" require("telescope-undo.actions").yank_additions,
+-- "<S-cr>" require("telescope-undo.actions").yank_deletions,
+-- "<C-cr>" require("telescope-undo.actions").restore,
 vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
