@@ -299,12 +299,6 @@ require("lazy").setup({
 	-- " let g:lightline#ale#indicator_infos = "ℹ️  "
 	-- " https://emojipedia.org/check-mark-button/
 	-- " let g:lightline#ale#indicator_ok = " ✅"
-	-- {
-	-- 		"famiu/feline.nvim",
-	-- 		config = function()
-	--           require('config.feline')
-	--      end,
-	-- }
 
 	{
 		"windwp/windline.nvim",
