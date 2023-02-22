@@ -179,7 +179,7 @@ here is the simple reason.
 - glepnir/indent-guides.nvim use it everyday, essential
 - kylechui/nvim-surround Add/change/delete surrounding delimiter pairs with ease. Written with heart in Lua
 - tpope/vim-repeat use it everyday, did not found a replacement
-- tpope/vim-unimpaired maybe I will remove this
+- echasnovski/mini.bracketed Go forward/backward with square brackets
 - numToStr/Comment.nvim use it everyday, essential, maybe I will replace it with a lua one later
 - folke/todo-comments.nvim TODO comments highlighting
 - phaazon/hop.nvim the lua version vim-easymotion or vim-sneak, but better

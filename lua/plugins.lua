@@ -345,7 +345,9 @@ require("lazy").setup({
 	"tpope/vim-repeat",
 	-- " unimpaired has many useful maps, like
 	-- " ]p pastes on the line below, [p pastes on the line above
-	"tpope/vim-unimpaired",
+	-- https://www.reddit.com/r/neovim/comments/118511i/minibracketed_go_forwardbackward_with_square/
+	-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bracketed.md
+	{ "echasnovski/mini.bracketed", version = false },
 
 	-- https://github.com/b3nj5m1n/kommentary
 	-- https://github.com/numToStr/Comment.nvim

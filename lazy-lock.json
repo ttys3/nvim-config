@@ -24,6 +24,7 @@
   "local-highlight.nvim": { "branch": "master", "commit": "bdb745d1070822d4986fa815d84eb15727c2de4c" },
   "lsp_signature.nvim": { "branch": "master", "commit": "6f6252f63b0baf0f2224c4caea33819a27f3f550" },
   "markdown-preview.nvim": { "branch": "master", "commit": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96" },
+  "mini.bracketed": { "branch": "main", "commit": "3221b4d53f35ec92acd289315b2f67417270f7e1" },
   "neoscroll.nvim": { "branch": "master", "commit": "d7601c26c8a183fa8994ed339e70c2d841253e93" },
   "nightfox.nvim": { "branch": "main", "commit": "aa793975d10dda69817190faea84e28eeb176934" },
   "nvim-autopairs": { "branch": "master", "commit": "45ae3122a4c7744db41298b41f9f5a3f092123e6" },
@@ -56,7 +57,6 @@
   "vim-gomodifytags": { "branch": "master", "commit": "9217e72f69a2e0be4228dd1f94fd7c50302976a9" },
   "vim-markdown": { "branch": "master", "commit": "df4be8626e2c5b2a42eb60e1f100fce469b81f7d" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
-  "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   "vim-visual-multi": { "branch": "master", "commit": "724bd53adfbaf32e129b001658b45d4c5c29ca1a" },
   "windline.nvim": { "branch": "master", "commit": "047c6175e7871cd17e79f1c53f923f6695370bbe" }
 }
