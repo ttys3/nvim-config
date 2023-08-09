@@ -302,8 +302,17 @@ require("lazy").setup({
 
 	{
 		"windwp/windline.nvim",
+		dependencies = { "linrongbin16/lsp-progress.nvim" },
 		config = function()
 			require "config.windline"
+		end,
+	},
+
+	{
+		"linrongbin16/lsp-progress.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lsp-progress").setup()
 		end,
 	},
 
