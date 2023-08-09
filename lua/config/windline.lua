@@ -186,14 +186,10 @@ basic.lsp_progress = {
 	},
 	text = function(bufnr)
 		return {
-			{ #vim.lsp.buf_get_clients() > 0 and require("lsp-progress").progress() or "", "yellow" },
+			{ #vim.lsp.get_clients { bufnr = vim.api.nvim_get_current_buf() } > 0 and require("lsp-progress").progress() or "", "yellow" },
 		}
 	end,
 }
-
-local lsp_status = function()
-	return #vim.lsp.buf_get_clients() > 0 and require("lsp-status").status() or ""
-end
 
 local default = {
 	filetypes = { "default" },
