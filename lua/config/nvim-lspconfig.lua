@@ -54,6 +54,7 @@ nnoremap { "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", silent = true }
 -- ga has been mapped to vim-easy-align
 -- commentary took gc and gcc, so ...
 -- lsp builtin code_action
+-- TODO migrate deprecated lsp functions: https://neovim.io/doc/user/deprecated.html#_lsp-diagnostics
 nnoremap { "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
 nnoremap { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
 vnoremap { "ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = true }
