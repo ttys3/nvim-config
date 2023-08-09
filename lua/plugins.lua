@@ -325,11 +325,11 @@ require("lazy").setup({
 		end,
 	},
 
-	-- https://github.com/glepnir/indent-guides.nvim
+	-- https://github.com/lukas-reineke/indent-blankline.nvim
 	{
-		"glepnir/indent-guides.nvim",
+		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require "config.indent-guides"
+			require "config.indent"
 		end,
 	},
 
