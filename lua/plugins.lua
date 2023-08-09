@@ -154,7 +154,10 @@ require("lazy").setup({
 			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
-	"saadparwaiz1/cmp_luasnip",
+	{
+		"saadparwaiz1/cmp_luasnip",
+		dependencies = { "L3MON4D3/LuaSnip" },
+	},
 
 	-- https://github.com/Saecki/crates.nvim
 	-- also provide Completion source for nvim-cmp
