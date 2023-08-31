@@ -2,7 +2,8 @@
 
 local M = {}
 
-function M.init(dap)
+function M.init()
+	local dap = require "dap"
 	dap.adapters.go = function(callback, config)
 		local handle
 		local pid_or_err

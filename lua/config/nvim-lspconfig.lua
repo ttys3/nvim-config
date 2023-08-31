@@ -299,20 +299,20 @@ local rust_lsp_options = {
 -- so we do not need setup here
 -- lsp.rust_analyzer.setup(rust_lsp_options)
 
-require("rust-tools").setup {
-	-- rust-tools options
-	tools = {
-		-- default: true
-		autoSetHints = true,
-	},
+-- require("rust-tools").setup {
+-- 	-- rust-tools options
+-- 	tools = {
+-- 		-- default: true
+-- 		autoSetHints = true,
+-- 	},
 
-	-- rust-tools will call: rust_analyzer.setup(config.options.server)
-	-- all the opts to send to nvim-lspconfig
-	-- these override the defaults set by rust-tools.nvim
-	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-	-- rust-analyer options
-	server = rust_lsp_options,
-}
+-- 	-- rust-tools will call: rust_analyzer.setup(config.options.server)
+-- 	-- all the opts to send to nvim-lspconfig
+-- 	-- these override the defaults set by rust-tools.nvim
+-- 	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+-- 	-- rust-analyer options
+-- 	server = rust_lsp_options,
+-- }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use

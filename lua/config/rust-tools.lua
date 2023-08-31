@@ -1,4 +1,27 @@
+local get_lldb_paths = function()
+	-- you need install CodeLLDB vscode extension and then update this path
+	-- see https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
+	-- ~/.vscode/extensions/vadimcn.vscode-lldb-1.9.2
+	local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/'
+	local codelldb_path = extension_path .. 'adapter/codelldb'
+	local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+	local this_os = vim.loop.os_uname().sysname;
+
+	-- The path in windows is different
+	if this_os:find "Windows" then
+		codelldb_path = extension_path .. "adapter\\codelldb.exe"
+		liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+	else
+		-- The liblldb extension is .so for linux and .dylib for macOS
+		liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+	end
+	return codelldb_path, liblldb_path
+end
+
+local codelldb_path, liblldb_path = get_lldb_paths()
+
 -- https://github.com/simrat39/rust-tools.nvim#setup
+-- https://github.com/simrat39/rust-tools.nvim#configuration
 local opts = {
 	tools = { -- rust-tools options
 		-- automatically set inlay hints (type hints)
@@ -62,13 +85,46 @@ local opts = {
 	-- these override the defaults set by rust-tools.nvim
 	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
 	server = {
+		-- standalone file support
+		-- setting it to false may improve startup time
+		standalone = true,
 		on_attach = function(_, bufnr)
 			-- Hover actions
 			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 			-- Code action groups
 			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
+
+		settings = {
+			-- https://rust-analyzer.github.io/manual.html#configuration
+			-- https://rust-analyzer.github.io/manual.html#nvim-lsp
+			["rust-analyzer"] = {
+				assist = {
+					importGranularity = "module",
+					importPrefix = "by_self",
+				},
+				cargo = {
+					loadOutDirsFromCheck = true,
+				},
+				-- rust-analyzer.procMacro.enable
+				procMacro = {
+					enable = true,
+				},
+				lruCapacity = 1024,
+				-- rust-analyzer.checkOnSave.command": "clippy"
+				checkOnSave = {
+					enable = true,
+					command = "clippy",
+				},
+			},
+		},
 	}, -- rust-analyer options
+
+	-- debugging stuff
+	-- see https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
+	dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+    },
 }
 
 require("rust-tools").setup(opts)

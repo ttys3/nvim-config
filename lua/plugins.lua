@@ -89,17 +89,11 @@ require("lazy").setup({
 		end,
 	},
 
-	-- https://github.com/simrat39/rust-tools.nvim
-	{
-		"simrat39/rust-tools.nvim",
-	},
-
 	-- lsp
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "rcarriga/nvim-notify", "simrat39/rust-tools.nvim" },
+		dependencies = { "rcarriga/nvim-notify"},
 		config = function()
-			require "config.rust-tools"
 			require "config.nvim-lspconfig"
 		end,
 	},
@@ -275,47 +269,90 @@ require("lazy").setup({
 	},
 
 	-- https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
+	-- https://www.reddit.com/r/neovim/comments/ot33sz/rusttoolsnvim_now_supports_debugging/
+	-- https://alpha2phi.medium.com/neovim-for-beginners-debugging-using-dap-44626a767f57
+	-- https://alpha2phi.medium.com/modern-neovim-debugging-and-testing-8deda1da1411
+	-- https://github.com/alpha2phi/modern-neovim/blob/04-test/lua/plugins/dap/init.lua
+	-- rust debug https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
 	-- https://github.com/mfussenegger/nvim-dap
+	-- https://github.com/mfussenegger/nvim-dap/wiki/Extensions#language-specific-extensions
 	-- go install github.com/go-delve/delve/cmd/dlv@latest
 	{
 		"mfussenegger/nvim-dap",
-		config = function ()
-			require('dap.ext.vscode').load_launchjs(nil, {})
-			vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
-			vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
-
-			vim.keymap.set('n', '<F5>', require 'dap'.continue)
-			vim.keymap.set('n', '<F10>', require 'dap'.step_over)
-			vim.keymap.set('n', '<F11>', require 'dap'.step_into)
-			vim.keymap.set('n', '<F12>', require 'dap'.step_out)
-			vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
-		end
-	},
-	{
-		"rcarriga/nvim-dap-ui",
 		dependencies = {
-			"mfussenegger/nvim-dap",
-		},
-		config = function ()
-			local dap, dapui =require("dap"),require("dapui")
-			dap.listeners.after.event_initialized["dapui_config"]=function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated["dapui_config"]=function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited["dapui_config"]=function()
-				dapui.close()
-			end
-		end
-	},
-	{
-		"leoluz/nvim-dap-go",
-		dependencies = {
-			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+			"theHamsta/nvim-dap-virtual-text",
+			"nvim-telescope/telescope-dap.nvim",
+			-- for lua
+			"jbyuki/one-small-step-for-vimkind",
+			-- for golang
+			"leoluz/nvim-dap-go",
+			-- for rust https://github.com/simrat39/rust-tools.nvim
+			"simrat39/rust-tools.nvim",
 		},
 		config = function()
-			require('dap-go').setup()
+			require("dap.ext.vscode").load_launchjs(nil, {})
+			require("dap-go").setup()
+			require "config.rust-tools"
+
+			require("nvim-dap-virtual-text").setup {
+				commented = true,
+			  }
+
+			require("dap.lua").setup()
+			-- lsp: RustDebugable
+			-- require("dap.rust").setup()
+			-- require("dap.golang").init()
+
+			local dap, dapui = require "dap", require "dapui"
+			
+			-- enable this when you got trouble
+			-- tail -f ~/.cache/nvim/dap.log
+			--  Available log levels: TRACE DEBUG INFO WARN ERROR
+			-- The log file is in the |stdpath| `cache` folder. 
+			-- To print the location:  
+			-- :lua print(vim.fn.stdpath('cache'))
+			-- < The filename is `dap.log`
+			dap.set_log_level('TRACE')
+
+			dapui.setup {}
+
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+
+			vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
+
+
+			-- toggle bp
+			vim.keymap.set("n", "<leader>db", require("dap").toggle_breakpoint)
+
+			-- run
+			vim.keymap.set("n", "<F5>", require("dap").continue)
+			-- step over
+			vim.keymap.set("n", "<F9>", require("dap").step_over)
+			-- step in
+			vim.keymap.set("n", "<F10>", require("dap").step_into)
+			-- step out
+			vim.keymap.set("n", "<F12>", require("dap").step_out)
+
+			-- run to cursor
+			vim.keymap.set("n", "<F6>", require("dap").run_to_cursor)
+
+			-- toggle dapui
+			vim.keymap.set("n", "<leader>du", require("dapui").toggle)
+
+			-- golang
+			-- debug the closest method above the cursor
+			vim.keymap.set("n", "<leader>dt", require('dap-go').debug_test)
+			vim.keymap.set("n", "<leader>dl", require('dap-go').debug_last_test)
 		end,
 	},
 
