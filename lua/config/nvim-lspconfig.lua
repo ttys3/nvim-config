@@ -57,6 +57,7 @@ nnoremap { "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", silent = true }
 -- TODO migrate deprecated lsp functions: https://neovim.io/doc/user/deprecated.html#_lsp-diagnostics
 nnoremap { "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
 nnoremap { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", silent = true }
+nnoremap { "<leader>c", "<cmd>lua vim.lsp.codelens.run()<CR>", silent = true }
 vnoremap { "ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = true }
 vnoremap { "<leader>a", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", silent = true }
 
@@ -89,7 +90,10 @@ require("lsp").setup_lsp_doc_border()
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 --@param client: (required, vim.lsp.client)
-local mix_attach = function(client)
+local mix_attach = function(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint(bufnr, true)
+	end
 	-- force enable yamlls formatting feature
 	-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
 	if client.name == "yamlls" then
@@ -188,6 +192,7 @@ lsp.gopls.setup {
 			gofumpt = true,
 			staticcheck = true,
 			templateExtensions = {},
+			-- https://github.com/golang/tools/blob/master/gopls/doc/inlayHints.md
 			hints = {
 				assignVariableTypes = true,
 				compositeLiteralFields = true,
@@ -196,6 +201,16 @@ lsp.gopls.setup {
 				functionTypeParameters = true,
 				parameterNames = true,
 				rangeVariableTypes = true,
+			},
+			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#code-lenses
+			-- Default: {"gc_details":false,"generate":true,"regenerate_cgo":true,"tidy":true,"upgrade_dependency":true,"vendor":true}.
+			codelenses = {
+				generate = false, -- Don't show the `go generate` lens.
+				gc_details = true, -- Show a code lens toggling the display of gc's choices.
+				regenerate_cgo = true, -- Regenerates cgo definitions
+				tidy = true, -- Runs go mod tidy for a module.
+				upgrade_dimependency = true, -- Upgrades a dependency in the go.mod file for a module.
+				vendor = false,
 			},
 		},
 	},
@@ -433,5 +448,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		opts.id = nil
 		-- dump(opts)
 		vim.lsp.buf.format(opts)
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+	group = vim.api.nvim_create_augroup("LspCodeLensAutoCmd", { clear = true }),
+	pattern = { "*.mod", "*.toml", "*.go", "*.rs", "*.lua", "*.c", "*.cpp", "*.py", "*.php", "*.{yaml,yml}" },
+	callback = function(opts)
+		-- go.mod codelens will not shown if no delay exec the refresh
+		vim.defer_fn(function()
+			vim.lsp.codelens.refresh()
+		end, 1000)
 	end,
 })
