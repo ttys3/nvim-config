@@ -22,6 +22,8 @@ local actions = require "telescope.actions"
 ------------------------------
 require("telescope").setup {
 	defaults = {
+		-- workarond due to bug https://github.com/nvim-telescope/telescope.nvim/issues/2667
+		sorting_strategy = "ascending",
 		mappings = {
 			i = {
 				-- To disable a keymap, put [map] = false
