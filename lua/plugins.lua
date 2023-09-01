@@ -92,7 +92,7 @@ require("lazy").setup({
 	-- lsp
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "rcarriga/nvim-notify"},
+		dependencies = { "rcarriga/nvim-notify" },
 		config = function()
 			require "config.nvim-lspconfig"
 		end,
@@ -268,6 +268,13 @@ require("lazy").setup({
 		end,
 	},
 
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-lua/plenary.nvim",
+		},
+	},
 	-- https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
 	-- https://www.reddit.com/r/neovim/comments/ot33sz/rusttoolsnvim_now_supports_debugging/
 	-- https://alpha2phi.medium.com/neovim-for-beginners-debugging-using-dap-44626a767f57
@@ -288,6 +295,8 @@ require("lazy").setup({
 			-- for golang
 			"leoluz/nvim-dap-go",
 			-- for rust https://github.com/simrat39/rust-tools.nvim
+			"neovim/nvim-lspconfig",
+			"nvim-lua/plenary.nvim",
 			"simrat39/rust-tools.nvim",
 		},
 		config = function()
@@ -297,7 +306,7 @@ require("lazy").setup({
 
 			require("nvim-dap-virtual-text").setup {
 				commented = true,
-			  }
+			}
 
 			require("dap.lua").setup()
 			-- lsp: RustDebugable
@@ -305,15 +314,15 @@ require("lazy").setup({
 			-- require("dap.golang").init()
 
 			local dap, dapui = require "dap", require "dapui"
-			
+
 			-- enable this when you got trouble
 			-- tail -f ~/.cache/nvim/dap.log
 			--  Available log levels: TRACE DEBUG INFO WARN ERROR
-			-- The log file is in the |stdpath| `cache` folder. 
-			-- To print the location:  
+			-- The log file is in the |stdpath| `cache` folder.
+			-- To print the location:
 			-- :lua print(vim.fn.stdpath('cache'))
 			-- < The filename is `dap.log`
-			dap.set_log_level('TRACE')
+			dap.set_log_level "TRACE"
 
 			dapui.setup {}
 
@@ -329,7 +338,6 @@ require("lazy").setup({
 
 			vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
-
 
 			-- toggle bp
 			vim.keymap.set("n", "<leader>db", require("dap").toggle_breakpoint)
@@ -351,8 +359,8 @@ require("lazy").setup({
 
 			-- golang
 			-- debug the closest method above the cursor
-			vim.keymap.set("n", "<leader>dt", require('dap-go').debug_test)
-			vim.keymap.set("n", "<leader>dl", require('dap-go').debug_last_test)
+			vim.keymap.set("n", "<leader>dt", require("dap-go").debug_test)
+			vim.keymap.set("n", "<leader>dl", require("dap-go").debug_last_test)
 		end,
 	},
 
