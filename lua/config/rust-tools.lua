@@ -2,10 +2,10 @@ local get_lldb_paths = function()
 	-- you need install CodeLLDB vscode extension and then update this path
 	-- see https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
 	-- ~/.vscode/extensions/vadimcn.vscode-lldb-1.9.2
-	local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/'
-	local codelldb_path = extension_path .. 'adapter/codelldb'
-	local liblldb_path = extension_path .. 'lldb/lib/liblldb'
-	local this_os = vim.loop.os_uname().sysname;
+	local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/"
+	local codelldb_path = extension_path .. "adapter/codelldb"
+	local liblldb_path = extension_path .. "lldb/lib/liblldb"
+	local this_os = vim.loop.os_uname().sysname
 
 	-- The path in windows is different
 	if this_os:find "Windows" then
@@ -19,6 +19,8 @@ local get_lldb_paths = function()
 end
 
 local codelldb_path, liblldb_path = get_lldb_paths()
+
+local rt = require "rust-tools"
 
 -- https://github.com/simrat39/rust-tools.nvim#setup
 -- https://github.com/simrat39/rust-tools.nvim#configuration
@@ -123,8 +125,8 @@ local opts = {
 	-- debugging stuff
 	-- see https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
 	dap = {
-        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
-    },
+		adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+	},
 }
 
-require("rust-tools").setup(opts)
+rt.setup(opts)
