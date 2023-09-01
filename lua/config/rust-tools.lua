@@ -26,6 +26,9 @@ local rt = require "rust-tools"
 -- https://github.com/simrat39/rust-tools.nvim#configuration
 local opts = {
 	tools = { -- rust-tools options
+		-- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+		reload_workspace_from_cargo_toml = true,
+
 		-- automatically set inlay hints (type hints)
 		-- There is an issue due to which the hints are not applied on the first
 		-- opened file. For now, write to the file to trigger a reapplication of
@@ -80,6 +83,10 @@ local opts = {
 				{ "╰", "FloatBorder" },
 				{ "│", "FloatBorder" },
 			},
+
+			-- whether the hover action window gets automatically focused
+			-- default: false
+			auto_focus = true,
 		},
 	},
 
@@ -92,9 +99,9 @@ local opts = {
 		standalone = true,
 		on_attach = function(_, bufnr)
 			-- Hover actions
-			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+			vim.keymap.set("n", "<leader>a", rt.hover_actions.hover_actions, { buffer = bufnr })
 			-- Code action groups
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			vim.keymap.set("n", "<Leader>aa", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
 
 		settings = {
@@ -107,6 +114,7 @@ local opts = {
 				},
 				cargo = {
 					loadOutDirsFromCheck = true,
+					allFeatures = true,
 				},
 				-- rust-analyzer.procMacro.enable
 				procMacro = {
@@ -116,7 +124,14 @@ local opts = {
 				-- rust-analyzer.checkOnSave.command": "clippy"
 				checkOnSave = {
 					enable = true,
+					-- default: `cargo check`
 					command = "clippy",
+				},
+				inlayHints = {
+					lifetimeElisionHints = {
+						enable = true,
+						useParameterNames = true,
+					},
 				},
 			},
 		},
