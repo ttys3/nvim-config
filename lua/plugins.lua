@@ -28,13 +28,25 @@ require("lazy").setup({
 
 	-- alternatives: https://github.com/nvim-neo-tree/neo-tree.nvim
 	{
-		"nvim-tree/nvim-tree.lua",
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
 		config = function()
-			require "config.nvim-tree"
+			require "config.neo-tree"
 		end,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	config = function()
+	-- 		require "config.nvim-tree"
+	-- 	end,
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- },
+	--
 	{
 		"nvim-pack/nvim-spectre",
 		dependencies = { "nvim-lua/plenary.nvim" },
