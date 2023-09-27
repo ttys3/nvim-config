@@ -276,4 +276,4 @@
         }
       })
 
-      vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
+      vim.cmd([[nnoremap f :Neotree toggle<cr>]])
