@@ -16,7 +16,7 @@ end
 
 -- see https://github.com/dense-analysis/ale/blob/5b1044e2ade71fee4a59f94faa108d99b4e61fb2/autoload/ale/events.vim#L102
 
-vim.api.nvim_create_autocmd("BufEnter,BufRead", {
+vim.api.nvim_create_autocmd({"BufEnter","BufRead"}, {
 	group = vim.api.nvim_create_augroup("NvimLint", { clear = false }),
 	pattern = { "*" },
 	callback = function(opts)

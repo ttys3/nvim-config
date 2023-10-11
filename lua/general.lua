@@ -358,7 +358,7 @@ nnoremap { "<leader>wq", ":wq<cr>" }
 -- noremap {"<leader><leader>r", ":source ~/.config/nvim/init.lua<cr>"}
 
 -- disable cursorline when insert/visual mode
-vim.api.nvim_create_autocmd("InsertLeave,WinEnter", {
+vim.api.nvim_create_autocmd({"InsertLeave","WinEnter"}, {
 	group = vim.api.nvim_create_augroup("SetupCursor", { clear = false }),
 	pattern = { "*" },
 	callback = function()
@@ -366,7 +366,7 @@ vim.api.nvim_create_autocmd("InsertLeave,WinEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("InsertEnter,WinLeave", {
+vim.api.nvim_create_autocmd({"InsertEnter","WinLeave"}, {
 	group = vim.api.nvim_create_augroup("SetupCursor", { clear = false }),
 	pattern = { "*" },
 	callback = function()
@@ -515,7 +515,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	group = vim.api.nvim_create_augroup("FixNomadFileType", { clear = false }),
 	pattern = { "*.nomad.hcl", "*.nomad" },
 	callback = function()
@@ -532,7 +532,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
 	group = vim.api.nvim_create_augroup("MiscFileType", { clear = false }),
 	pattern = { ".gitconfig" },
 	callback = function()
@@ -540,7 +540,7 @@ vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
 	group = vim.api.nvim_create_augroup("MiscFileType", { clear = false }),
 	pattern = { "*.{automount,service,socket,target,timer}" },
 	callback = function()
