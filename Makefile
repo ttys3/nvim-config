@@ -40,6 +40,7 @@ tools:
 	# get vscode-html-language-server, vscode-css-language-server and vscode-json-language-server
 	# https://github.com/hrsh7th/vscode-langservers-extracted
 	npm i -g vscode-langservers-extracted
+	# https://www.npmjs.com/package/@tailwindcss/language-server
 	npm i -g @tailwindcss/language-server
 	# python https://github.com/microsoft/pyright
 	npm install -g pyright
