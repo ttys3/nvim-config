@@ -18,9 +18,6 @@ require("nvim-treesitter.configs").setup {
 	rainbow = {
 		enable = false,
 	},
-	context_commentstring = {
-		enable = true,
-	},
 }
 
 -- fixup nvim-treesitter cause luochen1990/rainbow not working problem
@@ -38,6 +35,6 @@ require("nvim-treesitter.configs").setup {
 -- hlmap["punctuation.bracket"] = nil
 
 -- nomad
-vim.treesitter.language.register('hcl', 'nomad') -- the nomad filetype will use the hcl parser and queries.
-vim.treesitter.language.register('hcl', 'tf')
-vim.treesitter.language.register('hcl', 'terraform')
+vim.treesitter.language.register("hcl", "nomad") -- the nomad filetype will use the hcl parser and queries.
+vim.treesitter.language.register("hcl", "tf")
+vim.treesitter.language.register("hcl", "terraform")
