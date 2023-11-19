@@ -92,7 +92,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 --@param client: (required, vim.lsp.client)
 local mix_attach = function(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint(bufnr, true)
+		vim.lsp.inlay_hint.enable(bufnr, true)
 	end
 	-- force enable yamlls formatting feature
 	-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
