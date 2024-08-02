@@ -287,6 +287,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 		},
 	},
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	-- https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
 	-- https://www.reddit.com/r/neovim/comments/ot33sz/rusttoolsnvim_now_supports_debugging/
 	-- https://alpha2phi.medium.com/neovim-for-beginners-debugging-using-dap-44626a767f57
@@ -299,7 +300,6 @@ require("lazy").setup({
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
 			"theHamsta/nvim-dap-virtual-text",
 			"nvim-telescope/telescope-dap.nvim",
 			-- for lua
@@ -566,7 +566,9 @@ require("lazy").setup({
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function() vim.fn["mkdp#util#install"]() end,
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 		config = function()
 			require "config.markdown-preview"
 		end,

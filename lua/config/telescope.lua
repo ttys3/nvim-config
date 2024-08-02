@@ -12,8 +12,8 @@ nnoremap { "<leader>d", "<cmd>lua require('telescope.builtin').diagnostics({bufn
 -- internal.buffers
 -- https://github.com/nvim-telescope/telescope.nvim/blob/9cad3a4a5d0e36b07b25c4be1db1c1306fcec945/lua/telescope/builtin/internal.lua
 nnoremap {
-	"<leader>b",
-	"<cmd>lua require('telescope.builtin').buffers({ignore_current_buffer = true, sort_mru = true, layout_strategy='vertical',layout_config={width=80}})<cr>",
+    "<leader>b",
+    "<cmd>lua require('telescope.builtin').buffers({ignore_current_buffer = true, sort_mru = true, layout_strategy='vertical',layout_config={width=80}})<cr>",
 }
 nnoremap { "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>" }
 
@@ -21,38 +21,38 @@ local actions = require "telescope.actions"
 -- Global remapping
 ------------------------------
 require("telescope").setup {
-	defaults = {
-		-- workarond due to bug https://github.com/nvim-telescope/telescope.nvim/issues/2667
-		sorting_strategy = "ascending",
-		mappings = {
-			i = {
-				-- To disable a keymap, put [map] = false
-				-- So, to not map "<C-n>", just put
-				["<C-n>"] = false,
-				["<C-p>"] = false,
+    defaults = {
+        -- workarond due to bug https://github.com/nvim-telescope/telescope.nvim/issues/2667
+        sorting_strategy = "ascending",
+        mappings = {
+            i = {
+                -- To disable a keymap, put [map] = false
+                -- So, to not map "<C-n>", just put
+                ["<C-n>"] = false,
+                ["<C-p>"] = false,
 
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
-			},
-		},
-	},
-	pickers = {
-		find_files = {
-			prompt_prefix = "🔍",
-		},
-	},
-	extensions = {
-		-- telescope-undo.nvim config
-		undo = {
-			use_delta = true,
-			side_by_side = true,
-			diff_context_lines = 3,
-			layout_strategy = "vertical",
-			layout_config = {
-				preview_height = 0.8,
-			},
-		},
-	},
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+            },
+        },
+    },
+    pickers = {
+        find_files = {
+            prompt_prefix = "🔍",
+        },
+    },
+    extensions = {
+        -- telescope-undo.nvim config
+        undo = {
+            use_delta = true,
+            side_by_side = true,
+            vim_diff_opts = { ctxlen = 3 },
+            layout_strategy = "vertical",
+            layout_config = {
+                preview_height = 0.8,
+            },
+        },
+    },
 }
 
 require("telescope").load_extension "undo"
