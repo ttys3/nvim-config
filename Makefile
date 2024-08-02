@@ -317,6 +317,7 @@ install:
 # eval "$(luarocks --lua-version 5.1 path --bin)"
 # nvim: export LUA_CPATH=/home/ttys3/.config/nvim/neovim/.deps/usr/lib/lua/5.1/?.so;/home/ttys3/.luarocks/lib64/lua/5.1/?.so
 # unset LUAROCKS_CONFIG LUA_PATH LUA_CPATH
+# try run `make distclean` first if link failed
 unexport LUAROCKS_CONFIG
 unexport LUA_PATH
 unexport LUA_CPATH
