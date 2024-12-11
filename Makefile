@@ -327,7 +327,7 @@ nvim:
 	sudo chown -R $$USER:$$GROUP ./neovim
 	# https://github.com/neovim/neovim/wiki/Building-Neovim#building
 	# Do not add a -j flag if ninja is installed! The build will be in parallel automatically.
-	test -d neovim && cd neovim && git pull origin master --tags --force && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install && cd ../ && nvim --version
+	test -d neovim && cd neovim && git pull origin master --tags --force &&	git checkout stable && make distclean && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install && cd ../ && nvim -V1 -v
 
 
 symlink/ubuntu:
