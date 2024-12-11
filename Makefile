@@ -322,12 +322,28 @@ unexport LUAROCKS_CONFIG
 unexport LUA_PATH
 unexport LUA_CPATH
 nvim:
+	@echo "==> Checking neovim repository..."
 	test -d neovim || git clone https://github.com/neovim/neovim.git
-	# https://github.com/ninja-build/ninja/issues/1302
-	sudo chown -R $$USER:$$GROUP ./neovim
-	# https://github.com/neovim/neovim/wiki/Building-Neovim#building
-	# Do not add a -j flag if ninja is installed! The build will be in parallel automatically.
-	test -d neovim && cd neovim && git pull origin master --tags --force &&	git checkout stable && make distclean && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install && cd ../ && nvim -V1 -v
+	
+	@echo "==> Building neovim..."
+	cd neovim && \
+		git clean -df . && \
+		git checkout stable && \
+		git pull origin stable --tags --force && \
+		make distclean && \
+		make CMAKE_BUILD_TYPE=RelWithDebInfo || { echo "Build failed"; exit 1; }
+	
+	@echo "==> Installing neovim..."
+	cd neovim && sudo rm -rf /usr/local/share/nvim/runtime && sudo make install
+	
+	@echo "==> Testing neovim installation..."
+	command -v nvim >/dev/null 2>&1 || { echo "Neovim installation failed"; exit 1; }
+	nvim -V1 -v
+
+	@echo "==> Updating treesitter..."
+	nvim -i NONE -c "TSUpdateSync" -c "qa"
+	
+	@echo "==> Neovim installation completed successfully"
 
 
 symlink/ubuntu:
