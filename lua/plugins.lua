@@ -193,21 +193,28 @@ require("lazy").setup({
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	event = { "VimEnter" },
-	-- 	requires = "github/copilot.vim",
-	-- 	config = function()
-	-- 		vim.defer_fn(function()
-	-- 			require("copilot").setup()
-	-- 		end, 100)
-	-- 	end,
-	-- }
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			-- It is recommended to disable copilot.lua's suggestion and panel modules, 
+			-- as they can interfere with completions properly appearing in copilot-cmp
+			-- ref https://github.com/zbirenbaum/copilot-cmp
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+	},
 
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	after = { "copilot.lua", "nvim-cmp" },
-	-- }
+	{
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua", "nvim-cmp" },
+		config = function ()
+			require("copilot_cmp").setup()
+		end
+	},
 
 	{
 		"tzachar/cmp-tabnine",

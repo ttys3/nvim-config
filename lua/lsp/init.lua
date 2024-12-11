@@ -12,6 +12,8 @@ M.format = function(opts)
 	vim.lsp.buf.format(opts)
 end
 
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+
 -- https://www.reddit.com/r/neovim/comments/l00zzb/improve_style_of_builtin_lsp_diagnostic_messages/gjt2hek/
 -- https://github.com/glepnir/lspsaga.nvim/blob/cb0e35d2e594ff7a9c408d2e382945d56336c040/lua/lspsaga/diagnostic.lua#L202
 M.setup_diagnostic_sign = function()
@@ -91,6 +93,8 @@ M.icons = {
 	Event = "",
 	Operator = "",
 	TypeParameter = "",
+	-- see https://github.com/zbirenbaum/copilot-cmp#highlighting--icon
+	Copilot = "",
 
 	-- Class = " ",
 	-- Color = " ",
@@ -141,6 +145,7 @@ local kind_order = {
 	"Event",
 	"Operator",
 	"TypeParameter",
+	"Copilot",
 }
 local kind_len = 25
 
