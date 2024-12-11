@@ -209,7 +209,10 @@ require("lazy").setup({
 	},
 
 	{
-		"zbirenbaum/copilot-cmp",
+		-- Excessive rate limit violations issue, see https://github.com/zbirenbaum/copilot-cmp/issues/117
+		-- "zbirenbaum/copilot-cmp",
+		"tris203/copilot-cmp",
+		branch = "getcompletions",
 		after = { "copilot.lua", "nvim-cmp" },
 		config = function ()
 			require("copilot_cmp").setup()
