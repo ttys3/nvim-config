@@ -341,6 +341,8 @@ nvim:
 	nvim -V1 -v
 
 	@echo "==> Updating treesitter..."
+	# update treesitter to avoid errors like:
+	# Error executing lua: treesitter/query.lua:252: Query error at 5:8. Invalid node type "string_content"
 	nvim -i NONE -c "TSUpdateSync" -c "qa"
 	
 	@echo "==> Neovim installation completed successfully"
