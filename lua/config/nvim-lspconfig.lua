@@ -381,7 +381,7 @@ lsp.lua_ls.setup {
 	}, -- end settings
 }
 
-lsp.tsserver.setup {
+lsp.ts_ls.setup {
 	on_attach = mix_attach,
 	capabilities = capabilities,
 }
