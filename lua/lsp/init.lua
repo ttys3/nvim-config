@@ -22,7 +22,7 @@ M.setup_diagnostic_sign = function()
 		},
 		warn_group = {
 			highlight = "DiagnosticSignWarning",
-			sign = "⚠️ ",
+			sign = "⚠️",
 		},
 		hint_group = {
 			highlight = "DiagnosticSignHint",
@@ -30,7 +30,7 @@ M.setup_diagnostic_sign = function()
 		},
 		infor_group = {
 			highlight = "DiagnosticSignInformation",
-			sign = "ℹ️ ",
+			sign = "ℹ️",
 		},
 	}
 
