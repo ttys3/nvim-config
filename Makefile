@@ -321,7 +321,7 @@ install:
 unexport LUAROCKS_CONFIG
 unexport LUA_PATH
 unexport LUA_CPATH
-nvim:
+nvim/install:
 	@echo "==> Checking neovim repository..."
 	test -d neovim || git clone https://github.com/neovim/neovim.git
 	
@@ -347,6 +347,9 @@ nvim:
 	
 	@echo "==> Neovim installation completed successfully"
 
+# https://github.com/neovim/neovim/blob/master/INSTALL.md#uninstall
+nvim/uninstall:
+	sudo cmake --build build/ --target uninstall
 
 symlink/ubuntu:
 	# show current alternatives
