@@ -1,5 +1,6 @@
 -- keymap from https://neovim.io/doc/user/lsp.html
--- https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+-- Neovim 0.11+ uses vim.lsp.config() and vim.lsp.enable()
+-- see :help lspconfig-nvim-0.11
 nnoremap { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", silent = true }
 
 nnoremap { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", silent = true }
@@ -77,10 +78,10 @@ nnoremap { "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", silent = true }
 -- lsp provider to find the cursor word definition and reference
 nnoremap { "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silent = true }
 
+-- Load custom LSP configurations
 require "lsp.nomadls"
 
-local lsp = require "lspconfig"
-
+-- Setup diagnostic signs, icons, and doc borders
 require("lsp").setup_diagnostic_sign()
 require("lsp").setup_item_kind_icons()
 require("lsp").setup_lsp_doc_border()
@@ -89,60 +90,71 @@ require("lsp").setup_lsp_doc_border()
 -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1279744539
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
---@param client: (required, vim.lsp.client)
-local mix_attach = function(client, bufnr)
-	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(true)
-	end
-	-- force enable yamlls formatting feature
-	-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
-	if client.name == "yamlls" then
-		-- Accessing client.resolved_capabilities is deprecated, update your plugins or configuration
-		-- to access client.server_capabilities instead.
-		-- The new key/value pairs in server_capabilities directly match those defined in the language server protocol
-		client.server_capabilities.document_formatting = true
-	end
+-- Use LspAttach autocmd instead of on_attach in each server config
+-- This way both base-config on_attach (from nvim-lspconfig) and our custom logic will run
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true }),
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		local bufnr = args.buf
 
-	-- require("lsp").set_lsp_omnifunc()
-	local has_illuminate, illuminate = pcall(require, "illuminate")
-	if has_illuminate then
-		illuminate.on_attach(client)
-	end
+		if not client then
+			return
+		end
 
-	local has_lsp_signature, lsp_signature = pcall(require, "lsp_signature")
-	if has_lsp_signature then
-		local cfg = {
-			bind = true, -- This is mandatory, otherwise border config won't get registered.
-			-- If you want to hook lspsaga or other signature handler, pls set to false
-			doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
-			hint_enable = true, -- virtual hint enable
-			hint_prefix = "🐼 ", -- Panda for parameter
-			hint_scheme = "String",
-			handler_opts = {
-				border = "shadow", -- double, single, shadow, none
-			},
-			decorator = { "`", "`" }, -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
-		}
-		lsp_signature.on_attach(cfg)
-	end
-end
+		-- Enable inlay hints if supported
+		if client.server_capabilities.inlayHintProvider then
+			vim.lsp.inlay_hint.enable(true)
+		end
 
-lsp.bashls.setup {
-	on_attach = mix_attach,
+		-- force enable yamlls formatting feature
+		-- see https://github.com/redhat-developer/yaml-language-server/issues/486#issuecomment-1046792026
+		if client.name == "yamlls" then
+			client.server_capabilities.document_formatting = true
+		end
+
+		-- illuminate integration
+		local has_illuminate, illuminate = pcall(require, "illuminate")
+		if has_illuminate then
+			illuminate.on_attach(client)
+		end
+
+		-- lsp_signature integration
+		local has_lsp_signature, lsp_signature = pcall(require, "lsp_signature")
+		if has_lsp_signature then
+			local cfg = {
+				bind = true, -- This is mandatory, otherwise border config won't get registered.
+				-- If you want to hook lspsaga or other signature handler, pls set to false
+				doc_lines = 10, -- only show one line of comment set to 0 if you do not want API comments be shown
+				hint_enable = true, -- virtual hint enable
+				hint_prefix = "🐼 ", -- Panda for parameter
+				hint_scheme = "String",
+				handler_opts = {
+					border = "shadow", -- double, single, shadow, none
+				},
+				decorator = { "`", "`" }, -- or decorator = {"***", "***"}  decorator = {"**", "**"} see markdown help
+			}
+			lsp_signature.on_attach(cfg, bufnr)
+		end
+	end,
+})
+
+-- LSP Server Configurations using vim.lsp.config (Neovim 0.11+)
+-- Note: on_attach is handled by LspAttach autocmd above
+
+vim.lsp.config('bashls', {
 	capabilities = capabilities,
-}
+})
 
 -- php
-lsp.intelephense.setup {
-	on_attach = mix_attach,
+vim.lsp.config('intelephense', {
 	capabilities = capabilities,
 	--[[
-                    cmd_env = {
-                        https_proxy = 'http://127.0.0.1:8888',
-                        http_proxy = 'http://127.0.0.1:8888',
-                    },
-                --]]
-	trace = "verbose",
+		cmd_env = {
+			https_proxy = 'http://127.0.0.1:8888',
+			http_proxy = 'http://127.0.0.1:8888',
+		},
+	--]]
 	-- root_dir = root_pattern("composer.json", ".git"),
 	init_options = {
 		-- See https://github.com/bmewburn/intelephense-docs/blob/master/installation.md#initialisation-options
@@ -168,19 +180,17 @@ lsp.intelephense.setup {
 			},
 		},
 	},
-}
+})
 
-lsp.dockerls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('dockerls', {
 	capabilities = capabilities,
-}
+})
 
--- lsp.gopls.setup{}
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/gopls.lua
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#gopls
-lsp.gopls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('gopls', {
+	capabilities = capabilities,
 	single_file_support = true,
 	settings = {
 		gopls = {
@@ -214,8 +224,7 @@ lsp.gopls.setup {
 			},
 		},
 	},
-	capabilities = capabilities,
-}
+})
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
 function _G.go_org_imports(options)
@@ -251,19 +260,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- https://clangd.llvm.org/features.html
-lsp.clangd.setup {
+vim.lsp.config('clangd', {
+	capabilities = capabilities,
 	-- remove support to proto due to includes error
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	init_options = {
 		clangdFileStatus = true,
 	},
-	on_attach = mix_attach,
-	capabilities = capabilities,
-}
+})
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#ccls
 -- https://github.com/MaskRay/ccls/wiki
--- lsp.ccls.setup {
+-- vim.lsp.config('ccls', {
 --   init_options = {
 -- 	  compilationDatabaseDirectory = "build";
 --     index = {
@@ -273,69 +281,23 @@ lsp.clangd.setup {
 --       excludeArgs = { "-frounding-math"} ;
 --     };
 --   }
--- }
+-- })
 
--- lsp.pyright.setup{}
-lsp.pyright.setup {
+vim.lsp.config('pyright', {
+	capabilities = capabilities,
 	settings = { python = { workspaceSymbols = { enabled = true } } },
-	on_attach = mix_attach,
-	capabilities = capabilities,
-}
+})
 
-local rust_lsp_options = {
-	on_attach = mix_attach,
-	capabilities = capabilities,
-	settings = {
-		-- https://rust-analyzer.github.io/manual.html#configuration
-		-- https://rust-analyzer.github.io/manual.html#nvim-lsp
-		["rust-analyzer"] = {
-			assist = {
-				importGranularity = "module",
-				importPrefix = "by_self",
-			},
-			cargo = {
-				loadOutDirsFromCheck = true,
-			},
-			-- rust-analyzer.procMacro.enable
-			procMacro = {
-				enable = true,
-			},
-			lruCapacity = 1024,
-			-- rust-analyzer.checkOnSave.command": "clippy"
-			checkOnSave = {
-				enable = true,
-				command = "clippy",
-			},
-		},
-	},
-}
-
--- override by rust-tools setup
--- so we do not need setup here
--- lsp.rust_analyzer.setup(rust_lsp_options)
-
--- require("rust-tools").setup {
--- 	-- rust-tools options
--- 	tools = {
--- 		-- default: true
--- 		autoSetHints = true,
--- 	},
-
--- 	-- rust-tools will call: rust_analyzer.setup(config.options.server)
--- 	-- all the opts to send to nvim-lspconfig
--- 	-- these override the defaults set by rust-tools.nvim
--- 	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
--- 	-- rust-analyer options
--- 	server = rust_lsp_options,
--- }
+-- rust_analyzer is managed by rustaceanvim plugin
+-- Do NOT configure it here, rustaceanvim handles LSP setup internally
+-- see https://github.com/mrcjkb/rustaceanvim
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local lua_ls_root_path = vim.fn.getenv "HOME" .. "/.local/share/lua-language-server"
 local lua_ls_binary = lua_ls_root_path .. "/bin/lua-language-server"
 
-lsp.lua_ls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('lua_ls', {
 	capabilities = capabilities,
 	log_level = vim.lsp.protocol.MessageType.Log,
 	message_level = vim.lsp.protocol.MessageType.Log,
@@ -379,66 +341,80 @@ lsp.lua_ls.setup {
 			},
 		},
 	}, -- end settings
-}
+})
 
-lsp.ts_ls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('ts_ls', {
 	capabilities = capabilities,
-}
+})
 
-lsp.denols.setup {
-	on_attach = mix_attach,
+vim.lsp.config('denols', {
 	capabilities = capabilities,
-}
+})
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#vala_ls
 -- meson improvement has been merged:
 -- https://github.com/neovim/nvim-lspconfig/pull/789
 
-lsp.vala_ls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('vala_ls', {
 	capabilities = capabilities,
 	cmd = { "vala-language-server" },
-}
+})
 
-lsp.vimls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('vimls', {
 	capabilities = capabilities,
-}
+})
 
-lsp.vuels.setup {
-	on_attach = mix_attach,
+vim.lsp.config('vuels', {
 	capabilities = capabilities,
-}
+})
 
-lsp.html.setup {
-	on_attach = mix_attach,
+vim.lsp.config('html', {
 	capabilities = capabilities,
-}
+})
 
-lsp.cssls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('cssls', {
 	capabilities = capabilities,
-}
+})
 
-lsp.jsonls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('jsonls', {
 	capabilities = capabilities,
-}
+})
 
-lsp.yamlls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('yamlls', {
 	capabilities = capabilities,
-}
+})
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tailwindcss
-lsp.tailwindcss.setup {}
+vim.lsp.config('tailwindcss', {
+	capabilities = capabilities,
+})
 
 -- custom lsp config
-lsp.nomadls.setup {
-	on_attach = mix_attach,
+vim.lsp.config('nomadls', {
 	capabilities = capabilities,
-}
+})
+
+-- Enable all configured LSP servers
+vim.lsp.enable({
+	'bashls',
+	'intelephense',
+	'dockerls',
+	'gopls',
+	'clangd',
+	'pyright',
+	'lua_ls',
+	'ts_ls',
+	'denols',
+	'vala_ls',
+	'vimls',
+	'vuels',
+	'html',
+	'cssls',
+	'jsonls',
+	'yamlls',
+	'tailwindcss',
+	'nomadls',
+})
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),

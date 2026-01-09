@@ -1,25 +1,10 @@
-local lspconfig = require "lspconfig"
-local configs = require "lspconfig.configs"
-local util = require "lspconfig.util"
+-- Custom nomadls configuration for Neovim 0.11+
+-- https://github.com/ttys3/nomad-lsp
 
-configs.nomadls = {
-	default_config = {
-		cmd = { "nomad-lsp" },
-		filetypes = { "nomad" },
-		root_dir = util.path.dirname,
-	},
-	-- on_new_config = function(new_config) end;
-	-- on_attach = function(client, bufnr) end;
-	docs = {
-		description = [[
-https://github.com/ttys3/nomad-lsp
-Language Server Protocol for Nomad.
-]],
-		default_config = {
-			root_dir = [[root_pattern(".git")]],
-		},
-	},
-}
-lspconfig.nomadls.setup({})
+vim.lsp.config('nomadls', {
+	cmd = { "nomad-lsp" },
+	filetypes = { "nomad" },
+	root_markers = { ".git" },
+})
 
 -- vim:et ts=2 sw=2

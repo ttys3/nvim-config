@@ -8,12 +8,32 @@ require("lazy").setup({
 	-- treesitter = AST (syntax/parsing)
 	-- LSP = whole-project semantic analysis
 	-- https://github.com/nvim-treesitter/nvim-treesitter
+	-- rm -rf ~/.local/share/nvim/lazy/nvim-treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		-- branch = "0.5-compat",
+		branch = "main",
 		build = ":TSUpdate",
+		lazy = false,
 		config = function()
-			require "config.nvim-treesitter"
+			-- new main branch API: use require("nvim-treesitter").setup() instead of require("nvim-treesitter.configs").setup()
+			require("nvim-treesitter").setup({
+				ensure_installed = { "query", "c", "go", "rust", "php", "python", "lua", "json", "toml", "vue", "css", "html", "bash", "hcl" },
+				sync_install = false,
+				auto_install = true,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+			-- disable treesitter highlight for markdown (use vim syntax instead)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "markdown",
+				callback = function()
+					vim.treesitter.stop()
+				end,
+			})
+			-- nomad filetype registration
+			vim.treesitter.language.register("hcl", "nomad")
+			vim.treesitter.language.register("hcl", "tf")
+			vim.treesitter.language.register("hcl", "terraform")
 		end,
 	},
 
@@ -198,7 +218,7 @@ require("lazy").setup({
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			-- It is recommended to disable copilot.lua's suggestion and panel modules, 
+			-- It is recommended to disable copilot.lua's suggestion and panel modules,
 			-- as they can interfere with completions properly appearing in copilot-cmp
 			-- ref https://github.com/zbirenbaum/copilot-cmp
 			require("copilot").setup({
@@ -290,20 +310,70 @@ require("lazy").setup({
 		end,
 	},
 
+	-- rustaceanvim: successor to rust-tools.nvim, actively maintained
+	-- https://github.com/mrcjkb/rustaceanvim
 	{
-		"simrat39/rust-tools.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"nvim-lua/plenary.nvim",
-		},
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- recommended
+		lazy = false, -- plugin is already lazy
+		ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				-- Plugin configuration
+				tools = {
+					hover_actions = {
+						auto_focus = true,
+					},
+				},
+				-- LSP configuration
+				server = {
+					on_attach = function(client, bufnr)
+						-- Hover actions
+						vim.keymap.set("n", "<leader>a", function()
+							vim.cmd.RustLsp { "hover", "actions" }
+						end, { buffer = bufnr, desc = "Rust hover actions" })
+						-- Code action groups
+						vim.keymap.set("n", "<Leader>aa", function()
+							vim.cmd.RustLsp "codeAction"
+						end, { buffer = bufnr, desc = "Rust code action" })
+					end,
+					default_settings = {
+						-- rust-analyzer settings
+						["rust-analyzer"] = {
+							assist = {
+								importGranularity = "module",
+								importPrefix = "by_self",
+							},
+							cargo = {
+								loadOutDirsFromCheck = true,
+								allFeatures = true,
+							},
+							procMacro = {
+								enable = true,
+							},
+							checkOnSave = {
+								enable = true,
+								command = "clippy",
+							},
+							inlayHints = {
+								lifetimeElisionHints = {
+									enable = true,
+									useParameterNames = true,
+								},
+							},
+						},
+					},
+				},
+				-- DAP configuration
+				dap = {},
+			}
+		end,
 	},
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	-- https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
-	-- https://www.reddit.com/r/neovim/comments/ot33sz/rusttoolsnvim_now_supports_debugging/
 	-- https://alpha2phi.medium.com/neovim-for-beginners-debugging-using-dap-44626a767f57
 	-- https://alpha2phi.medium.com/modern-neovim-debugging-and-testing-8deda1da1411
 	-- https://github.com/alpha2phi/modern-neovim/blob/04-test/lua/plugins/dap/init.lua
-	-- rust debug https://github.com/simrat39/rust-tools.nvim/wiki/Debugging
 	-- https://github.com/mfussenegger/nvim-dap
 	-- https://github.com/mfussenegger/nvim-dap/wiki/Extensions#language-specific-extensions
 	-- go install github.com/go-delve/delve/cmd/dlv@latest
@@ -316,15 +386,11 @@ require("lazy").setup({
 			"jbyuki/one-small-step-for-vimkind",
 			-- for golang
 			"leoluz/nvim-dap-go",
-			-- for rust https://github.com/simrat39/rust-tools.nvim
-			"neovim/nvim-lspconfig",
-			"nvim-lua/plenary.nvim",
-			"simrat39/rust-tools.nvim",
+			-- for rust: rustaceanvim handles DAP integration
 		},
 		config = function()
 			require("dap.ext.vscode").load_launchjs(nil, {})
 			require("dap-go").setup()
-			require "config.rust-tools"
 
 			require("nvim-dap-virtual-text").setup {
 				commented = true,
@@ -559,8 +625,13 @@ require("lazy").setup({
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
+		build = function(plugin)
+			if vim.fn.executable "pnpm" then
+				vim.cmd("!cd " .. plugin.dir .. " && cd app && pnpm install")
+			else
+				vim.cmd [[Lazy load markdown-preview.nvim]]
+				vim.fn["mkdp#util#install"]()
+			end
 		end,
 		config = function()
 			require "config.markdown-preview"
