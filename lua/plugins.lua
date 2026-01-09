@@ -146,6 +146,7 @@ require("lazy").setup({
 			require("local-highlight").setup {
 				file_types = { "c", "rust", "go", "html", "javascript", "java", "swift", "lua", "python", "cpp" },
 				hlgroup = "TSDefinitionUsage",
+				animate = false, -- animation requires snacks.nvim, disable to suppress warning
 			}
 		end,
 	},

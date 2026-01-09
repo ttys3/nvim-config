@@ -16,29 +16,18 @@ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 
 -- https://www.reddit.com/r/neovim/comments/l00zzb/improve_style_of_builtin_lsp_diagnostic_messages/gjt2hek/
 -- https://github.com/glepnir/lspsaga.nvim/blob/cb0e35d2e594ff7a9c408d2e382945d56336c040/lua/lspsaga/diagnostic.lua#L202
+-- Updated to use vim.diagnostic.config (Neovim 0.10+), sign_define() is deprecated for diagnostic signs
 M.setup_diagnostic_sign = function()
-	local group = {
-		err_group = {
-			highlight = "DiagnosticSignError",
-			sign = "❌",
-		},
-		warn_group = {
-			highlight = "DiagnosticSignWarning",
-			sign = "⚠️",
-		},
-		hint_group = {
-			highlight = "DiagnosticSignHint",
-			sign = "💡",
-		},
-		infor_group = {
-			highlight = "DiagnosticSignInformation",
-			sign = "ℹ️",
+	vim.diagnostic.config {
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "❌",
+				[vim.diagnostic.severity.WARN] = "⚠️",
+				[vim.diagnostic.severity.HINT] = "💡",
+				[vim.diagnostic.severity.INFO] = "ℹ️",
+			},
 		},
 	}
-
-	for _, g in pairs(group) do
-		vim.fn.sign_define(g.highlight, { text = g.sign, texthl = g.highlight, linehl = "", numhl = "" })
-	end
 end
 
 M.fix_imports = function()
