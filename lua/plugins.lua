@@ -389,7 +389,13 @@ require("lazy").setup({
 			-- for rust: rustaceanvim handles DAP integration
 		},
 		config = function()
-			require("dap.ext.vscode").load_launchjs(nil, {})
+			-- wrap in pcall to avoid errors from malformed launch.json files
+			local ok, err = pcall(function()
+				require("dap.ext.vscode").load_launchjs(nil, {})
+			end)
+			if not ok then
+				vim.notify("nvim-dap: failed to load launch.json: " .. tostring(err), vim.log.levels.WARN)
+			end
 			require("dap-go").setup()
 
 			require("nvim-dap-virtual-text").setup {
