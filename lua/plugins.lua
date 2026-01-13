@@ -214,31 +214,31 @@ require("lazy").setup({
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			-- It is recommended to disable copilot.lua's suggestion and panel modules,
-			-- as they can interfere with completions properly appearing in copilot-cmp
-			-- ref https://github.com/zbirenbaum/copilot-cmp
-			require("copilot").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		-- It is recommended to disable copilot.lua's suggestion and panel modules,
+	-- 		-- as they can interfere with completions properly appearing in copilot-cmp
+	-- 		-- ref https://github.com/zbirenbaum/copilot-cmp
+	-- 		require("copilot").setup({
+	-- 			suggestion = { enabled = false },
+	-- 			panel = { enabled = false },
+	-- 		})
+	-- 	end,
+	-- },
 
-	{
-		-- Excessive rate limit violations issue, see https://github.com/zbirenbaum/copilot-cmp/issues/117
-		-- "zbirenbaum/copilot-cmp",
-		"tris203/copilot-cmp",
-		branch = "getcompletions",
-		after = { "copilot.lua", "nvim-cmp" },
-		config = function ()
-			require("copilot_cmp").setup()
-		end
-	},
+	-- {
+	-- 	-- Excessive rate limit violations issue, see https://github.com/zbirenbaum/copilot-cmp/issues/117
+	-- 	-- "zbirenbaum/copilot-cmp",
+	-- 	"tris203/copilot-cmp",
+	-- 	branch = "getcompletions",
+	-- 	after = { "copilot.lua", "nvim-cmp" },
+	-- 	config = function ()
+	-- 		require("copilot_cmp").setup()
+	-- 	end
+	-- },
 
 	{
 		"tzachar/cmp-tabnine",
