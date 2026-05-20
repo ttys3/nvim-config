@@ -40,6 +40,16 @@ require("lazy").setup({
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		init = function()
+			-- skip the deprecated nvim-treesitter module integration (faster load)
+			vim.g.skip_ts_context_commentstring_module = true
+		end,
+		config = function()
+			-- disable the legacy CursorHold autocmd: on Neovim 0.12 its
+			-- is_treesitter_active() check produces false positives and crashes.
+			-- context commentstring is driven via Comment.nvim's pre_hook instead.
+			require("ts_context_commentstring").setup { enable_autocmd = false }
+		end,
 	},
 
 	-- https://github.com/IndianBoy42/tree-sitter-just
@@ -551,9 +561,12 @@ require("lazy").setup({
 	-- https://github.com/numToStr/Comment.nvim
 	{
 		"numToStr/Comment.nvim",
+		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 		config = function()
 			-- https://github.com/numToStr/Comment.nvim#configuration-optional
-			require("Comment").setup()
+			require("Comment").setup {
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			}
 		end,
 	},
 
