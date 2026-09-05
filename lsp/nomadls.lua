@@ -1,10 +1,8 @@
--- Custom nomadls configuration for Neovim 0.11+
+-- Custom Nomad LSP (not shipped with nvim-lspconfig).
 -- https://github.com/ttys3/nomad-lsp
-
-vim.lsp.config('nomadls', {
+---@type vim.lsp.Config
+return {
 	cmd = { "nomad-lsp" },
 	filetypes = { "nomad" },
 	root_markers = { ".git" },
-})
-
--- vim:et ts=2 sw=2
+}

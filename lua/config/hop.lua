@@ -1,4 +1,8 @@
-require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
+require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 
-vim.api.nvim_set_keymap("n", "s", "<cmd>lua require'hop'.hint_char2()<cr>", {})
-vim.api.nvim_set_keymap("n", "S", "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+vim.keymap.set("n", "s", function()
+	require("hop").hint_char2()
+end)
+vim.keymap.set("n", "S", function()
+	require("hop").hint_patterns()
+end)

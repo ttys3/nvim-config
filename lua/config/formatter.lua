@@ -1,19 +1,17 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true }),
-	pattern = { "*.lua", "*.{hcl,nomad,terraform,tf}", "*.{yaml,yml}", "*.{proto,proto3,proto2}" },
-	callback = function(opts)
-		vim.api.nvim_command "FormatWrite"
+	-- Lua / HCL / Nomad / proto: formatter.nvim. YAML/Go/Rust/C/Python/PHP: vim.lsp.buf.format
+	pattern = { "*.lua", "*.{hcl,nomad,terraform,tf}", "*.{proto,proto3,proto2}" },
+	callback = function()
+		vim.cmd("FormatWrite")
 	end,
 })
 
-require("formatter").setup {
-	-- Enable or disable logging
+require("formatter").setup({
 	logging = false,
-	-- Set the log level
 	log_level = vim.log.levels.TRACE,
 	filetype = {
 		javascript = {
-			-- prettier
 			function()
 				return {
 					exe = "prettier",
@@ -22,18 +20,7 @@ require("formatter").setup {
 				}
 			end,
 		},
-		rust = {
-			-- Rustfmt
-			function()
-				return {
-					exe = "rustfmt",
-					args = { "--emit=stdout" },
-					stdin = true,
-				}
-			end,
-		},
 		lua = {
-			-- stylua
 			function()
 				return {
 					exe = "stylua",
@@ -51,12 +38,11 @@ require("formatter").setup {
 				}
 			end,
 		},
-		-- .nomad.hcl
 		nomad = {
 			function()
 				return {
 					exe = "nomad",
-					args = { "fmt", "-check", "-" },
+					args = { "fmt", "-" },
 					stdin = true,
 				}
 			end,
@@ -76,21 +62,11 @@ require("formatter").setup {
 					exe = "clang-format",
 					args = {
 						"--style",
-						-- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-						-- be aware that we need ensure double qouted to prevent shell parse `{}`
 						'"{ IndentWidth: 4, BasedOnStyle: google, AlignConsecutiveAssignments: true,  AlignConsecutiveDeclarations: true, ColumnLimit: 160 }"',
 					},
 					stdin = true,
 				}
 			end,
 		},
-		-- yaml = {
-		-- 	function()
-		-- 		return {
-		-- 			exe = "yamlfmt",
-		-- 			stdin = true,
-		-- 		}
-		-- 	end,
-		-- },
 	},
-}
+})

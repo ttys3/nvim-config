@@ -1,39 +1,44 @@
 --
--- bootstrapping
+-- bootstrap lazy.nvim, then load core + plugin specs
 --
 
-local print_err = vim.api.nvim_err_writeln
-
-local bootstrap = function()
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-	if not vim.loop.fs_stat(lazypath) then
-		vim.fn.system({
-				"git",
-				"clone",
-				"--filter=blob:none",
-				"https://github.com/folke/lazy.nvim.git",
-				"--branch=stable", -- latest stable release
-				lazypath,
-		})
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+	local out = vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+		}, true, {})
+		os.exit(1)
 	end
-	vim.opt.rtp:prepend(lazypath)
 end
+vim.opt.rtp:prepend(lazypath)
 
-bootstrap()
-
--- space as neovim leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
--- log file location: ~/.cache/nvim/lsp.log
-local _lsp_debug = os.getenv "LSP_DEBUG" or false
-if _lsp_debug then
-	vim.lsp.set_log_level "trace"
+-- log file: stdpath("log") on 0.12; 0.13 moves this under state/logs
+local lsp_debug = os.getenv("LSP_DEBUG")
+if lsp_debug then
+	vim.lsp.set_log_level("trace")
 	require("vim.lsp.log").set_format_func(vim.inspect)
-	print [[You can find your log at $HOME/.local/state/nvim/lsp.log]]
 end
 
-require "utils"
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
 
-require "general"
-
-local plugins = require "plugins"
+require("lazy").setup({
+	spec = { { import = "plugins" } },
+	defaults = { lazy = false },
+	change_detection = { notify = false },
+	ui = { border = "single" },
+})
