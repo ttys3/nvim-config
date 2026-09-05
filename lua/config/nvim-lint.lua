@@ -5,37 +5,23 @@ require("lint").linters_by_ft = {
 	dockerfile = { "hadolint" },
 }
 
-TryLint = function()
-	local diag = vim.diagnostic.get(0, { severity_limit = vim.diagnostic.severity.WARN })
-	if diag and type(diag) == "table" and #diag > 0 then
-		-- avoid duplicated error and warning overlay on the same line by lsp and nvim-lint both
+local function try_lint()
+	local diag = vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.WARN } })
+	if diag and #diag > 0 then
+		-- Avoid overlaying the same line with both LSP and nvim-lint
 		return
 	end
 	require("lint").try_lint()
 end
 
--- see https://github.com/dense-analysis/ale/blob/5b1044e2ade71fee4a59f94faa108d99b4e61fb2/autoload/ale/events.vim#L102
-
-vim.api.nvim_create_autocmd({"BufEnter","BufRead"}, {
-	group = vim.api.nvim_create_augroup("NvimLint", { clear = false }),
-	pattern = { "*" },
-	callback = function(opts)
-		opts = opts or {}
-		opts.id = nil
-		-- dump(opts)
-		vim.defer_fn(function()
-			TryLint()
-		end, 300)
+vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
+	group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
+	callback = function()
+		vim.defer_fn(try_lint, 300)
 	end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-	group = vim.api.nvim_create_augroup("NvimLint", { clear = false }),
-	pattern = { "*" },
-	callback = function(opts)
-		opts = opts or {}
-		opts.id = nil
-		-- dump(opts)
-		TryLint()
-	end,
+	group = "NvimLint",
+	callback = try_lint,
 })

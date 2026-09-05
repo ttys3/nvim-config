@@ -159,30 +159,23 @@ check:
 	nvim -i NONE -c "checkhealth"
 
 ts:
-	nvim -i NONE -c "TSUninstall all" -c "qa"
-	nvim -i NONE -c "TSInstallFromGrammar query c go rust php python lua json toml vue css html bash"
+	nvim -i NONE -c "lua require('nvim-treesitter').install({'query','c','go','rust','php','python','lua','json','toml','vue','css','html','bash','hcl'}):wait(300000)" -c "qa"
 
 ts-cli:
 	git clone https://github.com/tree-sitter/tree-sitter.git
 	cd tree-sitter && cargo install .
 
-pack/p:
-	nvim -i NONE -c "PackerCompile profile=true" -c "PackerProfile"
-
 pack/s:
-	nvim -i NONE -c "PackerSync" -c "PackerCompile"
+	nvim --headless "+Lazy! sync" "+qa"
 
 pack/i:
-	nvim -i NONE -c "PackerInstall" -c "PackerCompile"
-
-pack/c:
-	nvim -i NONE -c "PackerCompile" -c "qa"
+	nvim --headless "+Lazy! install" "+qa"
 
 pack/u:
-	nvim -i NONE -c "PackerUpdate"
+	nvim --headless "+Lazy! update" "+qa"
 
 pack/q:
-	nvim -i NONE -c "PackerUpdate" -c "qa"
+	nvim --headless "+Lazy! update" "+qa"
 
 lua/ubuntu:
 	sudo apt-get install -y libluajit-5.1-dev liblua5.1-0-dev
@@ -305,9 +298,7 @@ image:
 		sudo chmod 600 /etc/containers/auth.json
 	sudo BUILDAH_FORMAT=docker BUILDAH_LAYERS=true podman build -t neovim .
 
-packer:
-	git clone https://github.com/wbthomason/packer.nvim \
-	~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+# packer.nvim is no longer used; lazy.nvim is bootstrapped from init.lua
 
 install:
 	ansible-playbook -K ./nvim-fedora.yaml

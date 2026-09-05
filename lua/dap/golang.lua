@@ -3,29 +3,27 @@
 local M = {}
 
 function M.init()
-	local dap = require "dap"
+	local dap = require("dap")
 	dap.adapters.go = function(callback, config)
 		local handle
-		local pid_or_err
 		local port = 38697
 
-		handle, pid_or_err = vim.loop.spawn("dlv", {
+		handle = vim.uv.spawn("dlv", {
 			args = { "dap", "-l", "127.0.0.1:" .. port },
 			detached = true,
 		}, function(code)
-			handle:close()
-			print("Delve exited with exit code: " .. code)
+			if handle then
+				handle:close()
+			end
+			print("Delve exited with exit code: " .. tostring(code))
 		end)
-		----should we wait for delve to start???
+
 		vim.defer_fn(function()
 			dap.repl.open()
-			callback { type = "server", host = "127.0.0.1", port = port }
+			callback({ type = "server", host = "127.0.0.1", port = port })
 		end, 500)
-
-		callback { type = "server", host = "127.0.0.1", port = port }
 	end
 
-	-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 	dap.configurations.go = {
 		{
 			type = "go",

@@ -1,14 +1,13 @@
-map { "p", "<Plug>(miniyank-autoput)" }
-map { "P", "<Plug>(miniyank-autoPut)" }
-map { "<leader>n", "<Plug>(miniyank-cycle)" }
-map { "<leader>N", "<Plug>(miniyank-cycleback)" }
--- " the standard "+gP and "+y commands very difficult to use
-vmap { "<RightMouse>", '"+y' }
-vmap { "<leader>yy", '"+y' }
-nnoremap { "<leader>y", '"+y' }
-vnoremap { "<leader>y", '"+y' }
-nnoremap { "<leader>p", '"+gP' }
-vnoremap { "<leader>p", '"+gP' }
--- " make Y consistent with C and D. See :help Y.
-nnoremap { "Y", "y$" }
+local map = vim.keymap.set
 
+map("", "p", "<Plug>(miniyank-autoput)", { remap = true })
+map("", "P", "<Plug>(miniyank-autoPut)", { remap = true })
+map("", "<leader>n", "<Plug>(miniyank-cycle)", { remap = true })
+map("", "<leader>N", "<Plug>(miniyank-cycleback)", { remap = true })
+map("v", "<RightMouse>", '"+y')
+map("v", "<leader>yy", '"+y')
+map("n", "<leader>y", '"+y')
+map("v", "<leader>y", '"+y')
+map("n", "<leader>p", '"+gP')
+map("v", "<leader>p", '"+gP')
+map("n", "Y", "y$")
